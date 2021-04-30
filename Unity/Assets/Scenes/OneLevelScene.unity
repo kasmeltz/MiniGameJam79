@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStartTime: 2
-  TransitionTotalTime: 20
+  TransitionTotalTime: 4
 --- !u!1 &630060535
 GameObject:
   m_ObjectHideFlags: 0

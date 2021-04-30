@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\HeroUpgradeType.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\LevelBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\LevelManagerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\TileTransition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

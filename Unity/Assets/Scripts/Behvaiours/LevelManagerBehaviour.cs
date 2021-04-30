@@ -21,13 +21,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected List<int> CurrentTransitionIndex { get; set; }
 
-        protected List<List<int>> CurrentTileTransitionIndex { get; set; }
+        protected List<List<TileTransition>> TileTransitions { get; set; }
 
         protected List<List<float>> TransitionTimes { get; set; }
 
-        protected List<TileBase[]> FromTileArrays { get; set; }
+        //protected List<TileBase[]> FromTileArrays { get; set; }
 
-        protected List<TileBase[]> ToTileArrays { get; set; }
+        //protected List<TileBase[]> ToTileArrays { get; set; }
 
         protected float TransitionTimer { get; set; }
 
@@ -107,16 +107,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void CreateTransitionTimes(int index, Tilemap from, Tilemap to)
         {
-            var tileTransitionIndex = CurrentTileTransitionIndex[index];
+            var tileTransitions = TileTransitions[index];
 
-            tileTransitionIndex
+            tileTransitions
                 .Clear();
-
-            TileBase[] fromTiles = from
-                .GetTilesBlock(from.cellBounds);
-
-            TileBase[] toTiles = to
-                .GetTilesBlock(to.cellBounds);
 
             int transitionCount = 0;
             int idx = 0;
@@ -124,34 +118,29 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 for (int x = from.cellBounds.min.x; x < from.cellBounds.max.x; x++)
                 {
-                    /*
-                    if (fromTiles[idx] != null)
-                    {
-                        Debug
-                            .Log($"IDX: '{idx}' TILE: {fromTiles[idx]}");
-                    }
-                    
-                    if (toTiles[idx] != null)
-                    {
-                        Debug
-                            .Log($"IDX: '{idx}' TILE: {toTiles[idx]}");
-                    }
-                    */
+                    Vector3Int pos = new Vector3Int(x, y, 0);
 
-                    if (fromTiles[idx] != toTiles[idx])
+                    var fromTile = from
+                        .GetTile(pos);
+
+                    var toTile = to
+                        .GetTile(pos);
+
+                    if (fromTile != toTile)
                     {
-                        tileTransitionIndex
-                            .Add(idx);
-                        
+                        tileTransitions.Add(new TileTransition
+                        {
+                            FromTile = fromTile,
+                            ToTile = toTile,
+                            Coords = new Vector3Int(x, y, 0)
+                        });
+
                         transitionCount++;
                     }
 
                     idx++;
                 }
             }
-
-            FromTileArrays[index] = fromTiles;
-            ToTileArrays[index] = toTiles;
 
             CreateTransitionTimes(index, transitionCount);
         }
@@ -179,9 +168,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void DoTransition(int transitionType, int index)
         {
-            Debug
-                .Log($"DOING TRANSITION Index '{index}' Time '{TransitionTimer}'");
-
             switch (transitionType)
             {
                 case 0:
@@ -190,29 +176,28 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 case 1:
                 case 2:
                 case 3:
-                    DoTileTransition(transitionType, index);
+                    DoTileTransition(transitionType - 1, index);
                     break;
             }
         }
 
         protected void DoTileTransition(int tilemapIndex, int transitionIndex)
         {
-            TileBase[] fromTiles = FromTileArrays[tilemapIndex];
-            TileBase[] toTiles = ToTileArrays[tilemapIndex];
-
-            var tileTransitionIndex = CurrentTileTransitionIndex[tilemapIndex];
-            if (tilemapIndex >= tileTransitionIndex.Count)
+            var tileTransitions = TileTransitions[tilemapIndex + 1];
+            if (transitionIndex >= tileTransitions.Count)
             {
                 return;                
             }
 
-            var tileIndex = tileTransitionIndex[transitionIndex];
-            var fromTile = fromTiles[tileIndex];
-            var toTile = toTiles[tileIndex];
+            var tileTransition = tileTransitions[transitionIndex];
 
-            var f = 1;
+            Debug
+                .Log($"Coords '{tileTransition.Coords}' From '{tileTransition.FromTile}' To '{tileTransition.ToTile}'");
 
-            //CurrentLevel.flo
+            var fromTilemap = CurrentLevel.Tilemaps[tilemapIndex];
+
+            fromTilemap
+                .SetTile(tileTransition.Coords, tileTransition.ToTile);
         }
 
         protected void DoMovingPlatformtransition(int index)
@@ -260,23 +245,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             CurrentTransitionIndex = new List<int>();
             TransitionTimes = new List<List<float>>();
-            FromTileArrays = new List<TileBase[]>();
-            ToTileArrays = new List<TileBase[]>();
-            CurrentTileTransitionIndex = new List<List<int>>();
-
+            TileTransitions = new List<List<TileTransition>>();
+            
             for (int i = 0;i < 4;i++)
             {
                 TransitionTimes
                     .Add(new List<float>());
 
-                FromTileArrays
-                    .Add(new TileBase[1]);
-
-                ToTileArrays
-                    .Add(new TileBase[1]);
-
-                CurrentTileTransitionIndex
-                    .Add(new List<int>());
+                TileTransitions
+                    .Add(new List<TileTransition>());
             }
 
             TransitionTo(1);
@@ -316,12 +293,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             for(int i = 0;i < CurrentTransitionIndex.Count;i++)
             {
-                var currentIndex = CurrentTransitionIndex[i];
-                var transitionTimes = TransitionTimes[currentIndex];
-
+                var transitionTimes = TransitionTimes[i];
+                var currentIndex = CurrentTransitionIndex[i];                                
+                
                 if (currentIndex < transitionTimes.Count)
                 {
                     var plannedTime = transitionTimes[currentIndex];
+
+                    //Debug
+                        //.Log($"i '{i}' currentIndex '{currentIndex}' plannedTime '{plannedTime}' TransitionTimer '{TransitionTimer}'");
+
                     if (TransitionTimer >= plannedTime)
                     {
                         DoTransition(i, currentIndex);
