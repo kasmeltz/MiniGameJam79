@@ -1,7 +1,40 @@
 fileFormatVersion: 2
 guid: 065501ab3b554664da4401aa35f7257c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 7637742641443375647
+    second: WizardFrog1_0
+  - first:
+      213: 3213708038260219677
+    second: WizardFrog1_1
+  - first:
+      213: 8308631525160297310
+    second: WizardFrog1_2
+  - first:
+      213: -8882692178116470055
+    second: WizardFrog1_3
+  - first:
+      213: -8357407717556017851
+    second: WizardFrog1_4
+  - first:
+      213: -6505810421361620061
+    second: WizardFrog1_5
+  - first:
+      213: -8282448699529515310
+    second: WizardFrog1_6
+  - first:
+      213: -751004867711100203
+    second: WizardFrog1_7
+  - first:
+      213: -7477871649361154727
+    second: WizardFrog1_8
+  - first:
+      213: -631799166166328928
+    second: WizardFrog1_9
+  - first:
+      213: -7306644753332833046
+    second: WizardFrog1_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -32,7 +65,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -41,14 +74,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -68,7 +101,31 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

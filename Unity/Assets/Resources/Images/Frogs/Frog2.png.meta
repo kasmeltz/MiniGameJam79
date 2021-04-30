@@ -50,6 +50,18 @@ TextureImporter:
   - first:
       213: -2852708491536699407
     second: Frog2_15
+  - first:
+      213: -5337067487731371118
+    second: Frog2_16
+  - first:
+      213: 5450953572424901218
+    second: Frog2_17
+  - first:
+      213: 490146149113973726
+    second: Frog2_18
+  - first:
+      213: -8056495577180500791
+    second: Frog2_19
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -238,8 +250,8 @@ TextureImporter:
       name: Frog2_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 128
+        y: 240
         width: 32
         height: 80
       alignment: 7
@@ -259,7 +271,7 @@ TextureImporter:
       name: Frog2_5
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 160
         width: 32
         height: 80
@@ -280,7 +292,7 @@ TextureImporter:
       name: Frog2_6
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 160
         width: 32
         height: 80
@@ -301,7 +313,7 @@ TextureImporter:
       name: Frog2_7
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 160
         width: 32
         height: 80
@@ -322,8 +334,8 @@ TextureImporter:
       name: Frog2_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 96
+        y: 160
         width: 32
         height: 80
       alignment: 7
@@ -343,8 +355,8 @@ TextureImporter:
       name: Frog2_9
       rect:
         serializedVersion: 2
-        x: 32
-        y: 80
+        x: 128
+        y: 160
         width: 32
         height: 80
       alignment: 7
@@ -364,7 +376,7 @@ TextureImporter:
       name: Frog2_10
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 80
         width: 32
         height: 80
@@ -385,7 +397,7 @@ TextureImporter:
       name: Frog2_11
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 80
         width: 32
         height: 80
@@ -406,8 +418,8 @@ TextureImporter:
       name: Frog2_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 80
         width: 32
         height: 80
       alignment: 7
@@ -427,8 +439,8 @@ TextureImporter:
       name: Frog2_13
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 96
+        y: 80
         width: 32
         height: 80
       alignment: 7
@@ -448,8 +460,8 @@ TextureImporter:
       name: Frog2_14
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 128
+        y: 80
         width: 32
         height: 80
       alignment: 7
@@ -469,7 +481,7 @@ TextureImporter:
       name: Frog2_15
       rect:
         serializedVersion: 2
-        x: 96
+        x: 0
         y: 0
         width: 32
         height: 80
@@ -482,6 +494,90 @@ TextureImporter:
       bones: []
       spriteID: 1ffe632cdb42968d0800000000000000
       internalID: -2852708491536699407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog2_16
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2933c7b956deee5b0800000000000000
+      internalID: -5337067487731371118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog2_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262688bc46da5ab40800000000000000
+      internalID: 5450953572424901218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog2_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edbc6f163595dc600800000000000000
+      internalID: 490146149113973726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog2_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cc86ab25f3913090800000000000000
+      internalID: -8056495577180500791
       vertices: []
       indices: 
       edges: []
