@@ -44,7 +44,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         #endregion
-    
+
         #region Protected Methods
 
         protected void TransitionTo(int toIndex)
