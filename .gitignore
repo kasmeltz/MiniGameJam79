@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/Unity/.vs/Unity/v16
+/Unity/Library
+/Unity/obj/Debug
+/Unity/Temp
+/Unity/.vsconfig
