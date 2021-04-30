@@ -11,6 +11,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
+        public PlatformerBehaviour Platformer;
+
         public float TransitionStartTime;
 
         public float TransitionTotalTime;
@@ -24,10 +26,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected List<List<TileTransition>> TileTransitions { get; set; }
 
         protected List<List<float>> TransitionTimes { get; set; }
-
-        //protected List<TileBase[]> FromTileArrays { get; set; }
-
-        //protected List<TileBase[]> ToTileArrays { get; set; }
 
         protected float TransitionTimer { get; set; }
 
@@ -57,6 +55,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .Load<LevelBehaviour>($"Prefabs/Levels/Level{CurrentLevelIndex}");
 
                 CurrentLevel = Instantiate(prefab);
+
+                var collider = CurrentLevel
+                    .Tilemaps[2]
+                    .GetComponent<CompositeCollider2D>();
+
+                Platformer.OneWayCollider = collider;
             }
 
             var toPrefab = Resources

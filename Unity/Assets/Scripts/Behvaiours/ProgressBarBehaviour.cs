@@ -1,11 +1,16 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using UnityEngine;
+    using UnityEngine.UI;
 
     [AddComponentMenu("KasJam/ProgressBar")]
     public class ProgressBarBehaviour : BehaviourBase
     {
         #region Members
+
+        public Image BackgroundImage;
+
+        public Image ForegroundImage;
 
         public SpriteRenderer Background;
 
@@ -19,11 +24,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             float ratio = value / maxValue;
 
-            var size = ForeGround.size;
+            if (ForeGround != null)
+            {
+                var size = ForeGround.size;
 
-            size.x = ratio * Background.size.x;
+                size.x = ratio * Background.size.x;
 
-            ForeGround.size = size;
+                ForeGround.size = size;
+            }
+
+            if (ForegroundImage != null)
+            {
+                ForegroundImage.fillAmount = ratio;
+            }
         }
 
         #endregion

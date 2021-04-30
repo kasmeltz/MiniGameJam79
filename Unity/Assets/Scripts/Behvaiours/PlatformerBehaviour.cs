@@ -10,11 +10,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
+        public Bounds LevelBounds;
+
         public HeroUpgradeScriptableObject[] Upgrades;
 
         public CompositeCollider2D OneWayCollider;
 
         public ProgressBarBehaviour FlyPowerProgressBar;
+
+        public ProgressBarBehaviour HealthProgressBar;
 
         public Rigidbody2D RigidBody;
 
@@ -43,6 +47,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float FlyPowerDuration;
 
         public SpriteRenderer SpriteRenderer;
+
+        public float DeathVelocity;
+
+        public float Health;
+
+        public float MaxHealth;
 
         public int FliesEaten { get; set; }
 
@@ -231,69 +241,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void DrawDebug()
         {
-            /*
-            var debugColor = Color.white;
-
-            if (!IsOnGround)
-            {
-                debugColor = Color.red;
-            }
-
-            var p1 = new Vector3(transform.position.x - 0.16f, transform.position.y - 0.16f, 0);
-            var p2 = new Vector3(transform.position.x + 0.16f, transform.position.y - 0.16f, 0);
-            Debug
-                .DrawLine(p1, p2, debugColor);
-
-            debugColor = Color.white;
-
-            if (!IsAgainstLeftWall)
-            {
-                debugColor = Color.red;
-            }
-
-            p1 = new Vector3(transform.position.x - 0.16f, transform.position.y - 0.16f, 0);
-            p2 = new Vector3(transform.position.x - 0.16f, transform.position.y + 0.16f, 0);
-            Debug
-                .DrawLine(p1, p2, debugColor);
-
-            debugColor = Color.white;
-
-            if (!IsAgainstRightWall)
-            {
-                debugColor = Color.red;
-            }
-
-            p1 = new Vector3(transform.position.x + 0.16f, transform.position.y - 0.16f, 0);
-            p2 = new Vector3(transform.position.x + 0.16f, transform.position.y + 0.16f, 0);
-            Debug
-                .DrawLine(p1, p2, debugColor);
-
-            debugColor = Color.white;
-
-            if (IsHopping)
-            {
-                debugColor = Color.magenta;
-            }
-
-            if (IsJumping)
-            {
-                debugColor = Color.cyan;
-            }
-
-            p1 = new Vector3(transform.position.x - 0.16f, transform.position.y + 0.16f, 0);
-            p2 = new Vector3(transform.position.x + 0.16f, transform.position.y + 0.16f, 0);
-            Debug
-                .DrawLine(p1, p2, debugColor);
-
-            if (IsCoyoteTime)
-            {
-                p1 = new Vector3(transform.position.x - 0.16f, transform.position.y, 0);
-                p2 = new Vector3(transform.position.x + 0.16f, transform.position.y, 0);
-                Debug
-                    .DrawLine(p1, p2, Color.yellow);
-            }
-            */
-
             StringBuilder sb = new StringBuilder();
 
             if (IsCoyoteTime)
@@ -409,7 +356,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             Collider2D collider;
             var o = new Vector2(transform.position.x, transform.position.y - 0.08f);
-            var s = new Vector2(0.16f, 0.16f);
+            var s = new Vector2(0.32f, 0.32f);
 
             var raycastHit = Physics2D
                 .BoxCast(o, s, 0, Vector2.down, 0.02f, GroundLayer);
@@ -435,13 +382,21 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (hitGround)
             {
-                if (ImpactVelocity < 0)
+                if (ImpactVelocity < DeathVelocity)
                 {
-                    //Debug
-                      //  .Log(ImpactVelocity);
+                    ReSpawn();
                 }
 
-                MovingPlatformBehaviour movingPlatform = GroundCollider.GetComponent<MovingPlatformBehaviour>();
+                if (GroundCollider
+                    .name
+                    .ToLower()
+                    .Contains("water"))
+                {
+                    ReSpawn();
+                }
+
+                MovingPlatformBehaviour movingPlatform = GroundCollider
+                    .GetComponent<MovingPlatformBehaviour>();
                 if (movingPlatform != null)
                 {
                     RigidBody.velocity = movingPlatform.RigidBody.velocity;
@@ -575,6 +530,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             FlyPowerProgressBar
                 .SetValue(0, FlyPowerDuration);
 
+            HealthProgressBar
+                .SetValue(Health, MaxHealth);
+
             FliesEaten = 0;
 
             foreach(var upgrade in Upgrades)
@@ -634,6 +592,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 FlyPowerProgressBar
                     .SetValue(FlyPowerTimer, FlyPowerDuration);
             }
+
+            HealthProgressBar
+                .SetValue(Health, MaxHealth);
 
             if (IsHopping && transform.position.y < HopStartY)
             {
@@ -705,6 +666,32 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
 
             DrawDebug();
+            
+            var pos = transform.position;
+
+            if (pos.x < LevelBounds.min.x)
+            {
+                pos.x = LevelBounds.min.x;
+            }
+
+            if (pos.x > LevelBounds.max.x)
+            {
+                pos.x = LevelBounds.max.x;
+            }
+
+            pos.z = 0;
+
+            transform.position = pos;
+
+            pos.z = -10;
+
+            if (pos.x >= LevelBounds.min.x + 6 && pos.x <= LevelBounds.max.x - 6)
+            {
+                var newPos = Vector3
+                    .Lerp(Camera.main.transform.position, pos, 0.5f);
+
+                Camera.main.transform.position = newPos;
+            }
         }
 
         #endregion

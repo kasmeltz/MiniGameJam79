@@ -71,12 +71,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             if (direction == 1)
             {
-                transform.localPosition = new Vector3(0.08f, 0, 0);
+                transform.localPosition = new Vector3(0.06f, 0.20f, 0);
                 SpriteRenderer.flipX = false;
             }
             else
             {
-                transform.localPosition = new Vector3(-0.08f, 0, 0);
+                transform.localPosition = new Vector3(-0.06f, 0.20f, 0);
                 SpriteRenderer.flipX = true;
             }
 
@@ -89,12 +89,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void UpdateSprite()
         {
-            SpriteRenderer.size = new Vector2(0.04f * Length, 0.04f);
+            SpriteRenderer.size = new Vector2(0.02f * Length, 0.02f);
 
             if (IsShooting)
             {
-                BoxCollider2d.size = new Vector2(0.08f, 0.08f);
-                BoxCollider2d.offset = new Vector2(Length * 0.04f * Direction, 0);
+                BoxCollider2d.size = new Vector2(0.06f, 0.06f);
+                BoxCollider2d.offset = new Vector2(Length * 0.01f * Direction, 0);
             }
             else
             {
