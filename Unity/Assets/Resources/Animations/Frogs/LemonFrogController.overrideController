@@ -8,4 +8,8 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: LemonFrogController
   m_Controller: {fileID: 9100000, guid: a07d4cd112e3fa54f93bfce5b2e99a4b, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 65ae0c09e6ee7d149bb6663801abc30d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3b6ca2108effd11469121dc5fe1d9e40, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 62503668be139b74da6cdb1ea634d7a1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 31e1fbf54ebdf9348b8009d78644a0d9, type: 2}

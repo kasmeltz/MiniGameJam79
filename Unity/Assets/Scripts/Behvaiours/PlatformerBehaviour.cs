@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.Managers;
     using KasJam.MiniJam79.Unity.ScriptableObjects;
     using System.Text;
     using UnityEngine;
@@ -92,6 +93,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected Animator Animator { get; set; }
 
+        protected FlyType FlyPower { get; set; }
+
+        public Image GameOverPanel;
+
         #endregion
 
         #region Event Handlers
@@ -100,24 +105,89 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             ActualJumpVelocity = JumpVelocity * 1.25f;
             FliesEaten++;
-            FlyPowerTimer = FlyPowerDuration;
+
+            if (e.Fly.FlyType == FlyType.Poison)
+            {
+                TakeDamage(25);
+            } 
+            else
+            {
+                FlyPowerTimer = FlyPowerDuration;
+                FlyPower = e.Fly.FlyType;
+            }
 
             UpdateUI();
         }
 
         #endregion
 
+        #region Public Methods
+
+        public void StartLevel()
+        {
+
+        }
+
+        #endregion
+
         #region Protected Methods
+
+        protected void TakeDamage(float amount)
+        {
+            Health -= amount;
+
+            if (Health < 1)
+            {
+                Health = 0;
+                ReSpawn();
+            }
+        }
 
         protected void UpdateUI()
         {
             FliesEatenText.text = FliesEaten
                 .ToString();
+
+            FlyPowerProgressBar
+                .gameObject
+                .SetActive(false);
+
+            string frogName = "FrogBaseController";
+            int spriteIndex = -1;
+
+            if (FlyPower != FlyType.None) 
+            {
+                frogName = $"{FlyPower}FrogController";
+
+                FlyPowerProgressBar
+                    .gameObject
+                    .SetActive(true);
+
+                spriteIndex = (int)FlyPower + 1;
+            }
+
+            var animationController = Resources
+                .Load<RuntimeAnimatorController>($"Animations/Frogs/{frogName}");
+
+            Animator.runtimeAnimatorController = animationController;
+
+            if (spriteIndex >= 0)
+            {
+                var sprites = Resources
+                    .LoadAll<Sprite>($"Images/UI/cooldownsandhealth");
+
+                FlyPowerProgressBar.BackgroundImage.sprite = sprites[spriteIndex];
+                FlyPowerProgressBar.ForegroundImage.sprite = sprites[spriteIndex + 3];
+            }
         }
 
         protected void RemoveFlyPowers()
         {
             ActualJumpVelocity = JumpVelocity;
+
+            FlyPower = FlyType.None;
+
+            UpdateUI();
         }
 
         protected bool CanJump()
@@ -187,6 +257,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             IsJumping = false;
             JumpMoveTimer = 0;
             IsOnGround = false;
+
+            PauseGame(true);
+
+            GameOverPanel
+                .gameObject
+                .SetActive(true);            
         }
 
         protected bool CanHop()
@@ -545,6 +621,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
+            if (GameManager
+                .Instance
+                .IsPaused)
+            {
+                return;
+            }
+
             if (Input
                 .GetKey(KeyCode.DownArrow))
             {

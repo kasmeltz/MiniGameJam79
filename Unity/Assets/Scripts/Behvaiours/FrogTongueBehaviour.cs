@@ -1,6 +1,7 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using KasJam.MiniJam79.Unity.Events;
+    using KasJam.MiniJam79.Unity.Managers;
     using System;
     using UnityEngine;
 
@@ -93,8 +94,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (IsShooting)
             {
-                BoxCollider2d.size = new Vector2(0.06f, 0.06f);
-                BoxCollider2d.offset = new Vector2(Length * 0.01f * Direction, 0);
+                BoxCollider2d.size = new Vector2(0.08f, 0.08f);
+                BoxCollider2d.offset = new Vector2(Length * 0.02f * Direction, 0);
             }
             else
             {
@@ -106,7 +107,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 var position = transform.position;
 
-                position.x += Length * 0.08f * Direction;
+                position.x += Length * 0.04f * Direction;
 
                 CapturedFly.transform.position = position;
             }
@@ -142,6 +143,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
+            if (GameManager
+                .Instance
+                .IsPaused)
+            {
+                return;
+            }
+
             if (!IsShooting)
             {
                 return;

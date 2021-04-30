@@ -8,4 +8,8 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: StrawBerryFrogController
   m_Controller: {fileID: 9100000, guid: a07d4cd112e3fa54f93bfce5b2e99a4b, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 65ae0c09e6ee7d149bb6663801abc30d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: afd996262bf31f848828d0290b11f36d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 62503668be139b74da6cdb1ea634d7a1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1c2291c2d014566449e053ca08859b0d, type: 2}

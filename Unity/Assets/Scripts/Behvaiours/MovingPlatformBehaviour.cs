@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.Managers;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/MovingPlatform")]
@@ -67,6 +68,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
+            if (GameManager
+                .Instance
+                .IsPaused)
+            {
+                return;
+            }
+
             if (IsTransitioningOut)
             {
                 transform.position += new Vector3(0, -Time.deltaTime * TransitionSpeed, 0);

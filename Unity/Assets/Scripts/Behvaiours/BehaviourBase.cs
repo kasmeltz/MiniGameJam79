@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.Managers;
     using System;
     using System.Collections;
     using UnityEngine;
@@ -20,6 +21,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             yield return new WaitForSeconds(seconds);
 
             action();
+        }
+
+        protected void PauseGame(bool isPaused)
+        {
+            GameManager
+                .Instance
+                .IsPaused = isPaused;
         }
 
         #endregion

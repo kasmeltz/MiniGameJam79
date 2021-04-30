@@ -1,6 +1,7 @@
 
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.Managers;
     using System;
     using System.Collections.Generic;
     using UnityEngine;
@@ -236,6 +237,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
         }
 
+        public void Reset()
+        {
+            CurrentLevelIndex = 0;
+            TransitionTo(1);
+            
+            PauseGame(false);
+        }
+
         #endregion
 
         #region Unity
@@ -265,6 +274,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
+            if (GameManager
+                .Instance
+                .IsPaused)
+            {
+                return;
+            }
+
             if (TransitionTimer >= TransitionTotalTime)
             {
                 return;

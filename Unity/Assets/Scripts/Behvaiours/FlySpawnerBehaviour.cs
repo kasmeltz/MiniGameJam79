@@ -27,10 +27,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 var fly = GetPooledObject();
 
                 float x = Random
-                    .Range(-2f, 2f);
+                    .Range(-5f, 5f);
 
                 float y = Random
-                    .Range(-2f, 2f);
+                    .Range(-3f, 3f);
 
                 fly.transform.position = new Vector3(x, y, 0);
             }

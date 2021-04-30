@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.Managers;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/Fly")]
@@ -21,6 +22,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
+            if (GameManager
+                .Instance
+                .IsPaused)
+            {
+                return;
+            }
+
             if (IsCaptured)
             {
                 return;
