@@ -8,3 +8,6 @@
 /Unity/obj/Debug
 /Unity/Temp
 /Unity/.vsconfig
+
+# [jneen] log files
+*.log
