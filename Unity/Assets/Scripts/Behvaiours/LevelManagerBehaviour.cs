@@ -123,9 +123,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (index < CurrentLevel.MovingPlatforms.Length)
             {
                 currentPlatform = CurrentLevel.MovingPlatforms[index];
+
                 currentPlatform
-                    .gameObject
-                    .SetActive(false);
+                    .StartTransition(true);
             }
 
             if (index < ToLevel.MovingPlatforms.Length)
@@ -141,6 +141,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 toPlatform
                     .gameObject
                     .SetActive(true);
+
+                toPlatform
+                    .StartTransition(false);
             }
         }
 

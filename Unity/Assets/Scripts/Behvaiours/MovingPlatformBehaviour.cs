@@ -9,6 +9,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Rigidbody2D RigidBody;
 
+        public Collider2D Collider;
+
         public Vector2 Start;
 
         public Vector2 End;
@@ -21,7 +23,30 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public int Direction;
 
+        public bool IsTransitioningIn { get; set; }
+
+        public bool IsTransitioningOut { get; set; }
+
         protected float PauseTimer { get; set; }
+
+        #endregion
+
+        #region Public Methods
+
+        public void StartTransition(bool isOut)
+        {
+            if (isOut)
+            {
+                IsTransitioningOut = true;
+                Collider.isTrigger = true;
+            }
+            else
+            {
+                transform.position = new Vector3(Start.x, -5, 0);
+                IsTransitioningIn = true;
+                Collider.isTrigger = true;
+            }            
+        }
 
         #endregion
 
@@ -34,10 +59,43 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             PauseTimer = 0;
             Direction = 1;
+            IsTransitioningOut = false;
+            IsTransitioningIn = false;
         }
 
         protected void Update()
         {
+            if (IsTransitioningOut)
+            {
+                transform.position += new Vector3(0, -Time.deltaTime * 4, 0);
+
+                if (transform.position.y <= -4)
+                {
+                    IsTransitioningOut = false;
+
+                    gameObject
+                        .SetActive(false);
+                }
+
+                return;
+            }
+
+            if (IsTransitioningIn)
+            {
+                transform.position += new Vector3(0, Time.deltaTime * 4, 0);
+
+                if (transform.position.y >= Start.y)
+                {
+                    IsTransitioningIn = false;
+
+                    transform.position = new Vector3(Start.x, Start.y, 0);
+
+                    Collider.isTrigger = false;
+                }
+
+                return;
+            }
+
             if (PauseTimer > 0)
             {
                 PauseTimer -= Time.deltaTime;
