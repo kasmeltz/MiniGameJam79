@@ -8,6 +8,11 @@
 /Unity/obj/Debug
 /Unity/Temp
 /Unity/.vsconfig
+/Unity/Assembly-CSharp.csproj
 
 # [jneen] log files
 *.log
+/Unity/Logs
+
+# [jneen] pre-processed raw audio
+/Unity/Assets/Resources/Music/*.wav
