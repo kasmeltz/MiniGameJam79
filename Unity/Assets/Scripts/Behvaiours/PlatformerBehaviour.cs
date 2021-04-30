@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.ScriptableObjects;
     using System.Text;
     using UnityEngine;
     using UnityEngine.UI;
@@ -8,6 +9,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     public class PlatformerBehaviour : BehaviourBase
     {
         #region Members
+
+        public HeroUpgradeScriptableObject[] Upgrades;
 
         public CompositeCollider2D OneWayCollider;
 
@@ -29,6 +32,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Text DebugText;
 
+        public Text FliesEatenText;
+
         public float CoyoteTimeLimit;
 
         public float JumpMoveTimeLimit;
@@ -38,6 +43,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float FlyPowerDuration;
 
         public SpriteRenderer SpriteRenderer;
+
+        public int FliesEaten { get; set; }
 
         protected bool IsJumping { get; set; }
 
@@ -80,13 +87,21 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)
         {
             ActualJumpVelocity = JumpVelocity * 1.25f;
-
+            FliesEaten++;
             FlyPowerTimer = FlyPowerDuration;
+
+            UpdateUI();
         }
 
         #endregion
 
         #region Protected Methods
+
+        protected void UpdateUI()
+        {
+            FliesEatenText.text = FliesEaten
+                .ToString();
+        }
 
         protected void RemoveFlyPowers()
         {
@@ -538,6 +553,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             FlyPowerProgressBar
                 .SetValue(0, FlyPowerDuration);
+
+            FliesEaten = 0;
+
+            foreach(var upgrade in Upgrades)
+            {
+                upgrade.Level = 0;
+            }
+         
+            UpdateUI();
         }
 
         protected void Update()
