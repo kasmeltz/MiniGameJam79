@@ -2034,7 +2034,7 @@ MonoBehaviour:
   Collider: {fileID: 3511399392706054024}
   Start: {x: -2, y: -1}
   End: {x: 2, y: -1}
-  TransitionSpeed: 0
+  TransitionSpeed: 5
   MoveSpeed: 2
   PauseAtStart: 1
   PauseAtEnd: 1

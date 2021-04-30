@@ -69,7 +69,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             if (IsTransitioningOut)
             {
-                transform.position += new Vector3(0, -Time.deltaTime * 4, 0);
+                transform.position += new Vector3(0, -Time.deltaTime * TransitionSpeed, 0);
 
                 if (transform.position.y <= -4)
                 {
@@ -84,7 +84,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (IsTransitioningIn)
             {
-                transform.position += new Vector3(0, Time.deltaTime * 4, 0);
+                transform.position += new Vector3(0, Time.deltaTime * TransitionSpeed, 0);
 
                 if (transform.position.y >= Start.y)
                 {
