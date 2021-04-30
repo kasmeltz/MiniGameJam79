@@ -7,11 +7,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
-        public bool IsCaptured { get; set; }
+        public FlyType FlyType;
 
         public float MaxMoveSpeedX;
-        
+
         public float MaxMoveSpeedY;
+
+        public bool IsCaptured { get; set; }
 
         #endregion
 

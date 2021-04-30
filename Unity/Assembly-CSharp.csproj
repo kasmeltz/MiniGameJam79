@@ -70,8 +70,11 @@
     <Compile Include="Assets\Scripts\Behvaiours\LevelBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\LevelManagerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\TileTransition.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\PostProcessBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\FlyType.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Resources\Shaders\VignetteShader.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.6f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
