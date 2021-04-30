@@ -12,11 +12,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public MovingPlatformBehaviour[] MovingPlatforms;
 
-        public Tilemap Walls;
-
-        public Tilemap Floor;
-
-        public Tilemap OnewayFloor;
+        public Tilemap[] Tilemaps;
 
         #endregion
     }

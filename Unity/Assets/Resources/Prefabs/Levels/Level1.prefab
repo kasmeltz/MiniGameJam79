@@ -445,16 +445,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -29, y: 13, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -28, y: 13, z: 0}
     second:
       serializedVersion: 2
@@ -496,6 +486,16 @@ Tilemap:
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
   - first: {x: -24, y: 13, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -23, y: 13, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -667,19 +667,19 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 3511399391850955248}
     m_ColliderPaths:
-    - - X: -36800000
+    - - X: -35200000
         Y: 22399998
       - X: -43199996
         Y: 22399998
       - X: -43199996
         Y: 20800000
-      - X: -36800000
+      - X: -35200000
         Y: 20800000
     - - X: -43200000
         Y: 22399998
-      - X: -46400000
+      - X: -44800000
         Y: 22399998
-      - X: -46400000
+      - X: -44800000
         Y: 20800000
       - X: -43200000
         Y: 20800000
@@ -797,10 +797,10 @@ CompositeCollider2D:
         Y: -23999998
   m_CompositePaths:
     m_Paths:
-    - - {x: -3.6800292, y: 2.08}
-      - {x: -3.6800292, y: 2.2399998}
-      - {x: -4.64, y: 2.2399704}
-      - {x: -4.639971, y: 2.08}
+    - - {x: -3.5200293, y: 2.08}
+      - {x: -3.5200293, y: 2.2399998}
+      - {x: -4.48, y: 2.2399704}
+      - {x: -4.479971, y: 2.08}
     - - {x: -2.5600297, y: 0.7999999}
       - {x: -2.5600297, y: 0.9599999}
       - {x: -3.8400002, y: 0.9599706}
@@ -1908,9 +1908,10 @@ MonoBehaviour:
   Objects: {fileID: 3511399393465413451}
   MovingPlatforms:
   - {fileID: 3511399392706054027}
-  Walls: {fileID: 3511399392330083229}
-  Floor: {fileID: 3511399391850955249}
-  OnewayFloor: {fileID: 3511399392998070452}
+  Tilemaps:
+  - {fileID: 3511399392330083229}
+  - {fileID: 3511399391850955249}
+  - {fileID: 3511399392998070452}
 --- !u!1 &3511399392706054029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1939,7 +1940,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3511399392706054029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: -2, y: 1.5, z: 0}
   m_LocalScale: {x: 200, y: 16, z: 1}
   m_Children: []
   m_Father: {fileID: 3511399393465413450}
@@ -2033,6 +2034,7 @@ MonoBehaviour:
   Collider: {fileID: 3511399392706054024}
   Start: {x: -2, y: 1.5}
   End: {x: 2, y: 1.5}
+  TransitionSpeed: 0
   MoveSpeed: 2
   PauseAtStart: 1
   PauseAtEnd: 1

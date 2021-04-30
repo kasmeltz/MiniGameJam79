@@ -80,6 +80,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected Collider2D GroundCollider { get; set; }
 
+        protected Animator Animator { get; set; }
+
         #endregion
 
         #region Event Handlers
@@ -164,6 +166,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             JumpMoveTimer = JumpMoveTimeLimit;
             IsJumping = true;
+
+            Animator
+                .SetTrigger("Jumping");
         }
 
         protected void ReSpawn()
@@ -177,6 +182,20 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected bool CanHop()
         {
             return IsOnGround && !IsHopping && !IsJumping;
+        }
+
+        protected void SetDirection(int dir)
+        {
+            Direction = dir;
+
+            if (dir < 0)
+            {
+                SpriteRenderer.flipX = true;
+            }
+            else
+            {
+                SpriteRenderer.flipX = false;
+            }
         }
 
         protected void Hop(int dir)
@@ -194,7 +213,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void HandleHorizontalInput(int dir)
         {
-            Direction = dir;
+            SetDirection(dir);
 
             if (CanHop())
             {
@@ -545,7 +564,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
-            Direction = 1;
+            Animator = GetComponent<Animator>();
+
+            SetDirection(1);
 
             Tongue.FlyGobbled += Tongue_FlyGobbled;
 

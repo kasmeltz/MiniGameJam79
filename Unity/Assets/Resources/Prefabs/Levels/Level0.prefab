@@ -1908,9 +1908,10 @@ MonoBehaviour:
   Objects: {fileID: 3511399393465413451}
   MovingPlatforms:
   - {fileID: 3511399392706054027}
-  Walls: {fileID: 3511399392330083229}
-  Floor: {fileID: 3511399391850955249}
-  OnewayFloor: {fileID: 3511399392998070452}
+  Tilemaps:
+  - {fileID: 3511399392330083229}
+  - {fileID: 3511399391850955249}
+  - {fileID: 3511399392998070452}
 --- !u!1 &3511399392706054029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,6 +2034,7 @@ MonoBehaviour:
   Collider: {fileID: 3511399392706054024}
   Start: {x: -2, y: -1}
   End: {x: 2, y: -1}
+  TransitionSpeed: 0
   MoveSpeed: 2
   PauseAtStart: 1
   PauseAtEnd: 1

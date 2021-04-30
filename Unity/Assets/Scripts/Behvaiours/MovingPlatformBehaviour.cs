@@ -15,6 +15,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Vector2 End;
 
+        public float TransitionSpeed;
+
         public float MoveSpeed;
 
         public float PauseAtStart;

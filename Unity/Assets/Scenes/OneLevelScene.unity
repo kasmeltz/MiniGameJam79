@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 805095113}
   - component: {fileID: 805095115}
   - component: {fileID: 805095114}
+  - component: {fileID: 805095116}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -307,7 +308,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 2686996851779110361, guid: 62405da26d472194ca1f63a02cd314eb, type: 3}
+  m_Sprite: {fileID: -7551377331138133886, guid: a571f1ae5b57010459ff8f14d397eece, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -317,7 +318,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &805095112
 Transform:
   m_ObjectHideFlags: 0
@@ -404,15 +405,34 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.08, y: -0.08}
-  - {x: 0.08, y: -0.08}
-  - {x: 0.08, y: 0.08}
-  - {x: -0.08, y: 0.08}
-  - {x: -0.08, y: -0.08}
+  - {x: -0.16, y: 0}
+  - {x: 0.16, y: 0}
+  - {x: 0.16, y: 0.32}
+  - {x: -0.16, y: 0.32}
+  - {x: -0.16, y: 0}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!95 &805095116
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805095110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a07d4cd112e3fa54f93bfce5b2e99a4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &924852196
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +444,7 @@ GameObject:
   - component: {fileID: 924852197}
   - component: {fileID: 924852198}
   m_Layer: 0
-  m_Name: FlySpwaner
+  m_Name: FlySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +721,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.080767184, g: 0.09390236, b: 0.5188679, a: 0}
+  m_BackGroundColor: {r: 0.4816661, g: 0.81216174, b: 0.8301887, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
