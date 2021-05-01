@@ -99,10 +99,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
+        public SoundEffects soundEffects;
+
         #region Event Handlers
 
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)
         {
+            soundEffects.SetDistance(0.0f);
+            soundEffects.Powerup();
+
             ActualJumpVelocity = JumpVelocity * 1.25f;
             FliesEaten++;
 
@@ -202,10 +207,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Jump()
         {
+            soundEffects.SetDistance(0.0f);
+            soundEffects.Jump();
+
             JumpStartY = transform.position.y;
-            
+
             var vel = new Vector2(0, 0);
-            
+
             if (IsOnGround || IsHopping || IsCoyoteTime)
             {
                 if (Input.GetKey(KeyCode.LeftArrow))
@@ -263,7 +271,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             GameOverPanel
                 .gameObject
-                .SetActive(true);            
+                .SetActive(true);
         }
 
         protected bool CanHop()
@@ -459,9 +467,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (hitGround)
             {
+                ImpactVelocity = 0;
+                IsJumping = false;
+                IsHopping = false;
+                IsCoyoteTime = false;
+                IsOnGround = true;
+
                 if (ImpactVelocity < DeathVelocity)
                 {
+                    soundEffects.Death();
                     ReSpawn();
+                    return;
                 }
 
                 if (GroundCollider
@@ -469,8 +485,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .ToLower()
                     .Contains("water"))
                 {
+                    soundEffects.Splash();
                     ReSpawn();
+                    return;
                 }
+
+                soundEffects.Land();
 
                 MovingPlatformBehaviour movingPlatform = GroundCollider
                     .GetComponent<MovingPlatformBehaviour>();
@@ -478,12 +498,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     RigidBody.velocity = movingPlatform.RigidBody.velocity;
                 }
-                
-                ImpactVelocity = 0;
-                IsJumping = false;
-                IsHopping = false;
-                IsCoyoteTime = false;
-                IsOnGround = true;
 
                 if (IsJumpRequested)
                 {
@@ -597,6 +611,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             base
                 .Awake();
+
+            soundEffects = FindObjectOfType<SoundEffects>(true);
+            if (soundEffects == null) Debug.Log("soundEffects is null");
+            else Debug.Log("soundEffects: " + soundEffects.ToString());
 
             Animator = GetComponent<Animator>();
 
