@@ -1,18 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class EnemyBehaviour : MonoBehaviour
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EnemyBehaviour : PlatformerBehaviourBase
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

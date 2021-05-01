@@ -21,6 +21,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             force.x *= Direction;
 
+            GetComponent<SpriteRenderer>()
+                .flipX = Direction != 1;
+
             var rigidBody = GetComponent<Rigidbody2D>();
 
             rigidBody

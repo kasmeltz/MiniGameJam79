@@ -4,7 +4,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     using UnityEngine;
 
     [AddComponentMenu("KasJam/MovingPlatform")]
-    public class MovingPlatformBehaviour : BehaviourBase
+    public class MovingPlatformBehaviour : EnemyPatrolAreaBehaviour
     {
         #region Members
 
@@ -74,6 +74,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 return;
             }
+
+            var bounds = Collider.bounds;
+            bounds.center += transform.position;
+            Bounds = bounds;
 
             if (IsTransitioningOut)
             {

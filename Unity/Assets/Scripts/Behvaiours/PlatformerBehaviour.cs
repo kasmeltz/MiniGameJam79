@@ -8,7 +8,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     using UnityEngine.UI;
 
     [AddComponentMenu("KasJam/Platformer")]
-    public class PlatformerBehaviour : BehaviourBase
+    public class PlatformerBehaviour : PlatformerBehaviourBase
     {
         #region Members
 
@@ -24,11 +24,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public ProgressBarBehaviour HealthProgressBar;
 
-        public Rigidbody2D RigidBody;
-
         public Vector2 JumpVelocity;
-
-        public Vector2 HopVelocity;
 
         public float MoveVelocity;
 
@@ -46,13 +42,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float FlyPowerDuration;
 
-        public SpriteRenderer SpriteRenderer;
-
         public float DeathVelocity;
-
-        public float Health;
-
-        public float MaxHealth;
 
         public KeyCode TongueKey;
 
@@ -88,9 +78,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected bool IsAgainstRightWall { get; set; }
 
-        protected bool IsJumpRequested { get; set; }
-
-        protected bool IsHopping { get; set; }
+        protected bool IsJumpRequested { get; set; }        
 
         protected bool IsCoyoteTime { get; set; }
 
@@ -101,8 +89,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected float JumpStartY { get; set; }
 
         protected float ImpactVelocity { get; set; }
-
-        protected int Direction { get; set; }
 
         protected Vector2 ActualJumpVelocity { get; set; }        
 
@@ -324,21 +310,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected bool CanHop()
         {
             return IsOnGround && !IsHopping && !IsJumping;
-        }
-
-        protected void SetDirection(int dir)
-        {
-            Direction = dir;
-
-            if (dir < 0)
-            {
-                SpriteRenderer.flipX = true;
-            }
-            else
-            {
-                SpriteRenderer.flipX = false;
-            }
-        }
+        } 
 
         protected void Hop(int dir)
         {
@@ -769,8 +741,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Animator = GetComponent<Animator>();
 
             Restart();
-
-            SetDirection(1);
 
             Tongue.FlyGobbled += Tongue_FlyGobbled;
 
