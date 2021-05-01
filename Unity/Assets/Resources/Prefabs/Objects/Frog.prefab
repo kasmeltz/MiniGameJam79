@@ -102,6 +102,7 @@ MonoBehaviour:
   PixelsPerExpand: 6
   RetractPixelsPerExpand: 3
   MaxLength: 60
+  CapturedAt: 0
 --- !u!61 &3519463419060447099
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227,6 +228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7013274676a2a3c4b958c9a33a4a1387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpriteRenderer: {fileID: 3519463419296807512}
+  Health: 100
+  MaxHealth: 100
+  HopVelocity: {x: 2, y: 3.5}
+  RigidBody: {fileID: 3519463419296807509}
+  DamageDelay: 2
   LevelBounds:
     m_Center: {x: 16, y: 0, z: 0}
     m_Extent: {x: 32, y: 24, z: 0}
@@ -236,26 +243,28 @@ MonoBehaviour:
   OneWayCollider: {fileID: 0}
   FlyPowerProgressBar: {fileID: 0}
   HealthProgressBar: {fileID: 0}
-  RigidBody: {fileID: 3519463419296807509}
   JumpVelocity: {x: 2, y: 6.75}
-  HopVelocity: {x: 2, y: 3.5}
   MoveVelocity: 2
   RespawnPosition: {x: 2.84, y: 0.25, z: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
   DebugText: {fileID: 0}
-  FliesEatenText: {fileID: 0}
   CoyoteTimeLimit: 0.2
   JumpMoveTimeLimit: 0.2
   Tongue: {fileID: 3519463419060447101}
   FlyPowerDuration: 10
-  SpriteRenderer: {fileID: 3519463419296807512}
   DeathVelocity: -20
-  Health: 100
-  MaxHealth: 100
+  TongueKey: 0
+  FlyPowerKey: 0
   GameOverPanel: {fileID: 0}
   soundEffects: {fileID: 0}
+  CherryBombPool: {fileID: 0}
+  StrawberrySeedPool: {fileID: 0}
+  LemonSquirtPool: {fileID: 0}
+  FlyPowerCooldownsAmount: []
+  FlyPowerTimer: 0
+  FlyPower: 0
 --- !u!68 &3519463419296807508
 EdgeCollider2D:
   m_ObjectHideFlags: 0

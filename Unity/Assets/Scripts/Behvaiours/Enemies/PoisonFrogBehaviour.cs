@@ -97,7 +97,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected void Update()
+        protected override void Update()
         {
             if (GameManager
               .Instance
@@ -110,6 +110,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 return;
             }
+
+            base
+                .Update();
 
             if (HopCounter > 0)
             {

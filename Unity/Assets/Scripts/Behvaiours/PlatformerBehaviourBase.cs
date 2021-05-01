@@ -18,7 +18,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Rigidbody2D RigidBody;
 
+        public float DamageDelay;
+
         protected bool IsHopping { get; set; }
+
+        protected float DamageCounter { get; set; }
 
         #endregion
 
@@ -31,7 +35,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            if (DamageCounter > 0)
+            {
+                return;
+            }
+
             Health -= amount;
+
+            DamageCounter = DamageDelay;
 
             if (Health < 1)
             {
@@ -70,6 +81,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             SetDirection(1);
         }        
+
+        protected virtual void Update()
+        {
+            if (DamageCounter > 0) 
+            {
+                DamageCounter--;
+                if (DamageCounter <= 0)
+                {
+                    DamageCounter = 0;
+                }
+            }
+        }
 
         #endregion
     }
