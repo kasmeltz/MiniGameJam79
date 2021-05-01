@@ -26,6 +26,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void TakeDamage(float amount)
         {
+            if (Health <= 0)
+            {
+                return;
+            }
+
             Health -= amount;
 
             if (Health < 1)
