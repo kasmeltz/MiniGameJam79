@@ -12,6 +12,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .ToList();
 
             Lines = new List<DialogueLine>();
+            OpenShopLine = -1;
         }
 
         #endregion
@@ -21,6 +22,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public List<string> SpeakerKeys { get; set; }
         
         public List<DialogueLine> Lines { get; set; }
+
+        public int OpenShopLine { get; set; }
 
         #endregion
 

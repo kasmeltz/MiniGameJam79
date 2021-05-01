@@ -60,7 +60,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void TransitionTo(int toIndex)
         {
-            music.EnsurePlaying();
+            music
+                .EnsurePlaying();
 
             if (CurrentLevel == null)
             {

@@ -17,6 +17,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Button AdvanceTextButton;
 
+        public Image ShopPanel;
+        
+        public MusicLooper PlayLooper;
+
+        public MusicLooper MenuLooper;
+
+        public LevelManagerBehaviour LevelManager;
+
         public int DialogueIndex { get; set; } 
 
         protected List<Dialogue> Dialogues { get; set; }
@@ -41,6 +49,20 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Public Methods
 
+        public void ShowDialogue()
+        {
+            var line = Dialogue.Lines[DialogueLineIndex];
+            DialogueText.text = line.Text;
+
+            var scale = new Vector3(1, 1, 1);
+            if (line.SpeakerIndex == 0)
+            {
+                scale.x = -1;
+            }
+
+            SpeakerBubble.transform.localScale = scale;
+        }
+
         public void StartDialogue()
         {
             if (DialogueIndex >= Dialogues.Count)
@@ -59,12 +81,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             ShowDialogue();
         }
 
-        public void NextDialogue()
-        {
-            DialogueIndex++;
-            StartDialogue();
-        }
-
         public void AdvanceDialogueText()
         {
             if (Dialogue == null)
@@ -79,38 +95,55 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             DialogueLineIndex++;
 
-            if (DialogueLineIndex >= Dialogue.Lines.Count)
+            if (DialogueLineIndex == Dialogue.OpenShopLine)
             {
-                AdvanceTextButton
+                ShopPanel
                     .gameObject
-                    .SetActive(false);
-
-                OnDialogueCompleted();
-
-                return;
+                    .SetActive(true);
             }
+            else
+            {
+                if (DialogueLineIndex >= Dialogue.Lines.Count)
+                {
+                    AdvanceTextButton
+                        .gameObject
+                        .SetActive(false);
 
-            ShowDialogue();
+                    DialogueIndex++;
+
+                    CompleteDialogue();
+
+                    return;
+                }
+
+                ShowDialogue();
+            }
         }
 
         #endregion
 
         #region Protected Methods
 
-        protected void ShowDialogue()
+        protected void CompleteDialogue()
         {
-            var line = Dialogue.Lines[DialogueLineIndex];
-            DialogueText.text = line.Text;
+            OnDialogueCompleted();
 
-            var scale = new Vector3(1, 1, 1);
-            if (line.SpeakerIndex == 0)
-            {
-                scale.x = -1;                
-            }
+            LevelManager
+                .Reset();
 
-            SpeakerBubble.transform.localScale = scale;
-            DialogueText.transform.localScale = scale;
-            AdvanceTextButton.transform.localScale = scale;
+            gameObject
+                .SetActive(false);
+
+            PlayLooper
+                .EnsurePlaying();
+
+            PlayLooper
+                .MoveToLoop(1);
+
+            MenuLooper
+                .EnsureNotPlaying();
+
+            PauseGame(false);
         }
 
         protected void CreateDialogues()
@@ -133,7 +166,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             dialogue.AddLine(0, "Aww, no!");
             dialogue.AddLine(1, "I must study the Weirdness to determine its mysterious properties. To do this, I'll need flies. LOTS of them. And I'll need you to get them for me.");
             dialogue.AddLine(0, "But... I only just got here! Plus I'm only five minutes old!");
-            dialogue.AddLine(1, "Yet it seems the Frogs of Fate have chosen you. ");
+            dialogue.AddLine(1, "Yet it seems the Frogs of Fate have chosen you.");
             dialogue.AddLine(0, "Whoa! I love the Frogs of Fate!");
             dialogue.AddLine(0, "But isn't this, like, reeeeeally dangerous?");
             dialogue.AddLine(1, "Take this. My most precious relic - THE AMULET OF RESPAWNING! Whenever you die, you will instantly respawn right here.");
@@ -145,35 +178,26 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Dialogues
                 .Add(dialogue);
 
+            dialogue = new Dialogue("Kiki", "Frog Wizard");
+            dialogue.OpenShopLine = 8;
+            dialogue.AddLine(0, "That. Was. GROSS! Dying is the absolute WORST!");
+            dialogue.AddLine(1, "So I've heard. But we're one step closer to an antidote to this Weirdness.");
+            dialogue.AddLine(0, "Well, okay then...");
+            dialogue.AddLine(1, "There is something I should tell you. This is not my home- it's a shop!");
+            dialogue.AddLine(0, "Capitalism?! At a time like this?");
+            dialogue.AddLine(1, "The flies you bring me can be used to craft magical items and potions that will help you survive the Weirdness.");
+            dialogue.AddLine(0, "Oh, actually yes, I would like some of those. ");
+            dialogue.AddLine(1, "Here's what I have on offer...");
+            dialogue.AddLine(0, "Time to go.");
+            dialogue.AddLine(1, "Good luck, little froglet!");
+            dialogue.AddLine(0, "My name is Kiki!");
+
+            Dialogues
+                .Add(dialogue);
+
             /*
 
 
-LOOP 2
-KIKI
-That. Was. GROSS! Dying is the absolute WORST!
-FROG WIZARD
-So I've heard. But we're one step closer to an antidote to this Weirdness. 
-KIKI
-Well, okay then... 
-FROG WIZARD
-There is something I should tell you. This is not my home- it's a shop!
-KIKI
-Capitalism?! At a time like this?
-FROG WIZARD
-The flies you bring me can be used to craft magical items and potions that will help you survive the Weirdness. 
-KIKI
-Oh, actually yes, I would like some of those. 
-FROG WIZARD
-Here's what I have on offer...
-
-//SHOPPING SEQUENCE//
-
-KIKI
-Time to go.
-FROG WIZARD
-Good luck, little froglet!
-KIKI
-My name is Kiki!
 
 LOOP 3
 
@@ -499,10 +523,23 @@ Good luck out there!
         {
             base
                 .Awake();
-
+            
             DialogueIndex = 0;
 
+            MenuLooper
+               .EnsurePlaying();
+
+            MenuLooper
+                .MoveToLoop(1);
+
+            PlayLooper
+                .EnsureNotPlaying();
+
+            PauseGame(true);
+
             CreateDialogues();
+
+            StartDialogue();
         }
 
         protected void Update()
