@@ -33,8 +33,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
 
             _selectedUpgrade.TryBuy();
-            if (_selectedUpgrade.IsUpgradedToMax)
-                _selectedUpgrade = null;
+            _selectedUpgrade = null;
         }
         #endregion
     }

@@ -5,11 +5,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     public class MaxHealthUpgradeEffect : UpgradeEffect
     {
         [Space]
-        [SerializeField] private int _healthIncreasementPerLevel;
+        [SerializeField] private float _maxHealthMultiplier = 1.2f;
 
-        public override void MakeUpgrade(int currentUpgradeLevel)
+        public override void MakeUpgrade()
         {
-            Frog.MaxHealth += _healthIncreasementPerLevel;
+            Frog.MaxHealth *= _maxHealthMultiplier;
+        }
+
+        private void OnValidate()
+        {
+            if (_maxHealthMultiplier < 1)
+                _maxHealthMultiplier = 1;
         }
     }
 }
