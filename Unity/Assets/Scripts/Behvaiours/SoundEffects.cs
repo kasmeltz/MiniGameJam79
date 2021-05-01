@@ -11,9 +11,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
-        public void Land() { }
+        public void Land() {
+            // TODO: fix the platforming code lol
+            // PlayFile("Sounds/land");
+        }
         public void Death() { }
         public void Splash() { }
+        public void Tongue() {
+            PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
+        }
 
         private float distance;
         public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
