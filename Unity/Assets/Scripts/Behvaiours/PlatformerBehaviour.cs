@@ -128,8 +128,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             soundEffects.SetDistance(0.0f);
             soundEffects.Powerup();
 
-            ActualJumpVelocity = JumpVelocity * 1.25f;
-            FliesEaten++;
+            //ActualJumpVelocity = JumpVelocity * 1.25f;
             FliesEatenHasChanged?.Invoke(FliesEaten);
 
             if (e.Fly.FlyType == FlyType.Poison)
@@ -140,6 +139,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 FlyPowerTimer = FlyPowerDuration;
                 FlyPower = e.Fly.FlyType;
+                FliesEaten++;
             }
 
             UpdateUI();
@@ -956,16 +956,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             pos.z = -10;
 
-            if (pos.x >= LevelBounds.min.x + 6 && 
-                pos.x <= LevelBounds.max.x - 6 && 
-                pos.y >= LevelBounds.min.y + 6 &&
-                pos.y <= LevelBounds.max.y - 6)
-            {
-                var newPos = Vector3
-                    .Lerp(Camera.main.transform.position, pos, 0.5f);
+            pos.x = Mathf.Min(Mathf.Max(pos.x, LevelBounds.min.x + 6), LevelBounds.max.x - 6);
+            pos.y = Mathf.Min(Mathf.Max(pos.y, LevelBounds.min.y + 6), LevelBounds.max.y - 6);
 
-                Camera.main.transform.position = newPos;
-            }
+            var newPos = Vector3
+                .Lerp(Camera.main.transform.position, pos, 0.5f);
+
+            Camera.main.transform.position = newPos;
         }
 
         #endregion
