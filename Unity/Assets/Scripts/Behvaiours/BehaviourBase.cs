@@ -36,7 +36,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected virtual void Awake()
         {
-            
         }
 
         #endregion
