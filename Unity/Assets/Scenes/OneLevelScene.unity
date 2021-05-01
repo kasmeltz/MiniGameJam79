@@ -1598,7 +1598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7332650024144125484, guid: e1df0e36b0c9a4ef0a45d8f5aab13055, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7332650024144125487, guid: e1df0e36b0c9a4ef0a45d8f5aab13055, type: 3}
       propertyPath: m_RootOrder
@@ -2123,7 +2123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1247921198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3440,7 +3440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1938104435
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3891,10 +3891,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4fa1bf4a7569c4ca49142dc34b595e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LetterSpeed: 0.04
   DialogueText: {fileID: 1073800339}
   SpeakerBubble: {fileID: 1066991208}
   AdvanceTextButton: {fileID: 1539851621}
   ShopPanel: {fileID: 1247921199}
+  PlayLooper: {fileID: 790150693}
+  MenuLooper: {fileID: 310451265}
+  LevelManager: {fileID: 602162117}
 --- !u!1001 &3519463418653719711
 PrefabInstance:
   m_ObjectHideFlags: 0
