@@ -2,6 +2,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using TMPro;
     using UnityEngine;
+    using UnityEngine.Events;
 
     public class UpgradeShop : MonoBehaviour
     {
@@ -32,8 +33,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (_selectedUpgrade == null)
                 return;
 
-            _selectedUpgrade.TryBuy();
-            _selectedUpgrade = null;
+            if (_selectedUpgrade.TryBuy())
+            {
+                _selectedUpgrade = null;
+            }
         }
         #endregion
     }

@@ -13,11 +13,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public int Price => _price;
         public string Description => _description;
 
+        private SoundEffects _soundEffects;
+
+        private void Awake()
+        {
+            _soundEffects = FindObjectOfType<SoundEffects>();
+        }
+
         public bool TryMakeUpgrade()
         {
             if (Frog.TrySpendFlies(_price))
             {
                 MakeUpgrade();
+                _soundEffects.BuyUpgrade();
                 return true;
             }
 

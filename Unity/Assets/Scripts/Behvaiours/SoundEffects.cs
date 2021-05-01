@@ -9,7 +9,23 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public AudioSource source;
         #endregion
 
-        // set by the music when it's playing
+        #region Singletone
+        public static SoundEffects Instance = null;
+        void Start()
+        { 
+            if (Instance == null)
+            { 
+                Instance = this;
+            }
+            else if (Instance == this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        #endregion
+
+            // set by the music when it's playing
         public MusicLooper music;
 
         // -------- options --------- //
