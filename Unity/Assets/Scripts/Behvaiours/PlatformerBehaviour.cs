@@ -266,6 +266,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Die()
         {
+            UpdateUI();
+
             PauseGame(true);
 
             GameOverPanel
@@ -757,6 +759,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (GameManager
                 .Instance
                 .IsPaused)
+            {
+                return;
+            }
+
+            if (Health <= 0)
             {
                 return;
             }

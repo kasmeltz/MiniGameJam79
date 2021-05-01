@@ -65,7 +65,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
 
         protected void Update()
-        {
+        {           
             if (AliveCounter > 0)
             {
                 AliveCounter -= Time.deltaTime;

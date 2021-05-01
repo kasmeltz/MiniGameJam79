@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using KasJam.MiniJam79.Unity.Managers;
     using System.Linq;
     using UnityEngine;
 
@@ -98,6 +99,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
+            if (GameManager
+              .Instance
+              .IsPaused)
+            {
+                return;
+            }
+
+            if (Health <= 0)
+            {
+                return;
+            }
+
             if (HopCounter > 0)
             {
                 HopCounter -= Time.deltaTime;
