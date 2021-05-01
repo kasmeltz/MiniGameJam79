@@ -933,7 +933,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             pos.z = -10;
 
-            if (pos.x >= LevelBounds.min.x + 6 && pos.x <= LevelBounds.max.x - 6)
+            if (pos.x >= LevelBounds.min.x + 6 && 
+                pos.x <= LevelBounds.max.x - 6 && 
+                pos.y >= LevelBounds.min.y + 6 &&
+                pos.y <= LevelBounds.max.y - 6)
             {
                 var newPos = Vector3
                     .Lerp(Camera.main.transform.position, pos, 0.5f);
