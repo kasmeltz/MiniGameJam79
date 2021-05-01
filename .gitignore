@@ -16,3 +16,4 @@
 
 # [jneen] pre-processed raw audio
 /Unity/Assets/Resources/Music/*.wav
+*.sln
