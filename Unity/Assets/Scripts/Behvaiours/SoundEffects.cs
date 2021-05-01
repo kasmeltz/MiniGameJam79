@@ -12,6 +12,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         // set by the music when it's playing
         public MusicLooper music;
 
+        // -------- options --------- //
+        private float distance;
+        private float pitch;
+        public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
+        public void SetPitch(float thePitch) { pitch = thePitch; }
+
+
+        // --------- sounds -------- //
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
         public void Land() { PlayFile("Sounds/land"); }
@@ -21,14 +29,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
         }
 
+        public void BuyUpgrade() {
+            float pitchRange = 1.2f;
+            pitch = Random.Range(1.0f/pitchRange, pitchRange);
+            PlayFile("Sounds/buy-upgrade");
+        }
+
         public void MenuSelect() { PlayFile("Sounds/menu-select"); }
 
+        /////// --------- helpers ----------- ///////
         private void DuckMusic() {
             if (music) music.Duck(0.8f, 0.25f);
         }
-
-        private float distance;
-        public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
 
         private void PlayFile(string fname) {
             DuckMusic();
@@ -36,6 +48,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
             source.PlayOneShot(clip, computeVolume());
+            distance = 0.0f;
+            pitch = 1.0f;
         }
 
         private float computePan() {
