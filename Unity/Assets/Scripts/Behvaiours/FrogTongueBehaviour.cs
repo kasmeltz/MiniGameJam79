@@ -16,6 +16,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float ExpandSpeed;
 
+        public int PixelsPerExpand;
+
         public int MaxLength;
 
         protected FlyBehaviour CapturedFly { get; set; }
@@ -162,7 +164,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 if (IsExpanding)
                 {
-                    Length += 2;
+                    Length += PixelsPerExpand;
                     if (Length >= MaxLength)
                     {
                         Length = MaxLength;
@@ -171,7 +173,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
                 else
                 {
-                    Length -= 2;
+                    Length -= PixelsPerExpand;
                     if (Length <= 0)
                     {
                         Length = 0;

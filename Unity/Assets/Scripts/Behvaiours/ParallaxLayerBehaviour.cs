@@ -72,7 +72,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected void Update()
         {
             var d = Bounds.center - Camera.main.transform.position;
-            d *= (ScrollSpeed / 512f);
+            d *= (ScrollSpeed);
 
             d.y = -5;
             d.z = 0;
