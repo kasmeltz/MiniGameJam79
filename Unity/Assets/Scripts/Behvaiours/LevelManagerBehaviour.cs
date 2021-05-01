@@ -36,6 +36,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Events
 
+        public event EventHandler LevelStarted;
+
+        protected void OnLevelStarted()
+        {
+            LevelStarted?
+                .Invoke(this, EventArgs.Empty);
+        }
+
         public event EventHandler LevelTransitioned;
 
         protected void OnLevelTransitioned()
@@ -102,6 +110,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             
             CurrentLevelIndex = toIndex;
             */
+
+            OnLevelStarted();
         }
 
 

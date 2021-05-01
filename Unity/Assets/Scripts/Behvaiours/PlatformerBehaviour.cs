@@ -13,6 +13,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Bounds LevelBounds;
 
+        public LevelManagerBehaviour LevelManger;
+
         public HeroUpgradeScriptableObject[] Upgrades;
 
         public CompositeCollider2D OneWayCollider;
@@ -32,8 +34,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public Vector3 RespawnPosition;
 
         public LayerMask GroundLayer;
-
-        public LayerMask WallsLayer;
 
         public Text DebugText;
 
@@ -79,7 +79,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected float HopStartY { get; set; }
 
-        protected float JumpStartY { get; set; } 
+        protected float JumpStartY { get; set; }
 
         protected float ImpactVelocity { get; set; }
 
@@ -103,6 +103,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Event Handlers
 
+        private void LevelManger_LevelStarted(object sender, System.EventArgs e)
+        {
+            Restart();
+        }
+
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)
         {
             soundEffects.SetDistance(0.0f);
@@ -114,7 +119,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (e.Fly.FlyType == FlyType.Poison)
             {
                 TakeDamage(25);
-            } 
+            }
             else
             {
                 FlyPowerTimer = FlyPowerDuration;
@@ -144,7 +149,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (Health < 1)
             {
                 Health = 0;
-                ReSpawn();
+                Die();
             }
         }
 
@@ -160,7 +165,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             string frogName = "FrogBaseController";
             int spriteIndex = -1;
 
-            if (FlyPower != FlyType.None) 
+            if (FlyPower != FlyType.None)
             {
                 frogName = $"{FlyPower}FrogController";
 
@@ -259,19 +264,37 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetTrigger("Jumping");
         }
 
-        protected void ReSpawn()
+        protected void Die()
         {
-            Health = MaxHealth;
-            transform.position = RespawnPosition;
-            IsJumping = false;
-            JumpMoveTimer = 0;
-            IsOnGround = false;
-
             PauseGame(true);
 
             GameOverPanel
                 .gameObject
                 .SetActive(true);
+        }
+
+        protected void Restart()
+        {
+            RigidBody.velocity = new Vector2(0, 0);
+            FliesEaten = 0;
+            ImpactVelocity = 0;
+            ActualJumpVelocity = JumpVelocity;
+            FlyPower = FlyType.None;
+            FlyPowerTimer = 0;
+            JumpMoveTimer = 0;
+            IsJumping = false;
+            JumpStartY = 0;
+            IsJumpRequested = false;
+            IsHopping = false;
+            HopStartY = 0;
+            IsCoyoteTime = false;
+            CoyoteTimer = 0;
+            IsOnGround = false;
+            Health = MaxHealth;
+            transform.position = RespawnPosition;
+            SetDirection(1);
+
+            UpdateUI();
         }
 
         protected bool CanHop()
@@ -440,11 +463,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected void DoGroundTest()
         {
             Collider2D collider;
-            var o = new Vector2(transform.position.x, transform.position.y);
+            var o = new Vector2(transform.position.x, transform.position.y + 0.16f);
             var s = new Vector2(0.32f, 0.32f);
 
             var raycastHit = Physics2D
-                .BoxCast(o, s, 0, Vector2.down, 0.02f, GroundLayer);
+                .BoxCast(o, s, 0, Vector2.down, 0.04f, GroundLayer);
 
             var hitGround = false;
 
@@ -467,16 +490,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (hitGround)
             {
-                ImpactVelocity = 0;
-                IsJumping = false;
-                IsHopping = false;
-                IsCoyoteTime = false;
-                IsOnGround = true;
-
                 if (ImpactVelocity < DeathVelocity)
                 {
-                    soundEffects.Death();
-                    ReSpawn();
+                    soundEffects
+                        .Death();
+
+                    Die();
+
                     return;
                 }
 
@@ -485,12 +505,32 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .ToLower()
                     .Contains("water"))
                 {
-                    soundEffects.Splash();
-                    ReSpawn();
+                    soundEffects
+                        .Splash();
+
+                    Die();
+
                     return;
                 }
 
-                soundEffects.Land();
+                // TO DO - USE IMPACT VELOCITY FOR?
+                ImpactVelocity = 0;
+
+                if (IsJumping)
+                {
+                    IsJumping = false;
+
+                    soundEffects
+                        .Land();
+                }
+
+                if (IsHopping)
+                {
+                    IsHopping = false;
+                }
+
+                IsCoyoteTime = false;
+                IsOnGround = true;
 
                 MovingPlatformBehaviour movingPlatform = GroundCollider
                     .GetComponent<MovingPlatformBehaviour>();
@@ -612,11 +652,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
+            LevelManger.LevelStarted += LevelManger_LevelStarted;
+
             soundEffects = FindObjectOfType<SoundEffects>(true);
             if (soundEffects == null) Debug.Log("soundEffects is null");
             else Debug.Log("soundEffects: " + soundEffects.ToString());
 
             Animator = GetComponent<Animator>();
+
+            Restart();
 
             SetDirection(1);
 
@@ -632,11 +676,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             FliesEaten = 0;
 
-            foreach(var upgrade in Upgrades)
+            foreach (var upgrade in Upgrades)
             {
                 upgrade.Level = 0;
             }
-         
+
             UpdateUI();
         }
 
@@ -739,7 +783,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (transform.position.y <= -7)
             {
-                ReSpawn();
+                Die();
             }
 
             if (Input
@@ -795,8 +839,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 Camera.main.transform.position = newPos;
             }
-
-            DoGroundTest();
         }
 
         #endregion

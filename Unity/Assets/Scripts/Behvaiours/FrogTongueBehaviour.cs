@@ -124,11 +124,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected void OnCollisionEnter2D(Collision2D collision)
-        {
-            // TODO - USE THIS?
-        }
-
         protected void OnTriggerEnter2D(Collider2D collider)
         {
             if (CapturedFly != null)

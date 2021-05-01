@@ -56,28 +56,28 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Behvaiours\PlatformerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\GameObjectPoolBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\ProgressBarBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\FrogTongueBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\BehaviourBase.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\FlyBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\MovingPlatformBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\FlySpawnerBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Events\FlyBehaviourEventArgs.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\HeroUpgradeScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\ScriptableObjects\HeroUpgradeType.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\LevelBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\LevelManagerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\TileTransition.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\PostProcessBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\FlyType.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\MusicLooper.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\HeroUpgradeType.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\MovingPlatformBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\TitleLogoBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\FlyBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\ChangeSceneBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\ParallaxLayerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\FrogTongueBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\LevelBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\MusicLooper.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\GameObjectPoolBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\BehaviourBase.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\FlySpawnerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\ProgressBarBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Events\FlyBehaviourEventArgs.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\LevelManagerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\FlyType.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\PostProcessBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\PlatformerBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\SoundEffects.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\ParallaxLayerBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Resources\Shaders\VignetteShader.shader" />
@@ -639,6 +639,9 @@
     <Reference Include="System.Xml.XPath.XDocument">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.6f1\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
@@ -693,6 +696,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
@@ -725,12 +731,6 @@
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
