@@ -788,7 +788,8 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 969038819}
   BoxCollider2d: {fileID: 969038820}
   ExpandSpeed: 0.01
-  PixelsPerExpand: 3
+  PixelsPerExpand: 6
+  RetractPixelsPerExpand: 3
   MaxLength: 60
 --- !u!212 &969038819
 SpriteRenderer:

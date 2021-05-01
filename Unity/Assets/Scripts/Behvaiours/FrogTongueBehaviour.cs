@@ -17,6 +17,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float ExpandSpeed;
 
         public int PixelsPerExpand;
+        public int RetractPixelsPerExpand;
 
         public int MaxLength;
 
@@ -177,7 +178,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
                 else
                 {
-                    Length -= PixelsPerExpand;
+                    Length -= RetractPixelsPerExpand;
                     if (Length <= 0)
                     {
                         Length = 0;
