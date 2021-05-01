@@ -46,6 +46,21 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
         }
 
+        public void Throw() {
+            pitch = 1.5f;
+            volume = 0.7f;
+            PlayFile(distance > 0.0f ? "Sounds/throw" : "Sounds/throw-reverse");
+        }
+
+        public void Spit() {
+            PlayFile(distance > 0.0f ? "Sounds/spit" : "Sounds/spit-reverse");
+        }
+
+        public void Damage() {
+            volume = 0.5f;
+            PlayFile("Sounds/damage");
+        }
+
         public void BuyUpgrade() {
             float pitchRange = 1.5f;
             pitch = Random.Range(1.0f/pitchRange, pitchRange);

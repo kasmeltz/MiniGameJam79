@@ -111,8 +111,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)
         {
-            soundEffects.SetDistance(0.0f);
-            soundEffects.Powerup();
+            soundEffects.SetDistance(Tongue.CapturedAt - transform.position.x);
 
             //ActualJumpVelocity = JumpVelocity * 1.25f;
             FliesEatenHasChanged?.Invoke(FliesEaten);
@@ -123,6 +122,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
             else
             {
+                soundEffects.Powerup();
                 FlyPowerTimer = FlyPowerDuration;
                 FlyPower = e.Fly.FlyType;
                 FliesEaten++;
@@ -158,6 +158,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void TakeDamage(float amount)
         {
+            soundEffects.Damage();
             Health -= amount;
 
             if (Health < 1)

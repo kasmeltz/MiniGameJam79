@@ -19,6 +19,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Fire(int Direction)
         {
+            var soundEffects = FindObjectOfType<SoundEffects>();
+            soundEffects.SetDistance(Direction * 0.5f);
+            soundEffects.Spit();
+
             AliveCounter = TimeToLive;
 
             var force = FireForce;

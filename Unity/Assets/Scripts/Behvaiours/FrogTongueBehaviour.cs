@@ -35,6 +35,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
+        // x-coordinate of capture location
+        public float CapturedAt = 0.0f;
+
         #region Events
 
         public event EventHandler<FlyBehaviourEventArgs> FlyGobbled;
@@ -139,6 +142,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            CapturedAt = fly.transform.position.x;
             CapturedFly = fly;
             CapturedFly.IsCaptured = true;
         }
