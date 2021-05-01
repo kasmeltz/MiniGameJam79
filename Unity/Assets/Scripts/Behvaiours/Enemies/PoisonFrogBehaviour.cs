@@ -44,12 +44,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return false;
             }
 
-            if (transform.position.x >= EnemyPatrolArea.Bounds.max.x - 1.5f)
+            if (transform.position.x >= EnemyPatrolArea.Bounds.max.x - 2f)
             {
                 return false;
             }
 
-            if (transform.position.x <= EnemyPatrolArea.Bounds.min.x + 1.5f)
+            if (transform.position.x <= EnemyPatrolArea.Bounds.min.x + 2f)
             {
                 return false;
             }
@@ -130,6 +130,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
             }
 
+            if (transform.position.x >= EnemyPatrolArea.Bounds.max.x - 1f)
+            {
+                SetDirection(-1);
+            }
+
+            if (transform.position.x <= EnemyPatrolArea.Bounds.min.x + 1f)
+            {
+                SetDirection(1);
+            }
+
             if (CanHop())
             {
                 Hop();
@@ -138,7 +148,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (CanShoot())
             {
                 Shoot();
-            }           
+            }            
         }
 
         protected override void Awake()

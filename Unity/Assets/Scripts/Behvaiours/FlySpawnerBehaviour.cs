@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/FlySpawner")]
@@ -13,10 +14,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Bounds Bounds;
 
+        public float RefreshDelay;
+
+        protected List<GameObject> Flies { get; set; }
+
+        protected List<GameObject> ToDelete { get; set; }
+
+        protected float RefreshTimer { get; set; }
+
         #endregion
 
         #region Event Handlers
-        
+
         private void LevelManager_LevelStarted(object sender, System.EventArgs e)
         {
             SpawnFlies();
@@ -26,7 +35,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Protected Methods
 
-        protected  void SpawnFlies()
+        protected void SpawnFlies()
         {
             foreach (var fly in PooledObjects)
             {
@@ -39,19 +48,62 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .SetActive(false);
             }
 
+            Flies
+                .Clear();
+
             for (int i = 0; i < ConcurrentFlies; i++)
             {
-                var fly = GetPooledObject();
-
-                float x = Random
-                    .Range(Bounds.min.x, Bounds.max.x);
-
-                float y = Random
-                    .Range(Bounds.min.y, Bounds.max.y);
-
-                fly.transform.position = new Vector3(x, y, 0);
+                SpawnFly();
             }
         }
+
+        protected void SpawnFly()
+        {
+            var fly = GetPooledObject();
+
+            float x = Random
+                .Range(Bounds.min.x, Bounds.max.x);
+
+            float y = Random
+                .Range(Bounds.min.y, Bounds.max.y);
+
+            fly.transform.position = new Vector3(x, y, 0);
+
+            Flies
+                .Add(fly);
+        }
+
+        protected void RefreshFlies()
+        {
+            ToDelete
+                .Clear();
+
+            foreach(var fly in Flies)
+            {
+                if (!fly.gameObject.activeInHierarchy)
+                {
+                    ToDelete
+                        .Add(fly);
+                }
+            }
+
+            foreach(var fly in ToDelete)
+            {
+                Flies
+                    .Remove(fly);
+            }
+
+            ToDelete
+                .Clear();
+
+            int required = ConcurrentFlies - Flies.Count;
+
+            for(int i = 0;i < required;i++)
+            {
+                SpawnFly();
+            }
+        }
+
 
         #endregion
 
@@ -62,10 +114,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
+            Flies = new List<GameObject>();
+            ToDelete = new List<GameObject>();
+
             LevelManager.LevelStarted += LevelManager_LevelStarted;
         }
 
-       
+        protected void Update()
+        {
+            RefreshTimer += Time.deltaTime;
+            if (RefreshTimer >= RefreshDelay)
+            {
+                RefreshTimer -= RefreshDelay;
+                RefreshFlies();
+            }
+        }
+
         #endregion
     }
 }
