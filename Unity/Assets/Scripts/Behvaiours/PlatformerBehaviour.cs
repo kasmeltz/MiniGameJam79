@@ -156,18 +156,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Protected Methods
 
-        protected void TakeDamage(float amount)
-        {
-            soundEffects.Damage();
-            Health -= amount;
-
-            if (Health < 1)
-            {
-                Health = 0;
-                Die();
-            }
-        }
-
         protected void UpdateUI()
         {
             FlyPowerProgressBar
