@@ -9,6 +9,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public AudioSource source;
         #endregion
 
+        // set by the music when it's playing
+        public MusicLooper music;
+
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
         public void Land() {
@@ -21,10 +24,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
         }
 
+        private void DuckMusic() {
+            if (music) music.Duck(0.8f, 0.25f);
+        }
+
         private float distance;
         public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
 
         private void PlayFile(string fname) {
+            DuckMusic();
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
