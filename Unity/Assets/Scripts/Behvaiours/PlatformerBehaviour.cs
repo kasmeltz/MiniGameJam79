@@ -64,6 +64,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public GameObjectPoolBehaviour CherryBombPool;
 
+        public GameObjectPoolBehaviour StrawberrySeedPool;
+
         public float[] FlyPowerCooldownsAmount;
 
         public int FliesEaten { get; set; }
@@ -290,11 +292,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Die()
         {
+            /*
             PauseGame(true);
 
             GameOverPanel
                 .gameObject
                 .SetActive(true);
+            */
         }
 
         protected void Restart()
@@ -503,6 +507,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             switch (FlyPower)
             {
+                case FlyType.Strawberry:
+                    FireStrawberrySeed();
+                    break;
+
                 case FlyType.Cherry:
                     ThrowCherryBomb();
                     break;
@@ -510,12 +518,27 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         
             FlyPowerCooldown = FlyPowerCooldownsAmount[(int)FlyPower];
         }
+         
+        protected void FireStrawberrySeed()
+        {
+            var seed = StrawberrySeedPool
+               .GetPooledObject<StrawberrySeedBehaviour>();
+
+            if (seed == null)
+            {
+                return;
+            }
+
+            seed.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
+
+            seed
+                .Fire(Direction);
+        }
 
         protected void ThrowCherryBomb()
         {
             var bomb = CherryBombPool
-                .GetPooledObject()
-                .GetComponent<CherryBombBehaviour>();
+                .GetPooledObject<CherryBombBehaviour>();
 
             if (bomb == null)
             {

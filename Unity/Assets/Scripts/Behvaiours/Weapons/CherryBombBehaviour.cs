@@ -2,7 +2,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using UnityEngine;
 
-    public class CherryBombBehaviour : MonoBehaviour
+    [AddComponentMenu("KasJam/CherryBomb")]
+    public class CherryBombBehaviour : BehaviourBase
     {
         #region Members
 

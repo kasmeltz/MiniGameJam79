@@ -51,7 +51,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 Tiles
                     .Add(tile);
 
-                x += tile.sprite.bounds.size.x - 0.04f;
+                x += (tile.sprite.bounds.size.x * tile.transform.localScale.x) - 0.01f;
             } while (x <= Bounds.max.x + 5); ;
         }
 
@@ -74,7 +74,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var d = Bounds.center - Camera.main.transform.position;
             d *= (ScrollSpeed);
 
-            d.y = -5;
+            d.y = transform.position.y;
             d.z = 0;
 
             transform.position = d;

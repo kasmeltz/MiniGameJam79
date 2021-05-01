@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 3718340153194636266}
   - component: {fileID: 3718340153194636265}
   - component: {fileID: 3718340153194636264}
-  - component: {fileID: 3293011015001267707}
-  - component: {fileID: 5865516163321113872}
+  - component: {fileID: 7016051935390484462}
   m_Layer: 9
-  m_Name: CherryBomb
+  m_Name: StrawberrySeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3336554275580186400, guid: ea1cae2529036c74e81435a6e698d504, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 667c433631bff164d8f78889c8c35a42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,12 +100,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0.05
   m_Material: {fileID: 6200000, guid: 38622f632adac424a9f7e19ac0f09c57, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3718340153194636264
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.28, y: 0.25}
+    oldSize: {x: 0.09, y: 0.05}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -133,26 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
---- !u!95 &3293011015001267707
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3718340153194636246}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c8e87c66608b1b94d9bc92ad14059b61, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5865516163321113872
+--- !u!114 &7016051935390484462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,8 +141,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3718340153194636246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d56933ad3a97746bb70e0ef5b56c13, type: 3}
+  m_Script: {fileID: 11500000, guid: 719ba865312c95743bb48beff022aaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrowForce: {x: 3, y: 5}
-  ExplosionRange: 2
+  TimeToLive: 2
+  FireForce: {x: 10, y: 0}

@@ -34,7 +34,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             return null;
         }
-        
+
+        public T GetPooledObject<T>() where T : BehaviourBase
+        {
+            var obj = GetPooledObject();
+            if (obj == null)
+            {
+                return null;
+            }
+
+            return obj
+                .GetComponent<T>();
+        }
+
         #endregion
 
         #region Unity
