@@ -3,7 +3,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     using KasJam.MiniJam79.Unity.Managers;
     using KasJam.MiniJam79.Unity.ScriptableObjects;
     using System.Text;
+    using TMPro;
     using UnityEngine;
+    using UnityEngine.Events;
     using UnityEngine.UI;
 
     [AddComponentMenu("KasJam/Platformer")]
@@ -37,7 +39,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Text DebugText;
 
-        public Text FliesEatenText;
+        public TMP_Text FliesEatenText;//public Text FliesEatenText;
 
         public float CoyoteTimeLimit;
 
@@ -103,6 +105,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Event Handlers
 
+        public event UnityAction<int> FliesEatenHasChanged;
+
         private void LevelManger_LevelStarted(object sender, System.EventArgs e)
         {
             Restart();
@@ -115,6 +119,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             ActualJumpVelocity = JumpVelocity * 1.25f;
             FliesEaten++;
+            FliesEatenHasChanged?.Invoke(FliesEaten);
 
             if (e.Fly.FlyType == FlyType.Poison)
             {
@@ -143,6 +148,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if(FliesEaten >= cost)
             {
                 FliesEaten -= cost;
+                FliesEatenHasChanged?.Invoke(FliesEaten);
                 return true;
             }
 
@@ -166,8 +172,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void UpdateUI()
         {
-            FliesEatenText.text = FliesEaten
-                .ToString();
+            //FliesEatenText.text = FliesEaten
+                //.ToString();
 
             FlyPowerProgressBar
                 .gameObject
@@ -686,6 +692,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetValue(Health, MaxHealth);
 
             FliesEaten = 0;
+            FliesEatenHasChanged?.Invoke(FliesEaten);
 
             foreach (var upgrade in Upgrades)
             {

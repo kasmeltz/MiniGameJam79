@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Behvaiours\Upgrades\UpgradeButton.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\Upgrades\Upgrade Effects\TongueLengthUpgradeEffect.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\Upgrades\Upgrade Effects\MaxHealthUpgradeEffect.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\UI\FlyCounter.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Resources\Fonts\TextMesh Pro\Shaders\TMPro.cginc" />
