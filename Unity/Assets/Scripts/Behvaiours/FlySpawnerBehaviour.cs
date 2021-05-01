@@ -6,9 +6,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     [AddComponentMenu("KasJam/FlySpawner")]
     public class FlySpawnerBehaviour : GameObjectPoolBehaviour
     {
-        #region Members
-
-        public LevelManagerBehaviour LevelManager;
+        #region Members        
 
         public int ConcurrentFlies;
 
@@ -21,6 +19,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected List<GameObject> ToDelete { get; set; }
 
         protected float RefreshTimer { get; set; }
+
+        protected LevelManagerBehaviour LevelManager { get; set; }
 
         #endregion
 
@@ -113,6 +113,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             base
                 .Awake();
+
+            LevelManager = FindObjectOfType<LevelManagerBehaviour>(true);
 
             Flies = new List<GameObject>();
             ToDelete = new List<GameObject>();
