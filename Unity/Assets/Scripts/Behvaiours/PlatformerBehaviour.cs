@@ -253,6 +253,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void ReSpawn()
         {
+            Health = MaxHealth;
             transform.position = RespawnPosition;
             IsJumping = false;
             JumpMoveTimer = 0;
@@ -431,7 +432,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected void DoGroundTest()
         {
             Collider2D collider;
-            var o = new Vector2(transform.position.x, transform.position.y - 0.08f);
+            var o = new Vector2(transform.position.x, transform.position.y);
             var s = new Vector2(0.32f, 0.32f);
 
             var raycastHit = Physics2D
@@ -500,6 +501,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 IsOnGround = false;
             }
 
+            /*
             o = new Vector2(transform.position.x - 0.08f, transform.position.y);
             s = new Vector2(0.32f, 0.32f);
 
@@ -558,6 +560,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     Jump();
                 }
             }
+            */
         }
 
         #endregion
@@ -747,9 +750,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .SetDirection(Direction);
             }
 
-
             DrawDebug();
-            
+
             var pos = transform.position;
 
             if (pos.x < LevelBounds.min.x)
@@ -775,6 +777,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 Camera.main.transform.position = newPos;
             }
+
+            DoGroundTest();
         }
 
         #endregion

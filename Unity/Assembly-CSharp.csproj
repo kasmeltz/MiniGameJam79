@@ -74,6 +74,8 @@
     <Compile Include="Assets\Scripts\Behvaiours\FlyType.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\MusicLooper.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\TitleLogoBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\ChangeSceneBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Resources\Shaders\VignetteShader.shader" />
