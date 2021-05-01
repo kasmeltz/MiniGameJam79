@@ -14,10 +14,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
-        public void Land() {
-            // TODO: fix the platforming code lol
-            // PlayFile("Sounds/land");
-        }
+        public void Land() { PlayFile("Sounds/land"); }
         public void Death() { }
         public void Splash() { }
         public void Tongue() {
