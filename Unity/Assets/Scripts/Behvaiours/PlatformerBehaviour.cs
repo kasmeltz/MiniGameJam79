@@ -66,7 +66,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public GameObjectPoolBehaviour StrawberrySeedPool;
 
+        public GameObjectPoolBehaviour LemonSquirtPool;
+
         public float[] FlyPowerCooldownsAmount;
+
+        public float FlyPowerTimer;
+
+        public FlyType FlyPower;
 
         public int FliesEaten { get; set; }
 
@@ -98,15 +104,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected int Direction { get; set; }
 
-        protected Vector2 ActualJumpVelocity { get; set; }
-
-        protected float FlyPowerTimer { get; set; }
+        protected Vector2 ActualJumpVelocity { get; set; }        
 
         protected Collider2D GroundCollider { get; set; }
 
-        protected Animator Animator { get; set; }
-
-        protected FlyType FlyPower { get; set; }
+        protected Animator Animator { get; set; }        
 
         protected float FlyPowerCooldown { get; set; }
         
@@ -508,6 +510,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 case FlyType.Cherry:
                     ThrowCherryBomb();
                     break;
+
+                case FlyType.Lemon:
+                    SquirtLemon();
+                    break;
             }
         
             FlyPowerCooldown = FlyPowerCooldownsAmount[(int)FlyPower];
@@ -544,6 +550,23 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             bomb
                 .Throw(Direction);
         }
+
+        protected void SquirtLemon()
+        {
+            var squirt = LemonSquirtPool
+                .GetPooledObject<LemonSquirtBehaviour>();
+
+            if (squirt == null)
+            {
+                return;
+            }
+
+            squirt.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
+
+            squirt
+                .Squirt(Direction);
+        }
+
 
         protected void DoGroundTest()
         {
