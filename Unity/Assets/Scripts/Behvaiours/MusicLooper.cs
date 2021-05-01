@@ -1,10 +1,8 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using UnityEngine;
-    using System.Collections;
-    using System.Collections.Generic;
 
-    [AddComponentMenu("KasJam/AudioManager")]
+    [AddComponentMenu("KasJam/MusicLooper")]
     public class MusicLooper : BehaviourBase
     {
         // percentage per second
