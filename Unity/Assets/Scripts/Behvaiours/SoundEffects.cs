@@ -13,8 +13,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public MusicLooper music;
 
         // -------- options --------- //
-        private float distance;
-        private float pitch;
+        private float distance = 0.0f;
+        private float pitch = 1.0f;
+        private float volume = 1.0f;
         public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
         public void SetPitch(float thePitch) { pitch = thePitch; }
 
@@ -30,12 +31,21 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         public void BuyUpgrade() {
-            float pitchRange = 1.2f;
+            float pitchRange = 1.5f;
             pitch = Random.Range(1.0f/pitchRange, pitchRange);
+            volume = 0.3f;
             PlayFile("Sounds/buy-upgrade");
         }
 
         public void MenuSelect() { PlayFile("Sounds/menu-select"); }
+
+
+        // DELETEME
+        public void Update() {
+            if (Input.GetKeyDown(KeyCode.Z)) {
+                BuyUpgrade();
+            }
+        }
 
         /////// --------- helpers ----------- ///////
         private void DuckMusic() {
@@ -48,6 +58,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
             source.PlayOneShot(clip, computeVolume());
+            source.pitch = pitch;
+            source.volume = volume;
+            volume = 1.0f;
             distance = 0.0f;
             pitch = 1.0f;
         }
