@@ -59,14 +59,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         private void startPlaying() {
-            double loopStart = AudioSettings.dspTime + introLength();
+            double now = AudioSettings.dspTime + 0.5f;
+            double loopStart = now + introLength();
 
             if (intro != null) {
-                intro.Play();
+                intro.PlayScheduled(now);
             }
 
-            Debug.Log("intro: " + introLength());
-            Debug.Log("loopStart: " + loopStart);
+            //Debug.Log("intro: " + introLength());
+            //Debug.Log("loopStart: " + loopStart);
 
             int i = 0;
             foreach (AudioSource source in loops) {
