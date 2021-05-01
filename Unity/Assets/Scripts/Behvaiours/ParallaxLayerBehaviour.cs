@@ -18,6 +18,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Bounds Bounds;
 
+        public bool IsForeground;
+
         protected List<SpriteRenderer> Tiles { get; set; }
 
         #endregion
@@ -46,7 +48,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 tile.transform.localPosition = pos;
 
-                tile.sortingOrder = -LayerNumber - 5;
+                if (IsForeground)
+                {
+                    tile.sortingOrder = LayerNumber + 20;
+                }
+                else
+                {
+                    tile.sortingOrder = -LayerNumber - 5;
+                }                
 
                 Tiles
                     .Add(tile);

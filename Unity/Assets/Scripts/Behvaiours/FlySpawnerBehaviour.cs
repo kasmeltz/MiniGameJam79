@@ -1,6 +1,5 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/FlySpawner")]

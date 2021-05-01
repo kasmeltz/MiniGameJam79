@@ -395,6 +395,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &381517763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381517765}
+  - component: {fileID: 381517764}
+  m_Layer: 0
+  m_Name: LemonSeedPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &381517764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381517763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e037d6c4790be47a65098857d0afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToPool: {fileID: 3718340153194636246, guid: 45948b3d4f8f577488829b78cc588872, type: 3}
+  AmountToPool: 50
+--- !u!4 &381517765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381517763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &580597581
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerLayer: 10
   CherryBombLayer: 9
+  LemonSquirtLayer: 11
 --- !u!4 &580597583
 Transform:
   m_ObjectHideFlags: 0
@@ -438,7 +484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &602162115
 GameObject:
@@ -582,6 +628,58 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
+--- !u!1 &689796891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689796893}
+  - component: {fileID: 689796892}
+  m_Layer: 0
+  m_Name: ParallaxLayerF
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &689796892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689796891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d20609970b46b74ab99967a6492d7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 265875243560070818, guid: c51c205709d15ef4895e7535eebea933, type: 3}
+  LayerNumber: 0
+  ScrollSpeed: 1.5
+  PossibleSprites:
+  - {fileID: 21300000, guid: bae9529a3bf79e2468a8986b536843c5, type: 3}
+  Bounds:
+    m_Center: {x: 16, y: 0, z: 0}
+    m_Extent: {x: 32, y: 0, z: 0}
+  IsForeground: 1
+--- !u!4 &689796893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689796891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &719673586 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4657605311268576322, guid: 47327ef62b73a4f959190e36fe535d68, type: 3}
@@ -767,6 +865,34 @@ PrefabInstance:
     - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1907390465}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: KasJam.MiniJam79.Unity.Behaviours.SoundEffects, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 160444599937300172, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1226105230564016655, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1092,7 +1218,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &892152874 stripped
 GameObject:
@@ -1148,9 +1274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToPool: {fileID: 6587704266299046375, guid: b535bba9d25e304438f66db6fdcd98a2, type: 3}
-  AmountToPool: 20
+  AmountToPool: 100
   LevelManager: {fileID: 602162117}
-  ConcurrentFlies: 5
+  ConcurrentFlies: 50
   Bounds:
     m_Center: {x: -5, y: 0, z: 0}
     m_Extent: {x: 5, y: 5, z: 0}
@@ -1323,6 +1449,7 @@ MonoBehaviour:
   Bounds:
     m_Center: {x: 16, y: 0, z: 0}
     m_Extent: {x: 32, y: 0, z: 0}
+  IsForeground: 0
 --- !u!1001 &1060542472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1488,6 +1615,7 @@ MonoBehaviour:
   Bounds:
     m_Center: {x: 16, y: 0, z: 0}
     m_Extent: {x: 32, y: 0, z: 0}
+  IsForeground: 0
 --- !u!1 &1120460192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,6 +2208,7 @@ MonoBehaviour:
   Bounds:
     m_Center: {x: 16, y: 0, z: 0}
     m_Extent: {x: 32, y: 0, z: 0}
+  IsForeground: 0
 --- !u!1 &1621718322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2321,57 +2450,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761719467}
   m_CullTransparentMesh: 1
---- !u!1 &1775747843
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1775747845}
-  - component: {fileID: 1775747844}
-  m_Layer: 0
-  m_Name: ParallaxLayer3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1775747844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775747843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d20609970b46b74ab99967a6492d7cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Prefab: {fileID: 265875243560070818, guid: c51c205709d15ef4895e7535eebea933, type: 3}
-  LayerNumber: 3
-  ScrollSpeed: 0.03125
-  PossibleSprites:
-  - {fileID: 21300000, guid: 9a097998a56763b42b3b171ff78b8aaf, type: 3}
-  Bounds:
-    m_Center: {x: 16, y: 0, z: 0}
-    m_Extent: {x: 32, y: 0, z: 0}
---- !u!4 &1775747845
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775747843}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1826511485
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,6 +3023,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: FlyPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
       propertyPath: DebugText
       value: 
       objectReference: {fileID: 630060537}
@@ -2965,6 +3047,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1907390465}
     - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: FlyPowerTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
       propertyPath: GameOverPanel
       value: 
       objectReference: {fileID: 1938104438}
@@ -2976,6 +3062,10 @@ PrefabInstance:
       propertyPath: FliesEatenText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: LemonSquirtPool
+      value: 
+      objectReference: {fileID: 381517764}
     - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
       propertyPath: HealthProgressBar
       value: 
