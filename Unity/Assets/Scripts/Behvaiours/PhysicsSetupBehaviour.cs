@@ -10,6 +10,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public int PlayerLayer;
         public int CherryBombLayer;
         public int LemonSquirtLayer;
+        public int EnemyLayer;
 
         #endregion
 
@@ -19,7 +20,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             base
                 .Awake();
-
 
             Physics2D
                 .IgnoreLayerCollision(PlayerLayer, CherryBombLayer);
@@ -32,6 +32,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             Physics2D
                 .IgnoreLayerCollision(LemonSquirtLayer, LemonSquirtLayer);
+
+            Physics2D
+                .IgnoreLayerCollision(EnemyLayer, EnemyLayer);
         }
 
         #endregion

@@ -22,7 +22,23 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
-        #region Protected Members
+        #region Public Methods
+
+        public void TakeDamage(float amount)
+        {
+            Health -= amount;
+
+            if (Health < 1)
+            {
+                Health = 0;
+                Die();
+            }
+        }
+
+        #endregion
+
+        #region Protected Methods
+        protected abstract void Die();
 
         protected void SetDirection(int dir)
         {

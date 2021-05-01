@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using System.Linq;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/PoisonFrog")]
@@ -11,13 +12,25 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float SeedCooldown;
 
-        public float Damage;
+        public float AttackDamage;
 
         public float SpawnCooldown;
 
         public EnemyPatrolAreaBehaviour EnemyPatrolArea;
 
+        protected GameObjectPoolBehaviour PoisonSeedPool { get; set; }
+
         protected float HopCounter { get; set; }
+
+        protected float SeedCounter { get; set; }
+
+        #endregion
+
+        #region PlatformerBehaviourBase
+
+        protected override void Die()
+        {
+        }
 
         #endregion
 
@@ -29,10 +42,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 return false;
             }
-
-            var pos = transform.position.x;
-            float minX = EnemyPatrolArea.Bounds.min.x;
-            float maxX = EnemyPatrolArea.Bounds.max.x;
 
             if (transform.position.x >= EnemyPatrolArea.Bounds.max.x - 1.5f)
             {
@@ -60,12 +69,27 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected bool CanShoot()
         {
-            return SeedCooldown <= 0;
+            return SeedCounter <= 0;
         }
 
         protected void Shoot()
         {
+            var seed = PoisonSeedPool
+               .GetPooledObject<PoisonSeedBehaviour>();
 
+            if (seed == null)
+            {
+                return;
+            }
+
+            seed.AttackDamage = AttackDamage;
+
+            seed.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
+
+            seed
+                .Fire(Direction);
+
+            SeedCounter = SeedCooldown;
         }
 
         #endregion
@@ -74,13 +98,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Update()
         {
-            if (HopCounter> 0)
+            if (HopCounter > 0)
             {
                 HopCounter -= Time.deltaTime;
                 if (HopCounter <= 0)
                 {
                     HopCounter = 0;
                     IsHopping = false;
+                }
+            }
+
+            if (SeedCounter > 0)
+            {
+                SeedCounter -= Time.deltaTime;
+                if (SeedCounter <= 0)
+                {
+                    SeedCounter = 0;
                 }
             }
 
@@ -92,8 +125,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (CanShoot())
             {
                 Shoot();
-            }
-           
+            }           
+        }
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            var pools = FindObjectsOfType<GameObjectPoolBehaviour>(true);
+
+            PoisonSeedPool = pools.FirstOrDefault(o => o
+                .ObjectToPool
+                .GetComponent<PoisonSeedBehaviour>() != null);
         }
 
         #endregion

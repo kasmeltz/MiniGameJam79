@@ -2,8 +2,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using UnityEngine;
 
-    [AddComponentMenu("KasJam/StrawberrySeed")]
-    public class StrawberrySeedBehaviour : BehaviourBase
+    [AddComponentMenu("KasJam/PoisonSeed")]
+    public class PoisonSeedBehaviour : BehaviourBase
     {
         #region Members
 
@@ -11,7 +11,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Vector2 FireForce;
 
-        public float AttackDamage;
+        public float AttackDamage { get; set; }
 
         protected float AliveCounter { get; set; }
 
@@ -52,14 +52,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             var hero = collision
                 .collider
-                .GetComponent<PoisonFrogBehaviour>();
+                .GetComponent <PlatformerBehaviour>();
 
             if (hero != null)
             {
                 hero
                     .TakeDamage(AttackDamage);
             }
-
+            
             Die();
         }
 

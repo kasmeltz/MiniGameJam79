@@ -1,6 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    public class EnemyBehaviour : PlatformerBehaviourBase
+    public abstract class EnemyBehaviour : PlatformerBehaviourBase
     {
     }
 }

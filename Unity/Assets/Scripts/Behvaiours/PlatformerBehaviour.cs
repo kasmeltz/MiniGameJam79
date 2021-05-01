@@ -151,21 +151,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             return false;
         }
-
+       
         #endregion
 
         #region Protected Methods
-
-        protected void TakeDamage(float amount)
-        {
-            Health -= amount;
-
-            if (Health < 1)
-            {
-                Health = 0;
-                Die();
-            }
-        }
 
         protected void UpdateUI()
         {
@@ -275,7 +264,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetTrigger("Jumping");
         }
 
-        protected void Die()
+        protected override void Die()
         {
             PauseGame(true);
 
