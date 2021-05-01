@@ -35,7 +35,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void GenerateTiles()
         {
-            float x = Bounds.min.x;
+            float x = Bounds.min.x - 5;
 
             do
             {
@@ -46,13 +46,21 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .SetParent(transform);
 
                 tile.sprite = PossibleSprites[0];
+
                 var pos = tile.transform.localPosition;
+
+                pos.y = 0;
                 pos.x = x;
+
                 tile.transform.localPosition = pos;
-                tile.sortingOrder = -1 * LayerNumber;
+
+                tile.sortingOrder = -LayerNumber - 5;
+
+                Tiles
+                    .Add(tile);
 
                 x += tile.sprite.bounds.size.x;
-            } while (x <= Bounds.max.x);
+            } while (x <= Bounds.max.x + 5); ;
         }
 
         #endregion

@@ -9,6 +9,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public int ConcurrentFlies;
 
+        public Bounds Bounds;
+
         #endregion
 
         #region Public Methods
@@ -27,10 +29,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 var fly = GetPooledObject();
 
                 float x = Random
-                    .Range(-5f, 5f);
+                    .Range(Bounds.min.x, Bounds.max.x);
 
                 float y = Random
-                    .Range(-3f, 3f);
+                    .Range(Bounds.min.y, Bounds.max.y);
 
                 fly.transform.position = new Vector3(x, y, 0);
             }

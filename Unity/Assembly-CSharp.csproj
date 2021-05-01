@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Behvaiours\TitleLogoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\ChangeSceneBehaviour.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\ParallaxLayerBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\SoundEffects.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Resources\Shaders\VignetteShader.shader" />
