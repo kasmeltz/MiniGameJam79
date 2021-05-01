@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MaxHealthUpgradeEffect : UpgradeEffect
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    [Space]
-    [SerializeField] private int _healthIncreasementPerLevel;
+    using UnityEngine;
 
-    public override void MakeUpgrade(int currentUpgradeLevel)
+    public class MaxHealthUpgradeEffect : UpgradeEffect
     {
-        Frog.MaxHealth += _healthIncreasementPerLevel;
+        [Space]
+        [SerializeField] private int _healthIncreasementPerLevel;
+
+        public override void MakeUpgrade(int currentUpgradeLevel)
+        {
+            Frog.MaxHealth += _healthIncreasementPerLevel;
+        }
     }
 }

@@ -1,48 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
-
-[RequireComponent(typeof(Button))]
-public class UpgradeButton : MonoBehaviour
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    [SerializeField] private TMP_Text _labelText;
-    [SerializeField] private TMP_Text _costText;
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.Events;
+    using UnityEngine.UI;
 
-    public event UnityAction WasClicked;
-
-    private Button _button;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public class UpgradeButton : MonoBehaviour
     {
-        _button = GetComponent<Button>();
-    }
+        [SerializeField] private TMP_Text _labelText;
+        [SerializeField] private TMP_Text _costText;
 
-    private void OnEnable()
-    {
-        _button.onClick.AddListener(OnButtonClicked);
-    }
+        public event UnityAction WasClicked;
 
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OnButtonClicked);
-    }
+        private Button _button;
 
-    private void OnButtonClicked()
-    {
-        WasClicked?.Invoke();
-    }
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+        }
 
-    public void DisableButton()
-    {
-        _button.interactable = false;
-    }
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(OnButtonClicked);
+        }
 
-    public void InitializeButton(string upgradeLabel, int upgradeCost)
-    {
-        _labelText.text = upgradeLabel;
-        _costText.text = upgradeCost.ToString();
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(OnButtonClicked);
+        }
+
+        private void OnButtonClicked()
+        {
+            WasClicked?.Invoke();
+        }
+
+        public void DisableButton()
+        {
+            _button.interactable = false;
+        }
+
+        public void InitializeButton(string upgradeLabel, int upgradeCost)
+        {
+            _labelText.text = upgradeLabel;
+            _costText.text = upgradeCost.ToString();
+        }
     }
 }

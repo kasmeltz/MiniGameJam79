@@ -1,41 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class Upgrade : MonoBehaviour
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    [SerializeField] private UpgradeButton _upgradeButton;
-    [SerializeField] private UpgradeEffect _upgradeEffect;
+    using UnityEngine;
 
-    private int _currentUpgradeLevel;
-
-    private void Awake()
+    public class Upgrade : MonoBehaviour
     {
-        _currentUpgradeLevel = 0;
-        _upgradeButton.InitializeButton(_upgradeEffect.Label, _upgradeEffect.Cost);
-    }
+        [SerializeField] private UpgradeButton _upgradeButton;
+        [SerializeField] private UpgradeEffect _upgradeEffect;
 
-    private void OnEnable()
-    {
-        _upgradeButton.WasClicked += OnUpgradeButtonClick;
-    }
+        private int _currentUpgradeLevel;
 
-    private void OnDisable()
-    {
-        _upgradeButton.WasClicked -= OnUpgradeButtonClick;
-    }
+        private void Awake()
+        {
+            _currentUpgradeLevel = 0;
+            _upgradeButton.InitializeButton(_upgradeEffect.Label, _upgradeEffect.Cost);
+        }
 
-    private void OnUpgradeButtonClick()
-    {
-        if (_currentUpgradeLevel >= _upgradeEffect.MaxUpgradeLevel)
-            return;
+        private void OnEnable()
+        {
+            _upgradeButton.WasClicked += OnUpgradeButtonClick;
+        }
 
-        _currentUpgradeLevel++;
-        if(_upgradeEffect.TryMakeUpgrade(_currentUpgradeLevel))
+        private void OnDisable()
+        {
+            _upgradeButton.WasClicked -= OnUpgradeButtonClick;
+        }
+
+        private void OnUpgradeButtonClick()
         {
             if (_currentUpgradeLevel >= _upgradeEffect.MaxUpgradeLevel)
-                _upgradeButton.DisableButton();
+                return;
+
+            _currentUpgradeLevel++;
+            if (_upgradeEffect.TryMakeUpgrade(_currentUpgradeLevel))
+            {
+                if (_currentUpgradeLevel >= _upgradeEffect.MaxUpgradeLevel)
+                    _upgradeButton.DisableButton();
+            }
         }
     }
 }

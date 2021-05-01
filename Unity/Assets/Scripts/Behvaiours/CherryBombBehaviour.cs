@@ -1,24 +1,38 @@
-using UnityEngine;
-
-public class CherryBombBehaviour : MonoBehaviour
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    #region Members
-    public float force;
-    public float bombRange;
-    [HideInInspector]
-    public bool isRight;
-    #endregion
+    using UnityEngine;
 
-    private void Start()
+    public class CherryBombBehaviour : MonoBehaviour
     {
-        Vector2 forceVec = new Vector2(force, 0);
-        if (isRight)
+        #region Members
+
+        public Vector2 ThrowForce;
+
+        public float ExplosionRange;       
+
+        #endregion
+
+        public void Throw(int Direction)
         {
-            GetComponent<Rigidbody2D>().AddForce(forceVec, ForceMode2D.Impulse);
+            var force = ThrowForce;
+
+            force.x *= Direction;
+
+            var rigidBody = GetComponent<Rigidbody2D>();
+
+            rigidBody
+                .AddForce(force, ForceMode2D.Impulse);
+
+            rigidBody.angularVelocity = Random
+                .Range(-360, 360);
         }
-        else
+
+        public void Exploded()
         {
-            GetComponent<Rigidbody2D>().AddForce(forceVec * -1, ForceMode2D.Impulse);
+            // TODO - DAMAGE TO ENEMIES
+
+            gameObject
+                .SetActive(false);
         }
     }
 }

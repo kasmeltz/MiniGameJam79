@@ -3,7 +3,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     using KasJam.MiniJam79.Unity.Managers;
     using KasJam.MiniJam79.Unity.ScriptableObjects;
     using System.Text;
-    using TMPro;
     using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.UI;
@@ -39,8 +38,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Text DebugText;
 
-        public TMP_Text FliesEatenText;//public Text FliesEatenText;
-
         public float CoyoteTimeLimit;
 
         public float JumpMoveTimeLimit;
@@ -56,6 +53,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float Health;
 
         public float MaxHealth;
+
+        public KeyCode TongueKey;
+
+        public KeyCode FlyPowerKey;
+
+        public Image GameOverPanel;
+
+        public SoundEffects soundEffects;
+
+        public GameObjectPoolBehaviour CherryBombPool;
+
+        public float[] FlyPowerCooldownsAmount;
 
         public int FliesEaten { get; set; }
 
@@ -97,11 +106,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected FlyType FlyPower { get; set; }
 
-        public Image GameOverPanel;
-
+        protected float FlyPowerCooldown { get; set; }
+        
         #endregion
-
-        public SoundEffects soundEffects;
 
         #region Event Handlers
 
@@ -477,6 +484,50 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             CoyoteTimer = CoyoteTimeLimit;
         }
 
+        protected void DoFlyPower()
+        {
+            if (FlyPower == FlyType.None)
+            {
+                return;
+            }
+
+            if (FlyPowerTimer <= 0)
+            {
+                return;
+            }
+
+            if (FlyPowerCooldown > 0)
+            {
+                return;
+            }
+
+            switch (FlyPower)
+            {
+                case FlyType.Cherry:
+                    ThrowCherryBomb();
+                    break;
+            }
+        
+            FlyPowerCooldown = FlyPowerCooldownsAmount[(int)FlyPower];
+        }
+
+        protected void ThrowCherryBomb()
+        {
+            var bomb = CherryBombPool
+                .GetPooledObject()
+                .GetComponent<CherryBombBehaviour>();
+
+            if (bomb == null)
+            {
+                return;
+            }
+
+            bomb.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
+
+            bomb
+                .Throw(Direction);
+        }
+
         protected void DoGroundTest()
         {
             Collider2D collider;
@@ -726,6 +777,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 ImpactVelocity = RigidBody.velocity.y;
             }
 
+            if (FlyPowerCooldown > 0)
+            {
+                FlyPowerCooldown -= Time.deltaTime;
+                if (FlyPowerCooldown <= 0)
+                {
+                    FlyPowerCooldown = 0;
+                }
+            }
+
             if (CoyoteTimer > 0)
             {
                 CoyoteTimer -= Time.deltaTime;
@@ -805,10 +865,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             if (Input
-                .GetKeyDown(KeyCode.A))
+                .GetKeyDown(TongueKey))
             {
                 Tongue
                     .Shoot(Direction);
+            }
+
+            if (Input
+               .GetKeyDown(FlyPowerKey))
+            {
+                DoFlyPower();
             }
 
             if (IsAgainstWall)

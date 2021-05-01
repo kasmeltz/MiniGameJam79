@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using KasJam.MiniJam79.Unity.Behaviours;
-public class TongueLengthUpgradeEffect : UpgradeEffect
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    [Space]
-    [SerializeField] private FrogTongueBehaviour _tongue;
-    [SerializeField] private int _lengthPerLevel;
+    using UnityEngine;
 
-    public override void MakeUpgrade(int currentUpgradeLevel)
+    public class TongueLengthUpgradeEffect : UpgradeEffect
     {
-        _tongue.MaxLength += _lengthPerLevel;
+        [Space]
+        [SerializeField] private FrogTongueBehaviour _tongue;
+        [SerializeField] private int _lengthPerLevel;
+
+        public override void MakeUpgrade(int currentUpgradeLevel)
+        {
+            _tongue.MaxLength += _lengthPerLevel;
+        }
     }
 }

@@ -1,29 +1,28 @@
-using KasJam.MiniJam79.Unity.Behaviours;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-
-public abstract class UpgradeEffect : MonoBehaviour
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    [SerializeField] protected PlatformerBehaviour Frog;
-    [SerializeField] private string _label;
-    [SerializeField] private int _cost;
-    [SerializeField] private int _maxUpgradeLevel;
+    using UnityEngine;
 
-    public string Label => _label;
-    public int Cost => _cost;
-    public int MaxUpgradeLevel => _maxUpgradeLevel;
-
-    public bool TryMakeUpgrade(int currentUpgradeLevel)
+    public abstract class UpgradeEffect : MonoBehaviour
     {
-        if(Frog.TrySpendFlies(_cost))
-        {
-            MakeUpgrade(currentUpgradeLevel);
-            return true;
-        }
+        [SerializeField] protected PlatformerBehaviour Frog;
+        [SerializeField] private string _label;
+        [SerializeField] private int _cost;
+        [SerializeField] private int _maxUpgradeLevel;
 
-        return false;
+        public string Label => _label;
+        public int Cost => _cost;
+        public int MaxUpgradeLevel => _maxUpgradeLevel;
+
+        public bool TryMakeUpgrade(int currentUpgradeLevel)
+        {
+            if (Frog.TrySpendFlies(_cost))
+            {
+                MakeUpgrade(currentUpgradeLevel);
+                return true;
+            }
+
+            return false;
+        }
+        public abstract void MakeUpgrade(int currentUpgradeLevel);
     }
-    public abstract void MakeUpgrade(int currentUpgradeLevel);
 }

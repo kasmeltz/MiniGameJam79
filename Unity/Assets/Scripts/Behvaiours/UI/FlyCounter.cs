@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using KasJam.MiniJam79.Unity.Behaviours;
 using TMPro;
 using UnityEngine;
-using KasJam.MiniJam79.Unity.Behaviours;
 
 [RequireComponent(typeof(TMP_Text))]
 public class FlyCounter : MonoBehaviour

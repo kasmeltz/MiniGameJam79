@@ -85,8 +85,8 @@
     <Compile Include="Assets\Scripts\Behvaiours\UI\FlyCounter.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\Upgrades\Upgrade Effects\UpgradeEffect.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\Upgrades\Upgrade Effects\TongueLengthUpgradeEffect.cs" />
-    <Compile Include="Assets\Scripts\Behvaiours\CherryBombManager.cs" />
     <Compile Include="Assets\Scripts\Behvaiours\Upgrades\UpgradeButton.cs" />
+    <Compile Include="Assets\Scripts\Behvaiours\PhysicsSetupBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Resources\Fonts\TextMesh Pro\Shaders\TMPro.cginc" />
