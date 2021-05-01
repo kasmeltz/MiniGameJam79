@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/FlySpawner")]
@@ -7,22 +8,37 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
+        public LevelManagerBehaviour LevelManager;
+
         public int ConcurrentFlies;
 
         public Bounds Bounds;
 
         #endregion
 
-        #region Public Methods
+        #region Event Handlers
+        
+        private void LevelManager_LevelStarted(object sender, System.EventArgs e)
+        {
+            SpawnFlies();
+        }
 
         #endregion
 
-        #region Unity
+        #region Protected Methods
 
-        protected override void Awake()
+        protected  void SpawnFlies()
         {
-            base
-                .Awake();
+            foreach (var fly in PooledObjects)
+            {
+                if (fly == null)
+                {
+                    continue;
+                }
+
+                fly
+                    .SetActive(false);
+            }
 
             for (int i = 0; i < ConcurrentFlies; i++)
             {
@@ -38,6 +54,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
         }
 
+        #endregion
+
+        #region Unity
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            LevelManager.LevelStarted += LevelManager_LevelStarted;
+        }
+
+       
         #endregion
     }
 }

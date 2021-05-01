@@ -17,6 +17,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float ExpandSpeed;
 
         public int PixelsPerExpand;
+        public int RetractPixelsPerExpand;
 
         public int MaxLength;
 
@@ -123,11 +124,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected void OnCollisionEnter2D(Collision2D collision)
-        {
-            // TODO - USE THIS?
-        }
-
         protected void OnTriggerEnter2D(Collider2D collider)
         {
             if (CapturedFly != null)
@@ -177,7 +173,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
                 else
                 {
-                    Length -= PixelsPerExpand;
+                    Length -= RetractPixelsPerExpand;
                     if (Length <= 0)
                     {
                         Length = 0;

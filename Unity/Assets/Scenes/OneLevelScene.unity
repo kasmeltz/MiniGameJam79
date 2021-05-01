@@ -303,7 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToPool: {fileID: 6587704266299046375, guid: d88f2bf6780a2cb49acb9b499b737e73, type: 3}
-  AmountToPool: 10
+  AmountToPool: 20
+  LevelManager: {fileID: 602162117}
   ConcurrentFlies: 5
   Bounds:
     m_Center: {x: 10, y: 0, z: 0}
@@ -379,6 +380,7 @@ GameObject:
   - component: {fileID: 630060536}
   - component: {fileID: 630060538}
   - component: {fileID: 630060537}
+  - component: {fileID: 630060539}
   m_Layer: 5
   m_Name: DebugText
   m_TagString: Untagged
@@ -398,11 +400,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 20, y: -200}
   m_SizeDelta: {x: 900, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &630060537
@@ -426,8 +428,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_Font: {fileID: 12800000, guid: 785ee49fdf1941d4f91012f5fcbd1955, type: 3}
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -438,7 +440,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 23223
 --- !u!222 &630060538
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -447,6 +449,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630060535}
   m_CullTransparentMesh: 1
+--- !u!114 &630060539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630060535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: 1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &742292730
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToPool: {fileID: 6587704266299046375, guid: 1d4461a831e328749a01155bae48c679, type: 3}
-  AmountToPool: 10
+  AmountToPool: 20
+  LevelManager: {fileID: 602162117}
   ConcurrentFlies: 5
   Bounds:
     m_Center: {x: 5, y: 0, z: 0}
@@ -598,6 +616,7 @@ MonoBehaviour:
   LevelBounds:
     m_Center: {x: 16, y: 0, z: 0}
     m_Extent: {x: 32, y: 24, z: 0}
+  LevelManger: {fileID: 602162117}
   Upgrades:
   - {fileID: 11400000, guid: c59678c0a387bdf4e854d04e8021a5e8, type: 2}
   OneWayCollider: {fileID: 0}
@@ -611,9 +630,6 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 128
-  WallsLayer:
-    serializedVersion: 2
-    m_Bits: 64
   DebugText: {fileID: 630060537}
   FliesEatenText: {fileID: 1014716652}
   CoyoteTimeLimit: 0.2
@@ -735,7 +751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToPool: {fileID: 6587704266299046375, guid: b535bba9d25e304438f66db6fdcd98a2, type: 3}
-  AmountToPool: 10
+  AmountToPool: 20
+  LevelManager: {fileID: 602162117}
   ConcurrentFlies: 5
   Bounds:
     m_Center: {x: -5, y: 0, z: 0}
@@ -788,7 +805,8 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 969038819}
   BoxCollider2d: {fileID: 969038820}
   ExpandSpeed: 0.01
-  PixelsPerExpand: 3
+  PixelsPerExpand: 6
+  RetractPixelsPerExpand: 3
   MaxLength: 60
 --- !u!212 &969038819
 SpriteRenderer:
@@ -898,7 +916,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1125,7 +1143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 265875243560070818, guid: c51c205709d15ef4895e7535eebea933, type: 3}
   LayerNumber: 1
-  ScrollSpeed: 0.25
+  ScrollSpeed: 0.125
   PossibleSprites:
   - {fileID: 21300000, guid: 133d14f84d14d08458aba9c95cc1ab7c, type: 3}
   Bounds:
@@ -1290,7 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 265875243560070818, guid: c51c205709d15ef4895e7535eebea933, type: 3}
   LayerNumber: 0
-  ScrollSpeed: 0.5
+  ScrollSpeed: 0.25
   PossibleSprites:
   - {fileID: 21300000, guid: 0b7ccb962e336f14ea3b2f1b49fdb36b, type: 3}
   Bounds:
@@ -1453,7 +1471,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1725,13 +1743,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 630060536}
   - {fileID: 1014716651}
   - {fileID: 1270351275}
   - {fileID: 1443731592}
   - {fileID: 1621718323}
   - {fileID: 1929534903}
   - {fileID: 1938104435}
+  - {fileID: 630060536}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1770,7 +1788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToPool: {fileID: 6587704266299046375, guid: 4f25b6113a103c440bdbf234a20d2fcf, type: 3}
-  AmountToPool: 10
+  AmountToPool: 20
+  LevelManager: {fileID: 602162117}
   ConcurrentFlies: 5
   Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1819,7 +1838,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1909,7 +1928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 265875243560070818, guid: c51c205709d15ef4895e7535eebea933, type: 3}
   LayerNumber: 2
-  ScrollSpeed: 0.125
+  ScrollSpeed: 0.0625
   PossibleSprites:
   - {fileID: 21300000, guid: 1026c06bf52522241a37ebe073a8a912, type: 3}
   Bounds:
@@ -1947,7 +1966,7 @@ RectTransform:
   m_Children:
   - {fileID: 23900402}
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2039,7 +2058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 265875243560070818, guid: c51c205709d15ef4895e7535eebea933, type: 3}
   LayerNumber: 3
-  ScrollSpeed: 0.0625
+  ScrollSpeed: 0.03125
   PossibleSprites:
   - {fileID: 21300000, guid: 9a097998a56763b42b3b171ff78b8aaf, type: 3}
   Bounds:
@@ -2238,7 +2257,7 @@ RectTransform:
   m_Children:
   - {fileID: 352547312}
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2332,7 +2351,7 @@ RectTransform:
   - {fileID: 1150007401}
   - {fileID: 1964551898}
   m_Father: {fileID: 1330823133}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
