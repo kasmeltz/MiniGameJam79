@@ -138,6 +138,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         }
 
+        public bool TrySpendFlies(int cost)
+        {
+            if(FliesEaten >= cost)
+            {
+                FliesEaten -= cost;
+                return true;
+            }
+
+            return false;
+        }
+
         #endregion
 
         #region Protected Methods
