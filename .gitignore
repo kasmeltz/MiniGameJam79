@@ -9,6 +9,7 @@
 /Unity/Temp
 /Unity/.vsconfig
 /Unity/Assembly-CSharp.csproj
+/Unity/Unity.sln
 
 # [jneen] log files
 *.log
