@@ -1,31 +1,34 @@
-using KasJam.MiniJam79.Unity.Behaviours;
-using TMPro;
-using UnityEngine;
-
-[RequireComponent(typeof(TMP_Text))]
-public class FlyCounter : MonoBehaviour
+namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    [SerializeField] private PlatformerBehaviour _frog;
+    using TMPro;
+    using UnityEngine;
 
-    private TMP_Text _flyText;
-
-    private void Awake()
+    [RequireComponent(typeof(TMP_Text))]
+    public class FlyCounter : MonoBehaviour
     {
-        _flyText = GetComponent<TMP_Text>();
-    }
+        [SerializeField] private PlatformerBehaviour _frog;
 
-    private void OnEnable()
-    {
-        _frog.FliesEatenHasChanged += OnFliesEatenHasChanged;
-    }
+        private TMP_Text _flyText;
 
-    private void OnDisable()
-    {
-        _frog.FliesEatenHasChanged -= OnFliesEatenHasChanged;
-    }
+        private void Awake()
+        {
+            _flyText = GetComponent<TMP_Text>();
+        }
 
-    private void OnFliesEatenHasChanged(int fliesEaten)
-    {
-        _flyText.text = fliesEaten.ToString();
+        private void OnEnable()
+        {
+            _frog.FliesEatenHasChanged += OnFliesEatenHasChanged;
+            _flyText.text = _frog.FliesEaten.ToString();
+        }
+
+        private void OnDisable()
+        {
+            _frog.FliesEatenHasChanged -= OnFliesEatenHasChanged;
+        }
+
+        private void OnFliesEatenHasChanged(int fliesEaten)
+        {
+            _flyText.text = fliesEaten.ToString();
+        }
     }
 }

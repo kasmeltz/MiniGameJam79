@@ -58,7 +58,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public KeyCode FlyPowerKey;
 
-        public Image GameOverPanel;
+        public GameOverPanelBehaviour GameOverPanel;
 
         public SoundEffects soundEffects;
 
@@ -181,9 +181,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void UpdateUI()
         {
-            //FliesEatenText.text = FliesEaten
-                //.ToString();
-
             FlyPowerProgressBar
                 .gameObject
                 .SetActive(false);
@@ -292,13 +289,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Die()
         {
-            /*
             PauseGame(true);
 
             GameOverPanel
-                .gameObject
-                .SetActive(true);
-            */
+                .Open();
         }
 
         protected void Restart()
