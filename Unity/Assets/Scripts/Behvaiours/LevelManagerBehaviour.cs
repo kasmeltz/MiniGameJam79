@@ -32,6 +32,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected int CurrentLevelIndex { get; set; }
 
+        public MusicLooper music;
+
         #endregion
 
         #region Events
@@ -58,6 +60,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void TransitionTo(int toIndex)
         {
+            music.EnsurePlaying();
+
             if (CurrentLevel == null)
             {
                 var prefab = Resources

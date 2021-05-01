@@ -532,6 +532,7 @@ MonoBehaviour:
   Platformer: {fileID: 805095113}
   TransitionStartTime: 2
   TransitionTotalTime: 4
+  music: {fileID: 790150693}
 --- !u!1 &630060535
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +918,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1226105230749457289, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 310451265}
     - target: {fileID: 1226105230782106961, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_Name
       value: UpgradeOverlay

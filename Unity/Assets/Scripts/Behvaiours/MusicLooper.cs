@@ -24,7 +24,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void EnsurePlaying() {
             if (IsPlaying) return;
 
-            soundEffects.music = this;
+            FindObjectOfType<SoundEffects>().music = this;
 
             startPlaying();
         }
@@ -68,11 +68,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         /////// Unity Hooks /////////
-
-        protected override void Awake() {
-            base.Awake();
-            soundEffects = FindObjectOfType<SoundEffects>();
-        }
 
         public void Update() {
             double now = Now();

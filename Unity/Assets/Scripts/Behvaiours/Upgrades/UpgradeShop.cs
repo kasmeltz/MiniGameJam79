@@ -8,12 +8,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #region Members
         [SerializeField] private TMP_Text _selectedDescription;
         [SerializeField] private TMP_Text _selectedPriceText;
+        public MusicLooper music;
 
         private Upgrade _selectedUpgrade;
 
         #endregion
 
         #region PublicMethods
+        public void Open() {
+            music.EnsurePlaying();
+            music.MoveToLoop(1);
+        }
+
         public void SelectUpgrade(Upgrade upgradeEffect)
         {
             _selectedUpgrade = upgradeEffect;
