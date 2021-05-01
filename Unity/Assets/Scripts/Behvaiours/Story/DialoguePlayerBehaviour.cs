@@ -110,6 +110,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             SpeakerBubble.transform.localScale = scale;
             DialogueText.transform.localScale = scale;
+            AdvanceTextButton.transform.localScale = scale;
         }
 
         protected void CreateDialogues()
