@@ -21,6 +21,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
         }
 
+        public void MenuSelect() { PlayFile("Sounds/menu-select"); }
+
         private void DuckMusic() {
             if (music) music.Duck(0.8f, 0.25f);
         }
