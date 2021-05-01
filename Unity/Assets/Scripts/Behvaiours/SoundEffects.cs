@@ -9,9 +9,34 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public AudioSource source;
         #endregion
 
-        // set by the music when it's playing
+        #region Singletone
+        public static SoundEffects Instance = null;
+        void Start()
+        { 
+            if (Instance == null)
+            { 
+                Instance = this;
+            }
+            else if (Instance == this)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        #endregion
+
+            // set by the music when it's playing
         public MusicLooper music;
 
+        // -------- options --------- //
+        private float distance = 0.0f;
+        private float pitch = 1.0f;
+        private float volume = 1.0f;
+        public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
+        public void SetPitch(float thePitch) { pitch = thePitch; }
+
+
+        // --------- sounds -------- //
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
         public void Land() { PlayFile("Sounds/land"); }
@@ -21,12 +46,27 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
         }
 
+        public void BuyUpgrade() {
+            float pitchRange = 1.5f;
+            pitch = Random.Range(1.0f/pitchRange, pitchRange);
+            volume = 0.3f;
+            PlayFile("Sounds/buy-upgrade");
+        }
+
+        public void MenuSelect() { PlayFile("Sounds/menu-select"); }
+
+
+        // DELETEME
+        public void Update() {
+            if (Input.GetKeyDown(KeyCode.Z)) {
+                BuyUpgrade();
+            }
+        }
+
+        /////// --------- helpers ----------- ///////
         private void DuckMusic() {
             if (music) music.Duck(0.8f, 0.25f);
         }
-
-        private float distance;
-        public void SetDistance(float theDistance) { distance = theDistance / 5.0f; }
 
         private void PlayFile(string fname) {
             DuckMusic();
@@ -34,6 +74,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
             source.PlayOneShot(clip, computeVolume());
+            source.pitch = pitch;
+            source.volume = volume;
+            volume = 1.0f;
+            distance = 0.0f;
+            pitch = 1.0f;
         }
 
         private float computePan() {

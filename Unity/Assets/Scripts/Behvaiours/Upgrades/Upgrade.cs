@@ -8,15 +8,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         [SerializeField] private UpgradeEffect _upgradeEffect;
 
         private UpgradeShop _upgradeShop;
-        private int _currentUpgradeLevel;
 
-        public bool IsUpgradedToMax => _currentUpgradeLevel >= _upgradeEffect.MaxUpgradeLevel;
         public string Description => _upgradeEffect.Description;
         public int Price => _upgradeEffect.Price;
 
         private void Awake()
         {
-            _currentUpgradeLevel = 0;
             _upgradeButton.InitializeButton(_upgradeEffect.Label);
 
             _upgradeShop = GetComponentInParent<UpgradeShop>();
@@ -39,15 +36,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public bool TryBuy()
         {
-            if (_currentUpgradeLevel >= _upgradeEffect.MaxUpgradeLevel)
-                return false;
-
-            _currentUpgradeLevel++;
-            if (_upgradeEffect.TryMakeUpgrade(_currentUpgradeLevel))
+            if (_upgradeEffect.TryMakeUpgrade())
             {
-                if (_currentUpgradeLevel >= _upgradeEffect.MaxUpgradeLevel)
-                    _upgradeButton.DisableButton();
-
+                _upgradeButton.DisableButton();
                 return true;
             }
 
