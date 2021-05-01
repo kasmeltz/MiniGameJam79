@@ -51,7 +51,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 Tiles
                     .Add(tile);
 
-                x += tile.sprite.bounds.size.x;
+                x += tile.sprite.bounds.size.x - 0.04f;
             } while (x <= Bounds.max.x + 5); ;
         }
 
