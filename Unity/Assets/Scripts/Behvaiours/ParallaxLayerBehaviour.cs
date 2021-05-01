@@ -22,15 +22,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
-        #region Public Methods
-
-        public void Scroll(float amount)
-        {
-
-        }
-
-        #endregion
-
+        
         #region Protected Methods
 
         public void GenerateTiles()
@@ -75,6 +67,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Tiles = new List<SpriteRenderer>();
 
             GenerateTiles();
+        }
+
+        protected void Update()
+        {
+            var d = Bounds.center - Camera.main.transform.position;
+            d *= (ScrollSpeed / 512f);
+
+            d.y = -5;
+            d.z = 0;
+
+            transform.position = d;
         }
 
         #endregion
