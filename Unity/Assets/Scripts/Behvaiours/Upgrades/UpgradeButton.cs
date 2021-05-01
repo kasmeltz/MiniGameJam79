@@ -9,7 +9,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     public class UpgradeButton : MonoBehaviour
     {
         [SerializeField] private TMP_Text _labelText;
-        [SerializeField] private TMP_Text _costText;
 
         public event UnityAction WasClicked;
 
@@ -40,10 +39,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             _button.interactable = false;
         }
 
-        public void InitializeButton(string upgradeLabel, int upgradeCost)
+        public void InitializeButton(string upgradeLabel)
         {
             _labelText.text = upgradeLabel;
-            _costText.text = upgradeCost.ToString();
         }
     }
 }
