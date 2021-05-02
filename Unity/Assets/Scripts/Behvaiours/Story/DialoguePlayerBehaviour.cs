@@ -75,18 +75,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 if (DialogueLine != null)
                 {
-                    if (DialogueLine.SpeakerIndex == 0)
-                    {
-                        SoundEffects
-                            .Instance
-                            .DialogueKiki();
-                    } else
-                    {
-                        SoundEffects
-                            .Instance
-                            .DialogueWiz();
-                    }
+                    PlayVoiceSound();
                 }
+            }
+        }
+
+        public void PlayVoiceSound() {
+            if (DialogueLine.SpeakerIndex == 0)
+            {
+                SoundEffects
+                    .Instance
+                    .DialogueKiki();
+            } else
+            {
+                SoundEffects
+                    .Instance
+                    .DialogueWiz();
             }
         }
 
@@ -117,7 +121,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             MenuLooper
-                .EnsurePlaying(1f);
+                .EnsurePlaying(2f);
 
             MenuLooper
                 .MoveToLoop(1);
@@ -135,6 +139,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void AdvanceDialogueText()
         {
+            if (LineTypeIndex < LineToType.Length) {
+                LineTypeIndex = LineToType.Length;
+                TypeText();
+                PlayVoiceSound();
+                return;
+            }
+
+            LineTypeIndex = 0;
+
             if (Dialogue == null)
             {
                 return;
@@ -178,11 +191,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void TypeText()
         {
-            if (LineTypeIndex > LineToType.Length)
-            {
-                return;
-            }
-
             DialogueText.text = LineToType.Substring(0, LineTypeIndex);
         }
 
@@ -501,8 +509,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             PlayLooper = FindObjectOfType<PlayMusicLooper>();
 
-            MenuLooper = FindObjectOfType<MenuMusicLooper>();            
-                        
+            MenuLooper = FindObjectOfType<MenuMusicLooper>();
+
             CreateDialogues();
 
             var fadePanel = FindObjectOfType<FadePanelBehaviour>();
@@ -521,8 +529,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 return;
             }
-                    
-            if (LineTypeIndex <= LineToType.Length)
+
+            if (LineTypeIndex < LineToType.Length)
             {
                 if (LetterCountdown > 0)
                 {
@@ -532,17 +540,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         LetterCountdown = LetterSpeed;
                         LineTypeIndex++;
 
-                        TypeText();                        
+                        TypeText();
                     }
                 }
 
                 PlaySpeakerVoice();
-            }            
+            }
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 AdvanceDialogueText();
-            }            
+            }
         }
 
         #endregion

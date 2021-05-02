@@ -51,14 +51,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/spit" : "Sounds/spit-reverse");
         }
 
-        public void Bomb() { PlayFile("Sounds/bomb"); }
+        public void Bomb() { volume = 0.7f; PlayFile("Sounds/bomb"); }
 
         public void Damage() {
             volume = 0.5f;
             PlayFile("Sounds/damage");
         }
 
-// TODO [jneen] check volume
         public void TongueConnect() { volume = 1.0f; PlayFile("Sounds/tongue-connect"); }
         public void Death() { volume = 0.55f; pitch = 0.9f; PlayFile("Sounds/death"); }
 
@@ -84,7 +83,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             RandomChromatic(-2, 2);
             PlayFile("Sounds/dialogue-wiz");
         }
-// END TODO
 
         // hitting "confirm" in any menu (except upgrade-buy and start-level)
         public void MenuSelect() { PlayFile("Sounds/menu-select"); }
@@ -97,7 +95,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Awake()
         {
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
 
         /////// --------- helpers ----------- ///////
@@ -115,6 +113,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             // DuckMusic();
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
+            DontDestroyOnLoad(clip);
             source.panStereo = computePan();
             source.pitch = pitch;
             source.volume = computeVolume();
