@@ -224,8 +224,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -399,8 +399,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1397,8 +1397,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1531,8 +1531,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1722,8 +1722,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Bullfrog Tonic
-  _price: 30
+  _price: 3
   _description: 'Increases max health 20%
 
 
@@ -2386,8 +2386,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2496,7 +2496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Frog Leather
-  _price: 30
+  _price: 3
   _description: Reduces damage taken by 20%
   _resistPercentage: 20
 --- !u!1 &1968193133043842777
@@ -2573,8 +2573,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3060,8 +3060,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3194,8 +3194,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3684,8 +3684,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3842,6 +3842,18 @@ PrefabInstance:
     - target: {fileID: 1386549813154501475, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278203137
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6850301820488452193, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
@@ -4131,8 +4143,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 45479e64fca53e441b7266801e4cb4e7, type: 2}
     - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_fontSizeBase
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278203137
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6850301820488452193, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
