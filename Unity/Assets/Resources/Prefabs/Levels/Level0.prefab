@@ -3137,6 +3137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: {fileID: 3511399393465413451}
+  Enemies: {fileID: 0}
+  FlySpawners: {fileID: 0}
   MovingPlatforms:
   - {fileID: 3511399392706054027}
   Tilemaps:
@@ -7106,11 +7108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2171949375273189678, guid: 5957f3dc52ca69649b6b9c475be8cdba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.776
       objectReference: {fileID: 0}
     - target: {fileID: 2171949375273189678, guid: 5957f3dc52ca69649b6b9c475be8cdba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2171949375273189678, guid: 5957f3dc52ca69649b6b9c475be8cdba, type: 3}
       propertyPath: m_LocalPosition.z

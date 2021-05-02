@@ -24,9 +24,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected bool IsHopping { get; set; }
 
+        protected bool IsJumping { get; set; }
+
         protected float DamageCounter { get; set; }
 
-        #endregion
+        #endregion       
 
         #region Public Methods
 

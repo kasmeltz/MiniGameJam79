@@ -66,8 +66,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public int FliesEaten { get; set; }
 
-        protected bool IsJumping { get; set; }
-
         protected float JumpMoveTimer { get; set; }
 
         protected bool IsOnGround { get; set; }
