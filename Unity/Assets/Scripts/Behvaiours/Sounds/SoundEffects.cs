@@ -60,7 +60,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
 // TODO [jneen] check volume
         public void TongueConnect() { volume = 1.0f; PlayFile("Sounds/tongue-connect"); }
-        public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
+        public void Death() { volume = 0.65f; PlayFile("Sounds/death"); }
 
         // bouncing on bouncy things
         public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
@@ -71,8 +71,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         // acid hits the ground
         public void AcidSplash() { volume = 1.0f; PlayFile("Sounds/acid-splash"); }
 
-        public void DialogueKiki() { distance = -0.7f; volume = 1.0f; PlayFile("Sounds/dialogue-kiki"); }
-        public void DialogueWiz() { distance = 0.7f; volume = 1.0f; PlayFile("Sounds/dialogue-wiz"); }
+        public void DialogueKiki() {
+            distance = -0.4f;
+            volume = 0.2f;
+            RandomChromatic(-4, 4);
+            PlayFile("Sounds/dialogue-kiki");
+        }
+
+        public void DialogueWiz() {
+            distance = 0.4f;
+            volume = 0.3f;
+            RandomChromatic(-2, 2);
+            PlayFile("Sounds/dialogue-wiz");
+        }
 // END TODO
 
         // hitting "confirm" in any menu (except upgrade-buy and start-level)
@@ -84,15 +95,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile("Sounds/buy-upgrade");
         }
 
-
-
-        // DELETEME
-        public void Update() {
-            if (Input.GetKeyDown(KeyCode.Z)) {
-                BuyUpgrade();
-            }
-        }
-
         protected override void Awake()
         {
             DontDestroyOnLoad(this);
@@ -101,6 +103,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         /////// --------- helpers ----------- ///////
         private void DuckMusic() {
             if (MusicLooper.Current) MusicLooper.Current.Duck(0.8f, 0.25f);
+        }
+
+        private void RandomChromatic(int down, int up) {
+            int steps = Random.Range(down, up+1);
+            pitch *= Mathf.Pow(2.0f, ((float) steps)/12.0f);
         }
 
         private void PlayFile(string fname) {

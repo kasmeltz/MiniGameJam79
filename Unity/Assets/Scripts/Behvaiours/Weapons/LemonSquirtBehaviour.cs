@@ -27,7 +27,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Squirt(int Direction)
         {
-            SoundEffects.Instance.AcidSplash();
+            SoundEffects.Instance.SetDistance(0.5f * Direction);
+            SoundEffects.Instance.Throw();
+
+            // [jneen] play this when it lands
+            // SoundEffects.Instance.AcidSplash();
+
             AliveCounter = TimeToLive;
 
             DamageTimer = 0.25f;
