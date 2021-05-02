@@ -31,6 +31,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Die()
         {
+            Animator
+                .SetTrigger("Dying");
+        }
+
+        #endregion
+
+        #region Animation Callbacks
+
+        public void DyingAnimationFinished()
+        {
+            gameObject
+                .SetActive(false);
         }
 
         #endregion

@@ -3959,6 +3959,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807512, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: m_Size.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807512, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: m_Size.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807512, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3519463419296807513, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
       propertyPath: m_Name
       value: Frog

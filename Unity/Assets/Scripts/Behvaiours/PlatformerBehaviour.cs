@@ -284,19 +284,26 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetTrigger("Jumping");
         }
 
-        protected override void Die()
+        public void DyingAnimationFinished()
         {
-            UpdateUI();
-
             PauseGame(true);
 
             GameOverPanel
                 .Open();
         }
 
+        protected override void Die()
+        {
+            Animator
+                .SetTrigger("Dying");
+
+            UpdateUI();            
+        }
+
         protected void Restart()
         {
             RigidBody.velocity = new Vector2(0, 0);
+
             FliesEaten = 0;
             FliesEatenHasChanged?.Invoke(FliesEaten);
             ImpactVelocity = 0;
@@ -314,6 +321,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             IsOnGround = false;
             Health = MaxHealth;
             transform.position = RespawnPosition;
+
             SetDirection(1);
 
             UpdateUI();

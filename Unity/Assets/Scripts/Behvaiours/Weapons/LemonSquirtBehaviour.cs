@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/LemonSquirt")]
@@ -7,11 +8,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
+        public float TimeToLive;
+
         public Vector2 FireForce;
 
         public float DamagePerSecond;
 
         protected float AliveCounter { get; set; }
+
+        protected float DamageTimer { get; set; }
+
+        protected List<EnemyBehaviour> Enemies { get; set; }
 
         #endregion
 
@@ -19,6 +26,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Squirt(int Direction)
         {
+            AliveCounter = TimeToLive;
+
+            DamageTimer = 0.25f;
+
             var force = FireForce;
 
             force.x *= Direction;
@@ -29,7 +40,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var rigidBody = GetComponent<Rigidbody2D>();
 
             rigidBody
-                .AddForce(force, ForceMode2D.Impulse);
+                .AddForce(force, ForceMode2D.Impulse);            
         }
 
         public void FadeAway()
@@ -42,10 +53,83 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected void OnCollisionEnter2D(Collision2D collision)
+        protected void OnTriggerEnter2D(Collider2D collision)
         {
-            // TODO - damage
-            
+            var enemy = collision
+                .GetComponent<EnemyBehaviour>();
+
+            if (enemy != null)
+            {
+                Enemies
+                    .Add(enemy);
+            }
+        }
+
+        protected void OnTriggerExit2D(Collider2D collision)
+        {
+            var enemy = collision
+                .GetComponent<EnemyBehaviour>();
+
+            if (enemy != null)
+            {
+                Enemies
+                    .Remove(enemy);
+            }
+        }
+
+        protected void Die()
+        {
+            gameObject
+                .SetActive(false);
+
+            AliveCounter = 0;
+        }
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            Enemies = new List<EnemyBehaviour>();
+        }
+
+        protected void Update()
+        {
+            if (AliveCounter > 0)
+            {
+                AliveCounter -= Time.deltaTime;
+                if (AliveCounter <= 0)
+                {
+                    Die();
+                }
+            }
+
+            if (AliveCounter >= TimeToLive - 1)
+            {
+                return;
+            }
+
+            DamageTimer -= Time.deltaTime;
+            if (DamageTimer <= 0)
+            {
+                DamageTimer = 0.25f;
+
+                foreach (var enemy in Enemies)
+                {
+                    if (enemy == null)
+                    {
+                        continue;
+                    }
+
+                    if (enemy.Health <= 0)
+                    {
+                        continue;
+                    }
+
+                    enemy
+                        .TakeDamage(DamagePerSecond * 0.25f);
+                }
+            }
         }
 
         #endregion

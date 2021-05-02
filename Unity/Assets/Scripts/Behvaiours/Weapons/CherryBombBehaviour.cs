@@ -40,7 +40,28 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Exploded()
         {
-            // TODO - DAMAGE TO ENEMIES
+            var enemies = FindObjectsOfType<EnemyBehaviour>();
+
+            foreach(var enemy in enemies)
+            {
+                if(enemy == null)
+                {
+                    continue;
+                }
+
+                if (enemy.Health <= 0)
+                {
+                    continue;
+                }
+
+                float d = (transform.position - enemy.transform.position).magnitude;
+
+                if (d <= ExplosionRange)
+                {
+                    enemy
+                        .TakeDamage(ExplosionDamage);
+                }
+            }
 
             gameObject
                 .SetActive(false);
