@@ -483,13 +483,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .MoveToLoop(1);
 
             PauseGame(true);
-
-            var fadePanel = FindObjectOfType<FadePanelBehaviour>();
-
-            fadePanel.FadeInComplete += FadePanel_FadeInComplete;
-
-            fadePanel
-                .FadeIn();            
         }
 
         private void FadePanel_FadeInComplete(object sender, EventArgs e)
@@ -512,6 +505,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         
             CreateDialogues();
 
+            var fadePanel = FindObjectOfType<FadePanelBehaviour>();
+
+            fadePanel.FadeInComplete += FadePanel_FadeInComplete;
+
+            fadePanel
+                .FadeIn();
         }
 
         protected void Update()
