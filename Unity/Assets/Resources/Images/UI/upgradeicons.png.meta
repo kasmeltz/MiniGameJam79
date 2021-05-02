@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 6616201636383791608
     second: upgradeicons_4
+  - first:
+      213: -5922111047492212215
+    second: upgradeicons_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -218,6 +221,27 @@ TextureImporter:
       bones: []
       spriteID: 8f9930b855871db50800000000000000
       internalID: 6616201636383791608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgradeicons_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90a6fc5016f60dda0800000000000000
+      internalID: -5922111047492212215
       vertices: []
       indices: 
       edges: []

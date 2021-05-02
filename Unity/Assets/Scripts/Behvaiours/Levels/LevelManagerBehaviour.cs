@@ -81,6 +81,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             int transitionCount = Mathf
                 .Max(CurrentLevel.MovingPlatforms.Length, ToLevel.MovingPlatforms.Length);
 
+            Debug
+                .Log($"{transitionCount} platform changes");
+
             CurrentTransitionIndex
                 .Add(0);
 
@@ -99,6 +102,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             transitionCount = Mathf
                .Max(CurrentLevel.FlySpawners.Length, ToLevel.FlySpawners.Length);
 
+            Debug
+                .Log($"{transitionCount} fly spawner changes");
+
             CurrentTransitionIndex
                 .Add(0);
 
@@ -107,6 +113,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             // PREPARE ENEMY TRANSITION TIMES
             transitionCount = Mathf
                .Max(CurrentLevel.FlySpawners.Length, ToLevel.FlySpawners.Length);
+
+            Debug
+                .Log($"{transitionCount} enemy changes");
 
             CurrentTransitionIndex
                 .Add(0);
@@ -130,7 +139,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 Platformer.OneWayCollider = collider;
             }
 
-            //LoadNextLevel(toIndex);
+            LoadNextLevel(toIndex);
 
             CurrentLevelIndex = toIndex;
 
@@ -181,6 +190,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
             }
 
+            Debug
+                .Log($"{transitionCount} tile changes for layer {index}");
+                
             CreateTransitionTimes(index, transitionCount);
         }
 

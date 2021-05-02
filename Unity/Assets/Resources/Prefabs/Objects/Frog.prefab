@@ -245,7 +245,7 @@ MonoBehaviour:
   OneWayCollider: {fileID: 0}
   FlyPowerProgressBar: {fileID: 0}
   HealthProgressBar: {fileID: 0}
-  JumpVelocity: {x: 2.5, y: 7.5}
+  JumpVelocity: {x: 2.75, y: 8}
   MoveVelocity: 2
   RespawnPosition: {x: 2.84, y: 0.25, z: 0}
   GroundLayer:
