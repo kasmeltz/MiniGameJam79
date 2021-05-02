@@ -60,7 +60,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
 // TODO [jneen] check volume
         public void TongueConnect() { volume = 1.0f; PlayFile("Sounds/tongue-connect"); }
-        public void Death() { volume = 0.65f; PlayFile("Sounds/death"); }
+        public void Death() { volume = 0.55f; pitch = 0.9f; PlayFile("Sounds/death"); }
 
         // bouncing on bouncy things
         public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
@@ -134,7 +134,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (distance > 1.0f) return 0.0f;
             float dist = Mathf.Abs(distance) / 5.0f;
             if (dist < 0.1f) return 1.0f;
-            return 1.0f - dist * dist * dist * dist;
+            return Mathf.Lerp(0.5f, 1.0f, 1.0f - dist * dist * dist * dist);
         }
     }
 }
