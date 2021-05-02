@@ -73,14 +73,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void DialogueKiki() {
             distance = -0.4f;
             volume = 0.2f;
-            RandomChromatic(-4, 4);
+            RandomDiatonic(new int[] { -3, -2, 0, 2, 4, 6, 7 });
             PlayFile("Sounds/dialogue-kiki");
         }
 
         public void DialogueWiz() {
             distance = 0.4f;
             volume = 0.3f;
-            RandomChromatic(-2, 2);
+            RandomDiatonic(new int[] { -4, -2, 0, 1, 3, 5, 7 });
             PlayFile("Sounds/dialogue-wiz");
         }
 
@@ -103,9 +103,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (MusicLooper.Current) MusicLooper.Current.Duck(0.8f, 0.25f);
         }
 
-        private void RandomChromatic(int down, int up) {
-            int steps = Random.Range(down, up+1);
-            pitch *= Mathf.Pow(2.0f, ((float) steps)/12.0f);
+        private void RandomDiatonic(int[] notes) {
+            int note = notes[Random.Range(0, notes.Length)];
+            pitch *= Mathf.Pow(2.0f, ((float) note)/12.0f);
         }
 
         private void PlayFile(string fname) {
