@@ -60,7 +60,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             int index = 0;
 
-            for (int fy = 0; fy < LevelsTexture.height; fy += LevelHeight)
+            for (int fy = LevelsTexture.height - LevelHeight; fy >= 0; fy -= LevelHeight)
             {
                 for (int fx = 0; fx < LevelsTexture.width; fx += LevelWidth)
                 {

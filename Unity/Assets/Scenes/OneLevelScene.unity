@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Platformer: {fileID: 805095113}
-  TransitionStartTime: 30
+  TransitionStartTime: 60
   TransitionTotalTime: 300
 --- !u!1 &630060535
 GameObject:

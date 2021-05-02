@@ -829,10 +829,29 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
         }
 
+        protected void CameraFollow(bool absolute)
+        {
+            var pos = transform.position;
+
+            pos.z = -10;
+
+            pos.x = Mathf.Min(Mathf.Max(pos.x, LevelBounds.min.x + 6), LevelBounds.max.x - 6);
+            pos.y = Mathf.Min(Mathf.Max(pos.y, LevelBounds.min.y + 6), LevelBounds.max.y - 6);
+
+            var newPos = pos;
+            if (absolute)
+            {
+                newPos = Vector3
+                    .Lerp(Camera.main.transform.position, pos, 0.5f);
+            }
+
+            Camera.main.transform.position = newPos;
+        }
+
         #endregion
 
         #region Unity
-        
+
         /*
         protected void OnCollisionEnter2D(Collision2D collision)
         {
@@ -859,6 +878,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             //DoGroundTest();
+        }
+
+        protected void OnEnable()
+        {
+            CameraFollow(true);
         }
 
         protected override void Awake()
@@ -891,7 +915,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             UpdateUI();
-        }
+        }      
 
         protected override void Update()
         {
@@ -1004,15 +1028,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             transform.position = pos;
 
-            pos.z = -10;
-
-            pos.x = Mathf.Min(Mathf.Max(pos.x, LevelBounds.min.x + 6), LevelBounds.max.x - 6);
-            pos.y = Mathf.Min(Mathf.Max(pos.y, LevelBounds.min.y + 6), LevelBounds.max.y - 6);
-
-            var newPos = Vector3
-                .Lerp(Camera.main.transform.position, pos, 0.5f);
-
-            Camera.main.transform.position = newPos;
+            CameraFollow(false);
 
             DoGroundTest();
 
