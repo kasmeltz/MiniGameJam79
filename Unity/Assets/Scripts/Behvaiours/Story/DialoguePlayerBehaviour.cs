@@ -75,18 +75,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 if (DialogueLine != null)
                 {
-                    if (DialogueLine.SpeakerIndex == 0)
-                    {
-                        SoundEffects
-                            .Instance
-                            .DialogueKiki();
-                    } else
-                    {
-                        SoundEffects
-                            .Instance
-                            .DialogueWiz();
-                    }
+                    PlayVoice();
                 }
+            }
+        }
+
+        public void PlayVoice() {
+            if (DialogueLine.SpeakerIndex == 0)
+            {
+                SoundEffects
+                    .Instance
+                    .DialogueKiki();
+            } else
+            {
+                SoundEffects
+                    .Instance
+                    .DialogueWiz();
             }
         }
 
@@ -133,6 +137,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void AdvanceDialogueText()
         {
+            if (LineTypeIndex < LineToType.Length) {
+                LineTypeIndex = LineToType.Length - 1;
+                PlayVoice();
+                TypeText();
+                return;
+            }
+
+            LineTypeIndex = 0;
+
             if (Dialogue == null)
             {
                 return;
@@ -493,17 +506,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void TypeText()
         {
-            if (LineTypeIndex > LineToType.Length)
-            {
-                return;
-            }
-
             DialogueText.text = LineToType.Substring(0, LineTypeIndex);
         }
 
         protected void Update()
         {
-            if (LineTypeIndex <= LineToType.Length)
+            if (LineTypeIndex < LineToType.Length)
             {
                 if (LetterCountdown > 0)
                 {
@@ -513,17 +521,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         LetterCountdown = LetterSpeed;
                         LineTypeIndex++;
 
-                        TypeText();                        
+                        TypeText();
                     }
                 }
 
                 PlaySpeakerVoice();
-            }            
+            }
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 AdvanceDialogueText();
-            }            
+            }
         }
 
         #endregion
