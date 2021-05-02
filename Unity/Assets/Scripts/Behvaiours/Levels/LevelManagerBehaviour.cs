@@ -141,7 +141,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             Destroy(ToLevel.gameObject);
             CurrentLevelIndex++;
-            TransitionTo(CurrentLevelIndex);            
+            TransitionTo(CurrentLevelIndex);
         }
 
         protected void CreateTransitionTimes(int index, Tilemap from, Tilemap to)

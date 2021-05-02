@@ -65,6 +65,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile("Sounds/buy-upgrade");
         }
 
+        // TODO [jneen] check volume
+        public void Death() { volume = 1.0; PlayFile("Sounds/death"); }
+
         public void MenuSelect() { PlayFile("Sounds/menu-select"); }
 
 
