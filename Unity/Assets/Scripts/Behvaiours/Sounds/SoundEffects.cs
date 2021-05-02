@@ -58,7 +58,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile("Sounds/damage");
         }
 
-// TODO [jneen] check volume
         public void TongueConnect() { volume = 1.0f; PlayFile("Sounds/tongue-connect"); }
         public void Death() { volume = 0.55f; pitch = 0.9f; PlayFile("Sounds/death"); }
 
@@ -84,7 +83,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             RandomChromatic(-2, 2);
             PlayFile("Sounds/dialogue-wiz");
         }
-// END TODO
 
         // hitting "confirm" in any menu (except upgrade-buy and start-level)
         public void MenuSelect() { PlayFile("Sounds/menu-select"); }

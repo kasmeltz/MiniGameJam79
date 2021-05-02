@@ -141,6 +141,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            SoundEffects.Instance.TongueConnect();
             CapturedAt = fly.transform.position.x;
             CapturedFly = fly;
             CapturedFly.IsCaptured = true;
