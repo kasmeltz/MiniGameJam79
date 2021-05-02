@@ -8,8 +8,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     [RequireComponent(typeof(Button))]
     public class ButtonSoundEffect : MonoBehaviour
     {
-        [SerializeField] private UpgradeShop _upgradeShop;
-
         private Button _button;
 
         private void Awake()
@@ -17,17 +15,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             _button = GetComponent<Button>();
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
-            _button.onClick.AddListener(OnButtonClick);
+            _button.onClick.AddListener(PlayMenuSelectSFX);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
-            _button.onClick.RemoveListener(OnButtonClick);
+            _button.onClick.RemoveListener(PlayMenuSelectSFX);
         }
 
-        private void OnButtonClick()
+        protected void PlayMenuSelectSFX()
         {
             SoundEffects.Instance.MenuSelect();
         }

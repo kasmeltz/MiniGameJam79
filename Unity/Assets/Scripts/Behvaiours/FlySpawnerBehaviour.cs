@@ -28,6 +28,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private void LevelManager_LevelStarted(object sender, System.EventArgs e)
         {
+            if (this == null)
+                return;
+
             SpawnFlies();
         }
 

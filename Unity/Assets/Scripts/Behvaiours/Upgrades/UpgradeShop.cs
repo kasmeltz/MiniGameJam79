@@ -36,8 +36,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (_selectedUpgrade.TryBuy())
             {
                 _selectedUpgrade = null;
+                SuccessfullyPurchased?.Invoke();
             }
         }
+        #endregion
+
+
+        #region PublicEvents
+
+        public event UnityAction SuccessfullyPurchased;
+
         #endregion
     }
 }

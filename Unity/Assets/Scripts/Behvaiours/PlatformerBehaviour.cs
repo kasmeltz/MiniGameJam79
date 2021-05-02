@@ -826,7 +826,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Update()
         {
-            Debug.Log(FliesEaten);
             if (GameManager
                 .Instance
                 .IsPaused)

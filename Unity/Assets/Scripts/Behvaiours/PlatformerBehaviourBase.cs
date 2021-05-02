@@ -59,7 +59,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void ReduceDamageTaken(int resistPercent)
         {
-            DamageToTakeMultiplier *= (100 - resistPercent) / 100;
+            DamageToTakeMultiplier *= (float)(100 - resistPercent) / 100;
         }
 
         #endregion
