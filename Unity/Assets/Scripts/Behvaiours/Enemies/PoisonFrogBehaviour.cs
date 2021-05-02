@@ -13,8 +13,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float SeedCooldown;
 
-        public float AttackDamage;
-
         public float SpawnCooldown;
 
         public EnemyPatrolAreaBehaviour EnemyPatrolArea;

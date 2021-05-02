@@ -22,6 +22,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float DamageToTakeMultiplier = 1; //1 - takes full damage, 0.5f - takes half of the damage...
 
+        public float AttackDamage;
+
         protected Animator Animator { get; set; }
 
         protected bool IsHopping { get; set; }

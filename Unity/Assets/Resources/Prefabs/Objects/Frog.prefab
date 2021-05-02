@@ -234,6 +234,8 @@ MonoBehaviour:
   HopVelocity: {x: 2, y: 3.5}
   RigidBody: {fileID: 3519463419296807509}
   DamageDelay: 2
+  DamageToTakeMultiplier: 1
+  AttackDamage: 25
   LevelBounds:
     m_Center: {x: 16, y: 0, z: 0}
     m_Extent: {x: 32, y: 24, z: 0}
@@ -258,13 +260,15 @@ MonoBehaviour:
   TongueKey: 0
   FlyPowerKey: 0
   GameOverPanel: {fileID: 0}
-  soundEffects: {fileID: 0}
   CherryBombPool: {fileID: 0}
   StrawberrySeedPool: {fileID: 0}
   LemonSquirtPool: {fileID: 0}
   FlyPowerCooldownsAmount: []
   FlyPowerTimer: 0
   FlyPower: 0
+  StrawberryDamageMultiplier: 1
+  CherryDamageMultiplier: 2
+  LemonDamageMultiplier: 2
 --- !u!68 &3519463419296807508
 EdgeCollider2D:
   m_ObjectHideFlags: 0

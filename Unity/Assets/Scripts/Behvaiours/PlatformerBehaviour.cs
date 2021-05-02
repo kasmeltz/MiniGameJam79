@@ -62,6 +62,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public FlyType FlyPower;
 
+        public float StrawberryDamageMultiplier;
+
+        public float CherryDamageMultiplier;
+
+        public float LemonDamageMultiplier;
+
         public int FliesEaten { get; set; }
 
         protected float JumpMoveTimer { get; set; }
@@ -510,6 +516,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+
+            seed.AttackDamage = AttackDamage * StrawberryDamageMultiplier;
+
             seed.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
 
             seed
@@ -526,6 +535,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            bomb.ExplosionDamage = AttackDamage * CherryDamageMultiplier;
+
             bomb.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
 
             bomb
@@ -541,6 +552,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 return;
             }
+
+            squirt.DamagePerSecond = AttackDamage * LemonDamageMultiplier;
 
             squirt.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
 
