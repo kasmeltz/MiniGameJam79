@@ -7,9 +7,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
-        public MusicLooper MenuLooper;
+        protected MenuMusicLooper MenuLooper;
 
-        public MusicLooper LevelLoper;
+        protected PlayMusicLooper PlayLooper;
 
         #endregion
 
@@ -20,9 +20,21 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             gameObject
                 .SetActive(true);
 
-            MenuLooper.gameObject.SetActive(true);
-            LevelLoper.EnsureNotPlaying();
-            MenuLooper.EnsurePlaying(1.0f);
+            PlayLooper
+                .EnsureNotPlaying();
+
+            MenuLooper
+                .EnsurePlaying(1.0f);
+        }
+
+        #endregion
+
+        #region Unity
+
+        protected override void Awake()
+        {
+            MenuLooper = FindObjectOfType<MenuMusicLooper>();
+            PlayLooper = FindObjectOfType<PlayMusicLooper>();
         }
 
         #endregion

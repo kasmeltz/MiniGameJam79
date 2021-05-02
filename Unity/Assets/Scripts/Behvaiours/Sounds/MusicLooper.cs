@@ -72,6 +72,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         /////// Unity Hooks /////////
 
+        protected override void Awake()
+        {
+            DontDestroyOnLoad(this);    
+        }
+
         public void Update() {
             double now = Now();
 

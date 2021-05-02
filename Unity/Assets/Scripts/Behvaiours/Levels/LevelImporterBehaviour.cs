@@ -310,6 +310,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             PauseGame(true);
 
+#if UNITY_EDITOR
+            AssetDatabase
+                .Refresh();
+#endif
+
             LoadTiles();
 
             ImportLevels();    

@@ -89,6 +89,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
         }
 
+        protected override void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         /////// --------- helpers ----------- ///////
         private void DuckMusic() {
             if (MusicLooper.Current) MusicLooper.Current.Duck(0.8f, 0.25f);

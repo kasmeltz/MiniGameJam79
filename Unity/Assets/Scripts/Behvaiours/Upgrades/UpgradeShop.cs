@@ -9,7 +9,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #region Members
         [SerializeField] private TMP_Text _selectedDescription;
         [SerializeField] private TMP_Text _selectedPriceText;
-        public MusicLooper music;
+        
+        protected MenuMusicLooper music { get; set; }
 
         private Upgrade _selectedUpgrade;
 
@@ -45,6 +46,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #region PublicEvents
 
         public event UnityAction SuccessfullyPurchased;
+
+        #endregion
+
+        #region Unity
+
+        protected void Awake()
+        {
+            music = FindObjectOfType<MenuMusicLooper>();
+        }
 
         #endregion
     }

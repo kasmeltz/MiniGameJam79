@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4657605311268576322, guid: 47327ef62b73a4f959190e36fe535d68, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47327ef62b73a4f959190e36fe535d68, type: 3}
@@ -1568,6 +1568,10 @@ PrefabInstance:
     - target: {fileID: 1061511658490165820, guid: f89a0e9b987f74ea79c359fe826b9048, type: 3}
       propertyPath: m_Name
       value: SoundEffects
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061511658490165820, guid: f89a0e9b987f74ea79c359fe826b9048, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f89a0e9b987f74ea79c359fe826b9048, type: 3}
