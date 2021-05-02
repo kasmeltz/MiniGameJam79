@@ -27,6 +27,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Squirt(int Direction)
         {
+            SoundEffects.Instance.AcidSplash();
             AliveCounter = TimeToLive;
 
             DamageTimer = 0.25f;
