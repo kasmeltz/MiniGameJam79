@@ -797,6 +797,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1247921198}
     m_Modifications:
+    - target: {fileID: 88605424016581207, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: Frog
+      value: 
+      objectReference: {fileID: 805095113}
     - target: {fileID: 160444599720496178, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -1017,6 +1021,10 @@ PrefabInstance:
       propertyPath: Frog
       value: 
       objectReference: {fileID: 805095113}
+    - target: {fileID: 4685440366494513565, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: Frog
+      value: 
+      objectReference: {fileID: 805095113}
     - target: {fileID: 7371780778491958656, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1041,10 +1049,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7831751155993214044, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: Frog
+      value: 
+      objectReference: {fileID: 805095113}
     - target: {fileID: 8137284610203428308, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_text
       value: Finished
       objectReference: {fileID: 0}
+    - target: {fileID: 8493314209256457985, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
+      propertyPath: Frog
+      value: 
+      objectReference: {fileID: 805095113}
     - target: {fileID: 8774110418883950045, guid: 69e8dc3c116ec154384a4085b726c6c8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

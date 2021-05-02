@@ -2795,7 +2795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 8935893155640733896}
-  _upgradeEffect: {fileID: 6831506944136267472}
+  _upgradeEffect: {fileID: 88605424016581207}
 --- !u!1 &4713864037892897467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2805,7 +2805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7189774713059171032}
-  - component: {fileID: 3718517727667485953}
+  - component: {fileID: 4685440366494513565}
   m_Layer: 5
   m_Name: Cherry Rush UpgradeEffect
   m_TagString: Untagged
@@ -2832,7 +2832,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3718517727667485953
+--- !u!114 &4685440366494513565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2841,15 +2841,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4713864037892897467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec649b206e71a7a43a581e2bc7107f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Cherry Rush
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 2
+  _description: Permanently reduces cooldown on Cherry Bomb weapon 25%
+  _reducePercentage: 25
+  _flyPowerType: 3
 --- !u!1 &4776438146674221135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,7 +2859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8185458979657640063}
-  - component: {fileID: 6831506944136267472}
+  - component: {fileID: 88605424016581207}
   m_Layer: 5
   m_Name: Lemon Rush UpgradeEffect
   m_TagString: Untagged
@@ -2886,7 +2886,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6831506944136267472
+--- !u!114 &88605424016581207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2895,15 +2895,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4776438146674221135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec649b206e71a7a43a581e2bc7107f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Lemon Rush
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 2
+  _description: Permanently reduces cooldown on zest attack weapon 25%
+  _reducePercentage: 25
+  _flyPowerType: 1
 --- !u!1 &5251940120691903385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3276,7 +3276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 232780365246698528}
-  - component: {fileID: 6417075683552156801}
+  - component: {fileID: 7831751155993214044}
   m_Layer: 5
   m_Name: Strawberry Rush UpgradeEffect
   m_TagString: Untagged
@@ -3303,7 +3303,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6417075683552156801
+--- !u!114 &7831751155993214044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3312,15 +3312,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7615201463881402951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec649b206e71a7a43a581e2bc7107f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Strawberry Rush
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 2
+  _description: Reduce cooldown by 20% of bullet seed attack
+  _reducePercentage: 20
+  _flyPowerType: 2
 --- !u!1 &8036372581460872999
 GameObject:
   m_ObjectHideFlags: 0
@@ -3336,7 +3336,7 @@ GameObject:
   - component: {fileID: 4009740092613819853}
   - component: {fileID: 1801510213431233970}
   m_Layer: 5
-  m_Name: Cherry Rush Upgrade
+  m_Name: Strawberry Rush Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3470,7 +3470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 4009740092613819853}
-  _upgradeEffect: {fileID: 6417075683552156801}
+  _upgradeEffect: {fileID: 7831751155993214044}
 --- !u!1 &8093651931805665105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3620,7 +3620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 1469922143031962546}
-  _upgradeEffect: {fileID: 3718517727667485953}
+  _upgradeEffect: {fileID: 4685440366494513565}
 --- !u!1 &8116897601681698204
 GameObject:
   m_ObjectHideFlags: 0

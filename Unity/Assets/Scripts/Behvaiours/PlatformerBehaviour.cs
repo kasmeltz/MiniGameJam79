@@ -160,6 +160,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             return false;
         }
+
+        public void ReduceFlyPowerCooldown(int reducedPercentage, FlyType flyType)
+        {
+            FlyPowerCooldownsAmount[(int)flyType] *= (float)(100 - reducedPercentage) / 100;
+        }
        
         #endregion
 
