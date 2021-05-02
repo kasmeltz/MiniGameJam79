@@ -577,6 +577,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void DoGroundTest()
         {
+            if (Health <= 0)
+            {
+                return;
+            }
+
             Collider2D collider;
             var o = new Vector2(transform.position.x, transform.position.y + 0.16f);
             var s = new Vector2(0.4f, 0.32f);

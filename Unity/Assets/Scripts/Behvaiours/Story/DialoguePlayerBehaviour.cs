@@ -29,6 +29,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected Dialogue Dialogue { get; set; }
 
+        protected DialogueLine DialogueLine { get; set; }
+
         protected int DialogueLineIndex { get; set; }
 
         protected string LineToType { get; set; }
@@ -60,14 +62,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void ShowDialogue()
         {
-            var line = Dialogue.Lines[DialogueLineIndex];
+            DialogueLine = Dialogue.Lines[DialogueLineIndex];
 
-            LineToType = line.Text;
+            LineToType = DialogueLine.Text;
             LineTypeIndex = 0;
             LetterCountdown = LetterSpeed;
 
             var scale = new Vector3(1, 1, 1);
-            if (line.SpeakerIndex == 0)
+            if (DialogueLine.SpeakerIndex == 0)
             {
                 scale.x = -1;
             }
@@ -478,8 +480,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         TypeText();                            
                     }
                 }
-            }
-            
+            }            
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
