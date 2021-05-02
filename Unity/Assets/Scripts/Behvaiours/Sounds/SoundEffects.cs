@@ -115,9 +115,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
-            source.PlayOneShot(clip, computeVolume());
             source.pitch = pitch;
             source.volume = volume;
+            source.PlayOneShot(clip, computeVolume());
             volume = 1.0f;
             distance = 0.0f;
             pitch = 1.0f;
