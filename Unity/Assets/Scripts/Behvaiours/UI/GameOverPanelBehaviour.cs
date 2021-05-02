@@ -25,6 +25,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             MenuLooper
                 .EnsurePlaying(1.0f);
+
+            MenuLooper
+                .MoveToLoop(0);
         }
 
         #endregion

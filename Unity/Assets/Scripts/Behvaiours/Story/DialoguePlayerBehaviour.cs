@@ -43,6 +43,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected MenuMusicLooper MenuLooper { get; set; }
 
+        protected float VoiceTimer { get; set; }
+
 
         #endregion
 
@@ -59,6 +61,34 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #endregion
 
         #region Public Methods
+
+        public void PlaySpeakerVoice()
+        {
+            VoiceTimer -= Time.deltaTime;
+            if (VoiceTimer <= 0)
+            {
+                VoiceTimer = 0;
+
+                VoiceTimer = UnityEngine
+                    .Random
+                    .Range(0.2f, 0.75f);
+
+                if (DialogueLine != null)
+                {
+                    if (DialogueLine.SpeakerIndex == 0)
+                    {
+                        SoundEffects
+                            .Instance
+                            .DialogueKiki();
+                    } else
+                    {
+                        SoundEffects
+                            .Instance
+                            .DialogueWiz();
+                    }
+                }
+            }
+        }
 
         public void ShowDialogue()
         {
@@ -477,9 +507,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         LetterCountdown = LetterSpeed;
                         LineTypeIndex++;
 
-                        TypeText();                            
+                        TypeText();                        
                     }
                 }
+
+                PlaySpeakerVoice();
             }            
 
             if (Input.GetKeyDown(KeyCode.Return))
