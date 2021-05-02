@@ -123,7 +123,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             SoundEffects.Instance.SetDistance(Tongue.CapturedAt - transform.position.x);
 
             //ActualJumpVelocity = JumpVelocity * 1.25f;
-            FliesEatenHasChanged?.Invoke(FliesEaten);
 
             if (e.Fly.FlyType == FlyType.Poison)
             {
@@ -135,6 +134,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 FlyPowerTimer = FlyPowerDuration;
                 FlyPower = e.Fly.FlyType;
                 FliesEaten++;
+                FliesEatenHasChanged?.Invoke(FliesEaten);
             }
 
             UpdateUI();
@@ -159,6 +159,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             return false;
+        }
+
+        public void ReduceFlyPowerCooldown(int reducedPercentage, FlyType flyType)
+        {
+            FlyPowerCooldownsAmount[(int)flyType] *= (float)(100 - reducedPercentage) / 100;
         }
        
         #endregion
@@ -287,6 +292,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             RigidBody.velocity = new Vector2(0, 0);
             FliesEaten = 0;
+            FliesEatenHasChanged?.Invoke(FliesEaten);
             ImpactVelocity = 0;
             ActualJumpVelocity = JumpVelocity;
             FlyPower = FlyType.None;

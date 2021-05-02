@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &836344241759017376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160444599937300174}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e956d3ecf38f8ea48b81a1dc6811b706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upgradeShop: {fileID: 1226105230749457289}
 --- !u!1 &812235706044817693
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,10 +49,10 @@ RectTransform:
   m_Father: {fileID: 1226105231309973148}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 207.5, y: -67.5}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3374205079984955690
 CanvasRenderer:
@@ -149,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 6965148580865700125}
-  _upgradeEffect: {fileID: 6183738820461323381}
+  _upgradeEffect: {fileID: 8493314209256457985}
 --- !u!1 &1093944825674413970
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,8 +237,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -399,8 +412,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1038,7 +1051,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -4.0368958, y: 130}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1226105231309973149
 MonoBehaviour:
@@ -1114,10 +1127,10 @@ RectTransform:
   m_Father: {fileID: 1226105231309973148}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 67.5, y: -67.5}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1226105231494110237
 CanvasRenderer:
@@ -1397,8 +1410,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1531,8 +1544,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1722,8 +1735,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2143,7 +2156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Bullfrog Tonic
-  _price: 30
+  _price: 3
   _description: 'Increases max health 20%
 
 
@@ -2347,7 +2360,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.3666667}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000045776367, y: -96.60007}
-  m_SizeDelta: {x: 0.000061035156, y: -53.234497}
+  m_SizeDelta: {x: 48.487, y: -53.2345}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3514622787896569698
 CanvasRenderer:
@@ -2386,8 +2399,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2455,7 +2468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6486374104212621801}
-  - component: {fileID: 6183738820461323381}
+  - component: {fileID: 8493314209256457985}
   m_Layer: 5
   m_Name: Frog Leather UpgradeEffect
   m_TagString: Untagged
@@ -2482,7 +2495,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6183738820461323381
+--- !u!114 &8493314209256457985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2491,15 +2504,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1926641767424925115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b6551e41210d0340a5066b797bb81a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Frog Leather
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 3
+  _description: Reduces damage taken by 20%
+  _resistPercentage: 20
 --- !u!1 &1968193133043842777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,8 +2586,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2783,7 +2795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 8935893155640733896}
-  _upgradeEffect: {fileID: 6831506944136267472}
+  _upgradeEffect: {fileID: 88605424016581207}
 --- !u!1 &4713864037892897467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,7 +2805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7189774713059171032}
-  - component: {fileID: 3718517727667485953}
+  - component: {fileID: 4685440366494513565}
   m_Layer: 5
   m_Name: Cherry Rush UpgradeEffect
   m_TagString: Untagged
@@ -2820,7 +2832,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3718517727667485953
+--- !u!114 &4685440366494513565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2829,15 +2841,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4713864037892897467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec649b206e71a7a43a581e2bc7107f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Cherry Rush
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 2
+  _description: Permanently reduces cooldown on Cherry Bomb weapon 25%
+  _reducePercentage: 25
+  _flyPowerType: 3
 --- !u!1 &4776438146674221135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2847,7 +2859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8185458979657640063}
-  - component: {fileID: 6831506944136267472}
+  - component: {fileID: 88605424016581207}
   m_Layer: 5
   m_Name: Lemon Rush UpgradeEffect
   m_TagString: Untagged
@@ -2874,7 +2886,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6831506944136267472
+--- !u!114 &88605424016581207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2883,15 +2895,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4776438146674221135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec649b206e71a7a43a581e2bc7107f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Lemon Rush
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 2
+  _description: Permanently reduces cooldown on zest attack weapon 25%
+  _reducePercentage: 25
+  _flyPowerType: 1
 --- !u!1 &5251940120691903385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,8 +3073,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3195,8 +3207,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278203136
+  m_fontColor: {r: 0.0013583752, g: 0.1981132, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3264,7 +3276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 232780365246698528}
-  - component: {fileID: 6417075683552156801}
+  - component: {fileID: 7831751155993214044}
   m_Layer: 5
   m_Name: Strawberry Rush UpgradeEffect
   m_TagString: Untagged
@@ -3291,7 +3303,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6417075683552156801
+--- !u!114 &7831751155993214044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3300,15 +3312,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7615201463881402951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053fc25445d842440b9e1b104876fc4d, type: 3}
+  m_Script: {fileID: 11500000, guid: ec649b206e71a7a43a581e2bc7107f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Frog: {fileID: 0}
   _label: Strawberry Rush
-  _price: 15
-  _description: Not Implemented
-  _tongue: {fileID: 0}
-  _tongueLengthMultiplier: 1.5
+  _price: 2
+  _description: Reduce cooldown by 20% of bullet seed attack
+  _reducePercentage: 20
+  _flyPowerType: 2
 --- !u!1 &8036372581460872999
 GameObject:
   m_ObjectHideFlags: 0
@@ -3324,7 +3336,7 @@ GameObject:
   - component: {fileID: 4009740092613819853}
   - component: {fileID: 1801510213431233970}
   m_Layer: 5
-  m_Name: Cherry Rush Upgrade
+  m_Name: Strawberry Rush Upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3458,7 +3470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 4009740092613819853}
-  _upgradeEffect: {fileID: 6417075683552156801}
+  _upgradeEffect: {fileID: 7831751155993214044}
 --- !u!1 &8093651931805665105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3495,10 +3507,10 @@ RectTransform:
   m_Father: {fileID: 1226105231309973148}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 347.5, y: -67.5}
-  m_SizeDelta: {x: 125, y: 125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3673965776656699817
 CanvasRenderer:
@@ -3608,7 +3620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeButton: {fileID: 1469922143031962546}
-  _upgradeEffect: {fileID: 3718517727667485953}
+  _upgradeEffect: {fileID: 4685440366494513565}
 --- !u!1 &8116897601681698204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3685,8 +3697,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280953399
-  m_fontColor: {r: 0.21698111, g: 0.16457812, b: 0.16457812, a: 1}
+    rgba: 4278203137
+  m_fontColor: {r: 0.003921569, g: 0.2, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3844,9 +3856,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278203137
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6850301820488452193, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+    - {fileID: 9053866263349934218, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+--- !u!1 &160444599937300174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1386549813154501472, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+  m_PrefabInstance: {fileID: 1226105230699079086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &160444599937300173 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1386549813154501475, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
@@ -4132,8 +4162,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 45479e64fca53e441b7266801e4cb4e7, type: 2}
     - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.003921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_fontSizeBase
       value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278203137
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6850301820488452193, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}

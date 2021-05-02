@@ -20,6 +20,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float DamageDelay;
 
+        public float DamageToTakeMultiplier = 1; //1 - takes full damage, 0.5f - takes half of the damage...
+
         protected Animator Animator { get; set; }
 
         protected bool IsHopping { get; set; }
@@ -44,7 +46,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
-            Health -= amount;
+            Health -= amount * DamageToTakeMultiplier;
 
             DamageCounter = DamageDelay;
 
@@ -53,6 +55,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 Health = 0;
                 Die();
             }
+        }
+
+        public void ReduceDamageTaken(int resistPercent)
+        {
+            DamageToTakeMultiplier *= (float)(100 - resistPercent) / 100;
         }
 
         #endregion
