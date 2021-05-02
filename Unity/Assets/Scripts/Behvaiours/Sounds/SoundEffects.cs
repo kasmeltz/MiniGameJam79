@@ -25,9 +25,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
-            // set by the music when it's playing
-        public MusicLooper music;
-
         // -------- options --------- //
         private float distance = 0.0f;
         private float pitch = 1.0f;
@@ -80,7 +77,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         /////// --------- helpers ----------- ///////
         private void DuckMusic() {
-            if (music) music.Duck(0.8f, 0.25f);
+            if (MusicLooper.Current) MusicLooper.Current.Duck(0.8f, 0.25f);
         }
 
         private void PlayFile(string fname) {

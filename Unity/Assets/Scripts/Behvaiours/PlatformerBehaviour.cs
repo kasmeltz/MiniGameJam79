@@ -50,8 +50,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public GameOverPanelBehaviour GameOverPanel;
 
-        public SoundEffects soundEffects;
-
         public GameObjectPoolBehaviour CherryBombPool;
 
         public GameObjectPoolBehaviour StrawberrySeedPool;
@@ -109,7 +107,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)
         {
-            soundEffects.SetDistance(Tongue.CapturedAt - transform.position.x);
+            SoundEffects.Instance.SetDistance(Tongue.CapturedAt - transform.position.x);
 
             //ActualJumpVelocity = JumpVelocity * 1.25f;
             FliesEatenHasChanged?.Invoke(FliesEaten);
@@ -120,7 +118,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
             else
             {
-                soundEffects.Powerup();
+                SoundEffects.Instance.Powerup();
                 FlyPowerTimer = FlyPowerDuration;
                 FlyPower = e.Fly.FlyType;
                 FliesEaten++;
@@ -210,8 +208,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Jump()
         {
-            soundEffects.SetDistance(0.0f);
-            soundEffects.Jump();
+            SoundEffects.Instance.SetDistance(0.0f);
+            SoundEffects.Instance.Jump();
 
             JumpStartY = transform.position.y;
 
@@ -564,7 +562,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 if (ImpactVelocity < DeathVelocity)
                 {
-                    soundEffects
+                    SoundEffects.Instance
                         .Death();
 
                     Die();
@@ -577,7 +575,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .ToLower()
                     .Contains("water"))
                 {
-                    soundEffects
+                    SoundEffects.Instance
                         .Splash();
 
                     Die();
@@ -592,7 +590,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     IsJumping = false;
 
-                    soundEffects
+                    SoundEffects.Instance
                         .Land();
                 }
 
@@ -788,10 +786,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .Awake();
 
             LevelManger.LevelStarted += LevelManger_LevelStarted;
-
-            soundEffects = FindObjectOfType<SoundEffects>(true);
-            if (soundEffects == null) Debug.Log("soundEffects is null");
-            else Debug.Log("soundEffects: " + soundEffects.ToString());
 
             Restart();
 

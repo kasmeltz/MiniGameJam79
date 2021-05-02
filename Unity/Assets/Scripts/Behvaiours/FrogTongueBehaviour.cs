@@ -41,7 +41,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #region Events
 
         public event EventHandler<FlyBehaviourEventArgs> FlyGobbled;
-        private SoundEffects soundEffects;
 
         protected void OnFlyGobbled(FlyBehaviour fly)
         {
@@ -72,8 +71,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             IsExpanding = true;
             ExpandTimer = 0;
 
-            soundEffects.SetDistance(direction * 1.0f);
-            soundEffects.Tongue();
+            SoundEffects.Instance.SetDistance(direction * 1.0f);
+            SoundEffects.Instance.Tongue();
 
             UpdateSprite();
         }
@@ -203,8 +202,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             base
                 .Awake();
-
-            soundEffects = FindObjectOfType<SoundEffects>();
 
             IsShooting = false;
             IsExpanding = false;

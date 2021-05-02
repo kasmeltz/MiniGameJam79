@@ -15,7 +15,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Throw(int Direction)
         {
-            var soundEffects = FindObjectOfType<SoundEffects>();
+            var soundEffects = SoundEffects.Instance;
             Debug.Log("Throw: "+Direction);
             soundEffects.SetDistance(Direction * 0.5f);
             soundEffects.Throw();

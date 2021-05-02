@@ -20,17 +20,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             gameObject
                 .SetActive(true);
 
-            LevelLoper.EnsureNotPlaying();
             MenuLooper.gameObject.SetActive(true);
-
-            DoAfter(0.75f, StartMenuMusic);
+            LevelLoper.EnsureNotPlaying();
+            MenuLooper.EnsurePlaying(1.0f);
         }
-
-        public void StartMenuMusic() {
-            //Debug.Log("callback");
-            MenuLooper.EnsurePlaying();
-        }
-
 
         #endregion
     }
