@@ -59,6 +59,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
 // TODO [jneen] check volume
+        public void TongueConnect() { volume = 1.0f; PlayFile("Sounds/tongue-connect"); }
         public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
 
         // bouncing on bouncy things
