@@ -294,6 +294,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Die()
         {
+            SoundEffects.Instance
+                .Death();
+
             Animator
                 .SetTrigger("Dying");
 
@@ -604,9 +607,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 if (ImpactVelocity < DeathVelocity)
                 {
-                    SoundEffects.Instance
-                        .Death();
-
                     Die();
 
                     return;
@@ -617,9 +617,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .ToLower()
                     .Contains("water"))
                 {
-                    SoundEffects.Instance
-                        .Splash();
-
                     Die();
 
                     return;
