@@ -116,12 +116,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
-            LevelManager = FindObjectOfType<LevelManagerBehaviour>(true);
-
             Flies = new List<GameObject>();
             ToDelete = new List<GameObject>();
 
-            LevelManager.LevelStarted += LevelManager_LevelStarted;
+            LevelManager = FindObjectOfType<LevelManagerBehaviour>(true);
+            if (LevelManager != null)
+            {
+                LevelManager.LevelStarted += LevelManager_LevelStarted;
+            }
         }
 
         protected void Update()

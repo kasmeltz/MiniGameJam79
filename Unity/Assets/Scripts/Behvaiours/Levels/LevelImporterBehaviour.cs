@@ -24,23 +24,32 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public int LevelHeight;
 
+        protected Dictionary<LevelPixelType, TileBase> PixelTypeToTileMap { get; set; }
+
+        protected Dictionary<LevelPixelType, FlyBehaviour> PixelTypeToFlyTypeMap { get; set; }
+
         public const int WATER_MAP = 0;
-        public const int FLOOR_MAP = 1;        
-        public const int ONE_WAY_MAP  = 2;
+        public const int FLOOR_MAP = 1;
+        public const int ONE_WAY_MAP = 2;
         public const int OVERLAY_MAP = 3;
 
         public static Dictionary<Color, LevelPixelType> ColorsToPixelTypeMap = new Dictionary<Color, LevelPixelType>
         {
             [new Color32(0, 255, 0, 255)] = LevelPixelType.RegularGround,
             [new Color32(128, 128, 255, 255)] = LevelPixelType.AnimatedWater,
-            [new Color32(0, 0, 255, 255)] = LevelPixelType.PureWater
+            [new Color32(0, 0, 255, 255)] = LevelPixelType.PureWater,
+            [new Color32(0, 128, 0, 255)] = LevelPixelType.BrambleBush,
+            [new Color32(255, 255, 0, 255)] = LevelPixelType.LiliPad,
+            [new Color32(128, 0, 255, 255)] = LevelPixelType.LotusFlower,
+            [new Color32(196, 196, 196, 255)] = LevelPixelType.Boat,
+            [new Color32(128, 128, 0, 255)] = LevelPixelType.OneWayFloor,
+            [new Color32(98, 85, 101, 255)] = LevelPixelType.PoisonFrog,
+            [new Color32(255, 0, 0, 255)] = LevelPixelType.StrawberryFlySpawner,
+            [new Color32(128, 0, 0, 255)] = LevelPixelType.CherryFlySpawner,
+            [new Color32(255, 196, 32, 255)] = LevelPixelType.LemonFlySpawner,
+            [new Color32(90, 50, 99, 255)] = LevelPixelType.PoisonFlySpawner,
+
         };
-
-        protected TileBase RegularGroundTile { get; set; }
-
-        protected TileBase AnimatedWaterTile { get; set; }
-
-        protected TileBase PureWaterTile { get; set; }
 
         #endregion
 
@@ -73,9 +82,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             int mlh = LevelHeight / 2;
 
             int pi = 0;
-            for (int py = LevelHeight - 1; py >= 0; py--)
+            for (int py = 0; py < LevelHeight; py++)
             {
-                for (int px = LevelWidth - 1; px >= 0; px--)
+                for (int px = 0; px < LevelWidth; px++)
                 {
                     Color32 p = pixels[pi];
 
@@ -91,32 +100,70 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         throw new InvalidOperationException($"Pixel '{px},{py}' contains invalid Color '{p}'");
                     }
 
-                    float wx = (px * 0.64f) - hlw;
-                    float wy = (py * 0.64f) - hlh;
+                    var pixelType = ColorsToPixelTypeMap[p];
+                    float wx = (px * 0.64f) - hlw + 0.32f;
+                    float wy = (py * 0.64f) - hlh + 0.32f;
                     var v3i = new Vector3Int(px - mlw, py - mlh, 0);
+                    Vector3 pos = new Vector3(wx, wy, 0);
 
-                    switch (ColorsToPixelTypeMap[p])
+                    /*
+                     * 
+        MovingPlatformStart = 12,
+        MovingPlatformEnd = 13,
+                     * */
+
+                    switch (pixelType)
                     {
-                        case LevelPixelType.RegularGround:                            
+                        case LevelPixelType.RegularGround:
                             levelObject
                                 .Tilemaps[FLOOR_MAP]
-                                .SetTile(v3i, RegularGroundTile);
+                                .SetTile(v3i, PixelTypeToTileMap[pixelType]);
+                            break;
 
+                        case LevelPixelType.OneWayFloor:
+                            levelObject
+                                .Tilemaps[ONE_WAY_MAP]
+                                .SetTile(v3i, PixelTypeToTileMap[pixelType]);
                             break;
 
                         case LevelPixelType.AnimatedWater:
-                            levelObject
-                                .Tilemaps[WATER_MAP]
-                                .SetTile(v3i, AnimatedWaterTile);
-
-                            break;
-
                         case LevelPixelType.PureWater:
                             levelObject
                                 .Tilemaps[WATER_MAP]
-                                .SetTile(v3i, PureWaterTile);
-
+                                .SetTile(v3i, PixelTypeToTileMap[pixelType]);
                             break;
+
+                        case LevelPixelType.LiliPad:
+                        case LevelPixelType.BrambleBush:
+                        case LevelPixelType.LotusFlower:
+                        case LevelPixelType.Boat:
+                            levelObject
+                                .Tilemaps[OVERLAY_MAP]
+                                .SetTile(v3i, PixelTypeToTileMap[pixelType]);
+                            break;
+
+                        case LevelPixelType.PoisonFrog:
+                            var frog = Instantiate(PoisonFrogPrefab);
+                            frog
+                                .transform
+                                .SetParent(levelObject.Enemies.transform);
+                            frog.transform.position = pos;
+                            frog.Bounds = new Bounds(pos, new Vector3(5, 0, 0));
+                                break;
+
+                        case LevelPixelType.CherryFlySpawner:
+                        case LevelPixelType.StrawberryFlySpawner:
+                        case LevelPixelType.LemonFlySpawner:
+                        case LevelPixelType.PoisonFlySpawner:
+                            var flySpawner = Instantiate(FlySpawnerPrefab);
+                            flySpawner
+                                .transform
+                                .SetParent(levelObject.FlySpawners.transform);
+                            flySpawner.transform.position = pos;
+                            var flyBehaviour = PixelTypeToFlyTypeMap[pixelType];
+                            flySpawner.ObjectToPool = flyBehaviour.gameObject;
+                            break;
+
                     }
 
                     pi++;
@@ -126,14 +173,25 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void LoadTiles()
         {
-            RegularGroundTile = Resources
-                .Load<TileBase>("Tiles/DirtBlockTile");
+            PixelTypeToTileMap = new Dictionary<LevelPixelType, TileBase>
+            {
+                [LevelPixelType.RegularGround] = Resources.Load<TileBase>("Tiles/DirtBlockTile"),
+                [LevelPixelType.AnimatedWater] = Resources.Load<TileBase>("Tiles/WaterAnimatedTile"),
+                [LevelPixelType.PureWater] = Resources.Load<TileBase>("Tiles/PureWaterTile"),
+                [LevelPixelType.BrambleBush] = Resources.Load<TileBase>("Tiles/BrambleTile"),
+                [LevelPixelType.LiliPad] = Resources.Load<TileBase>("Tiles/LilipadTile"),
+                [LevelPixelType.LotusFlower] = Resources.Load<TileBase>("Tiles/LotusFlowerTile"),
+                [LevelPixelType.Boat] = Resources.Load<TileBase>("Tiles/PaperBoatTile"),
+                [LevelPixelType.OneWayFloor] = Resources.Load<TileBase>("Tiles/OneWayFloor"),
+            };
 
-            AnimatedWaterTile = Resources
-                .Load<TileBase>("Tiles/WaterAnimatedTile");
-
-            PureWaterTile = Resources
-                .Load<TileBase>("PureWaterTile");
+            PixelTypeToFlyTypeMap = new Dictionary<LevelPixelType, FlyBehaviour>
+            {
+                [LevelPixelType.CherryFlySpawner] = Resources.Load<FlyBehaviour>("Prefabs/Objects/CherryFly"),
+                [LevelPixelType.StrawberryFlySpawner] = Resources.Load<FlyBehaviour>("Prefabs/Objects/StrawBerryFly"),
+                [LevelPixelType.LemonFlySpawner] = Resources.Load<FlyBehaviour>("Prefabs/Objects/LemonFly"),
+                [LevelPixelType.PoisonFlySpawner] = Resources.Load<FlyBehaviour>("Prefabs/Objects/PoisonFly")
+            };
         }
 
         #endregion
@@ -142,6 +200,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Awake()
         {
+            PauseGame(true);
+
             LoadTiles();
 
             ImportLevels();    
@@ -150,4 +210,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #endregion
     }
 }
+
+
 

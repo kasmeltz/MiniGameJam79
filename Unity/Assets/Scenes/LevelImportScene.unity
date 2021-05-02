@@ -169,7 +169,7 @@ MonoBehaviour:
   LevelsTexture: {fileID: 2800000, guid: c373203c4897c7242934b12c42526351, type: 3}
   MovingPlatformPrefab: {fileID: 872956498336758467, guid: 099824943a4ca8e408da09554afd11c8, type: 3}
   PoisonFrogPrefab: {fileID: 5823770124933084475, guid: 59c132fa6a4e0744e82458e29c3b6e6a, type: 3}
-  FlySpawnerPrefab: {fileID: 4676684425262701328, guid: 9ad0c653a63ba7e4581c703cd2a769e5, type: 3}
+  FlySpawnerPrefab: {fileID: 4676684425262701328, guid: ada692a1e9a0ac748a8377cd422e65a7, type: 3}
   LevelPrefab: {fileID: 3265443849555579786, guid: 6f6de8db3da5a0d44be3ad313e34591b, type: 3}
   LevelWidth: 100
   LevelHeight: 40

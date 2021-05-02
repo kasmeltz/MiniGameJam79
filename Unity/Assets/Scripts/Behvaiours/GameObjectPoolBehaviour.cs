@@ -51,15 +51,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected override void Awake()
+        protected void Start()
         {
-            base
-                .Awake();
-
-            PooledObjects = new List<GameObject>(AmountToPool);
-
             GameObject tmp;
-            for(int i = 0;i < AmountToPool;i++)
+            for (int i = 0; i < AmountToPool; i++)
             {
                 tmp = Instantiate(ObjectToPool);
                 tmp
@@ -68,7 +63,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 PooledObjects
                     .Add(tmp);
             }
+        }
 
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            PooledObjects = new List<GameObject>(AmountToPool);
         }
 
         #endregion

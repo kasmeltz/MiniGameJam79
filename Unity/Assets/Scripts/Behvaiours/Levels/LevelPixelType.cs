@@ -16,6 +16,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         PoisonFlySpawner = 11,
         MovingPlatformStart = 12,
         MovingPlatformEnd = 13,
-        OrnamentalWater = 14
+        LotusFlower = 14,
+        Boat = 15
     }
 }

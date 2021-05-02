@@ -101,6 +101,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         private void LevelManger_LevelStarted(object sender, System.EventArgs e)
         {
             Restart();
+
+            var level = FindObjectOfType<LevelBehaviour>();
+            LevelBounds = level.Tilemaps[0].localBounds;
         }
 
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)
