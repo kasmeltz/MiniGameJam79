@@ -25,6 +25,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public ProgressBarBehaviour HealthProgressBar;
 
         public Vector2 JumpVelocity;
+        public float ShortHopVelocity;
+
 
         public float MoveVelocity;
 
@@ -294,6 +296,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             Animator
                 .SetTrigger("Jumping");
+        }
+
+        public void ShortHop() {
+            if (!IsJumping) return;
+            if (RigidBody.velocity.y <= ShortHopVelocity) return;
+
+            var vel = new Vector2(0, 0);
+            vel.x = RigidBody.velocity.x;
+            vel.y = ShortHopVelocity;
+            RigidBody.velocity = vel;
         }
 
         public void DyingAnimationFinished()
@@ -793,6 +805,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     IsJumpRequested = true;
                 }
+            }
+
+            if (Input.GetKeyUp(KeyCode.UpArrow)) {
+                ShortHop();
             }
 
             if (IsJumpRequested && !Input
