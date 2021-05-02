@@ -103,7 +103,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Restart();
 
             var level = FindObjectOfType<LevelBehaviour>();
-            LevelBounds = level.Tilemaps[0].localBounds;
+
+            var tileMap = level.Tilemaps[0];
+            var min = tileMap
+                .CellToWorld(new Vector3Int(-51, -21, 0));
+            var max = tileMap
+                .CellToWorld(new Vector3Int(51, 21, 0));
+            var center = (max + min) / 2;
+
+            var bounds = new Bounds(center, max - min);
+            LevelBounds = bounds;
+
+            //Debug
+                //.Log($"min '{min}' max '{max}' center '{center}' bounds '{bounds}'");
         }
 
         private void Tongue_FlyGobbled(object sender, Events.FlyBehaviourEventArgs e)

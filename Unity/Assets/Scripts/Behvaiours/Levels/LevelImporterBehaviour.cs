@@ -2,6 +2,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using System;
     using System.Collections.Generic;
+    using UnityEditor;
     using UnityEngine;
     using UnityEngine.Tilemaps;
 
@@ -169,6 +170,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     pi++;
                 }
             }
+
+            PrefabUtility.SaveAsPrefabAsset(levelObject.gameObject, $"Assets/Resources/Prefabs/Levels/Level{index}.prefab");
         }
 
         protected void LoadTiles()

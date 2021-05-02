@@ -9,7 +9,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Vector2 ThrowForce;
 
-        public float ExplosionRange;       
+        public float ExplosionRange;
+
+        public float ExplosionDamage;
 
         #endregion
 

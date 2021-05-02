@@ -1,6 +1,7 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/GameObjectPool")]
@@ -20,6 +21,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public GameObject GetPooledObject()
         {
+            if (PooledObjects == null || 
+                !PooledObjects.Any())
+            {
+                CreatePool();
+            }
+
             for(int i = 0;i < AmountToPool;i++)
             {
                 var pooledObject = PooledObjects[i];
@@ -47,11 +54,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .GetComponent<T>();
         }
 
-        #endregion
-
-        #region Unity
-
-        protected void Start()
+        protected void CreatePool()
         {
             GameObject tmp;
             for (int i = 0; i < AmountToPool; i++)
@@ -64,6 +67,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .Add(tmp);
             }
         }
+
+        #endregion
+
+        #region Unity
 
         protected override void Awake()
         {

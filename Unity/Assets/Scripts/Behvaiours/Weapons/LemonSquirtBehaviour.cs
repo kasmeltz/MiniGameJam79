@@ -9,6 +9,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Vector2 FireForce;
 
+        public float DamagePerSecond;
+
         protected float AliveCounter { get; set; }
 
         #endregion

@@ -53,13 +53,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void OnCollisionEnter2D(Collision2D collision)
         {
-            var hero = collision
+            var enemy = collision
                 .collider
                 .GetComponent<PoisonFrogBehaviour>();
 
-            if (hero != null)
+            if (enemy != null)
             {
-                hero
+                enemy
                     .TakeDamage(AttackDamage);
             }
 
