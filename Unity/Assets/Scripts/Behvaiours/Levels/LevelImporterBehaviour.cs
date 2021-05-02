@@ -255,6 +255,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .ToArray();
 
             PrefabUtility.SaveAsPrefabAsset(levelObject.gameObject, $"Assets/Resources/Prefabs/Levels/Level{index}.prefab");
+
+            Destroy(levelObject);
         }
 
         protected void LoadTiles()
