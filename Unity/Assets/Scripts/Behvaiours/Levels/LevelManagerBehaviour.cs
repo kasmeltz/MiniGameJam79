@@ -77,50 +77,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             CurrentTransitionIndex
                 .Clear();
 
-            // PREPARE PLATFORM TRANSITION TIMES
-            int transitionCount = Mathf
-                .Max(CurrentLevel.MovingPlatforms.Length, ToLevel.MovingPlatforms.Length);
-
-            Debug
-                .Log($"{transitionCount} platform changes");
-
-            CurrentTransitionIndex
-                .Add(0);
-
-            CreateTransitionTimes(0, transitionCount);
-
             // PREPARE TILE TRANSITION TIMES
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 CurrentTransitionIndex
                     .Add(0);
 
-                CreateTransitionTimes(i + 1, CurrentLevel.Tilemaps[i], ToLevel.Tilemaps[i]);
+                CreateTransitionTimes(i, CurrentLevel.Tilemaps[i], ToLevel.Tilemaps[i]);
             }
-
-            // PREPARE FLY SPAWNER TRANSITION TMIMES
-            transitionCount = Mathf
-               .Max(CurrentLevel.FlySpawners.Length, ToLevel.FlySpawners.Length);
-
-            Debug
-                .Log($"{transitionCount} fly spawner changes");
-
-            CurrentTransitionIndex
-                .Add(0);
-
-            CreateTransitionTimes(0, transitionCount);
-
-            // PREPARE ENEMY TRANSITION TIMES
-            transitionCount = Mathf
-               .Max(CurrentLevel.FlySpawners.Length, ToLevel.FlySpawners.Length);
-
-            Debug
-                .Log($"{transitionCount} enemy changes");
-
-            CurrentTransitionIndex
-                .Add(0);
-
-            CreateTransitionTimes(0, transitionCount);
         }
 
         protected void TransitionTo(int toIndex)
@@ -219,28 +183,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void DoTransition(int transitionType, int index)
         {
-            switch (transitionType)
-            {
-                case 0:
-                    DoMovingPlatformtransition(index);
-                    break;
-                case 1:
-                case 2:
-                case 3:
-                    DoTileTransition(transitionType - 1, index);
-                    break;
-                case 4:
-                    DoFlySpawnerTransition(index);
-                    break;
-                case 5:
-                    DoEnemyTransitions(index);
-                    break;
-            }
+            DoTileTransition(transitionType, index);
         }
 
         protected void DoTileTransition(int tilemapIndex, int transitionIndex)
         {
-            var tileTransitions = TileTransitions[tilemapIndex + 1];
+            var tileTransitions = TileTransitions[tilemapIndex];
             if (transitionIndex >= tileTransitions.Count)
             {
                 return;                
@@ -255,121 +203,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             fromTilemap
                 .SetTile(tileTransition.Coords, tileTransition.ToTile);
-        }
-
-        protected void DoMovingPlatformtransition(int index)
-        {
-            MovingPlatformBehaviour currentPlatform;
-            MovingPlatformBehaviour toPlatform;
-
-            if (index < CurrentLevel.MovingPlatforms.Length)
-            {
-                currentPlatform = CurrentLevel.MovingPlatforms[index];
-
-                currentPlatform
-                    .StartTransition(true);
-            }
-
-            if (index < ToLevel.MovingPlatforms.Length)
-            {
-                toPlatform = ToLevel.MovingPlatforms[index];
-
-                CurrentLevel.MovingPlatforms[index] = toPlatform;
-
-                toPlatform
-                    .transform
-                    .SetParent(CurrentLevel.ObjectParent.transform);
-
-                toPlatform
-                    .gameObject
-                    .SetActive(true);
-
-                toPlatform
-                    .StartTransition(false);
-            }
-        }
-
-        protected void DoFlySpawnerTransition(int index)
-        {
-            FlySpawnerBehaviour from;
-            FlySpawnerBehaviour to;
-
-            if (index < CurrentLevel.FlySpawners.Length)
-            {
-                from = CurrentLevel.FlySpawners[index];
-
-                from
-                    .Shutdown();
-            }
-
-            if (index < ToLevel.FlySpawners.Length)
-            {
-                to = ToLevel.FlySpawners[index];
-
-                CurrentLevel.FlySpawners[index] = to;
-
-                to
-                    .transform
-                    .SetParent(CurrentLevel.FlySpawnerParent.transform);
-
-                to
-                    .gameObject
-                    .SetActive(true);
-            }
-        }
-
-        protected void DoEnemyTransitions(int index)
-        {
-            EnemyBehaviour from;
-            EnemyBehaviour to;
-
-            float maxHealth = 0;
-            float health = 0;
-
-            if (index < CurrentLevel.Enemies.Length)
-            {
-                from = CurrentLevel.Enemies[index];
-
-                maxHealth = from.MaxHealth;
-                health = from.Health;
-
-                Destroy(from);
-            }
-
-            if (index < ToLevel.Enemies.Length)
-            {
-                to = ToLevel.Enemies[index];
-
-                float ratio = (CurrentLevelIndex / 10);
-
-                if (maxHealth == 0)
-                {
-                    maxHealth = to.MaxHealth;
-                }
-
-                if (health == 0)
-                {
-                    health = to.Health;
-                }
-
-                maxHealth += ratio * maxHealth;
-                health += ratio * health;
-
-                to.MaxHealth = maxHealth;
-                to.Health = health;
-
-                to.Level = CurrentLevelIndex + 1;
-
-                CurrentLevel.Enemies[index] = to;
-
-                to
-                    .transform
-                    .SetParent(CurrentLevel.EnemyParent.transform);
-
-                to
-                    .gameObject
-                    .SetActive(true);
-            }
         }
 
         public void Reset()
@@ -446,17 +279,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
-            for(int i = 0;i < CurrentTransitionIndex.Count;i++)
+            for (int i = 0; i < CurrentTransitionIndex.Count; i++)
             {
                 var transitionTimes = TransitionTimes[i];
-                var currentIndex = CurrentTransitionIndex[i];                                
-                
+                var currentIndex = CurrentTransitionIndex[i];
+
                 if (currentIndex < transitionTimes.Count)
                 {
                     var plannedTime = transitionTimes[currentIndex];
-
-                    //Debug
-                        //.Log($"i '{i}' currentIndex '{currentIndex}' plannedTime '{plannedTime}' TransitionTimer '{TransitionTimer}'");
 
                     if (TransitionTimer >= plannedTime)
                     {
