@@ -111,7 +111,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         private void PlayFile(string fname) {
-            DuckMusic();
+            // [jneen] doing this in the unity mixer instead
+            // DuckMusic();
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
