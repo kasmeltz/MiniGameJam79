@@ -38,7 +38,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
         public void Land() { PlayFile("Sounds/land"); }
         public void Tongue() {
-            PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
+            PlayFile(distance > 0.0f ? "Sounds/tongue-reverse" : "Sounds/tongue");
         }
 
         public void Throw() {
@@ -111,11 +111,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         private void PlayFile(string fname) {
-            DuckMusic();
+            // [jneen] doing this in the unity mixer instead
+            // DuckMusic();
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
             source.pitch = pitch;
+            source.volume = computeVolume();
             source.PlayOneShot(clip, computeVolume());
             volume = 1.0f;
             distance = 0.0f;
