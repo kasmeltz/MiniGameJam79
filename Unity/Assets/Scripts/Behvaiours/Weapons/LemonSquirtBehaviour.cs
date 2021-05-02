@@ -15,6 +15,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float DamagePerSecond;
 
         public float DamageRange;
+
         protected float AliveCounter { get; set; }
 
         protected float DamageTimer { get; set; }
@@ -72,7 +73,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected void OnCollisionEnter2D(Collision2D collision)
         {
             var d = (Camera.main.transform.position - transform.position).magnitude;
-            SoundEffects.Instance.SetDistance(d / 2);
+            if (d >= 0)
+            {
+                d = Mathf.Min(Mathf.Max(0.5f, d), 2);
+            }
+            else
+            {
+                d = Mathf.Max(Mathf.Min(-0.5f, d), -2);
+            }
+
+            SoundEffects.Instance.SetDistance(d);
             SoundEffects.Instance.AcidSplash();
         }
 
