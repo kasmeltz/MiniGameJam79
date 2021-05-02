@@ -224,6 +224,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected bool CanJump()
         {
+            if (IsDead)
+            {
+                return false;
+            }
+
             if (IsJumping)
             {
                 return false;
@@ -234,6 +239,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Jump()
         {
+            if (IsDead)
+            {
+                return;
+            }
+
             SoundEffects.Instance.SetDistance(0.0f);
             SoundEffects.Instance.Jump();
 
@@ -318,7 +328,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected void Restart()
         {
             RigidBody.velocity = new Vector2(0, 0);
-
+            IsDead = false;
             FliesEatenHasChanged?.Invoke(FliesEaten);
             ImpactVelocity = 0;
             ActualJumpVelocity = JumpVelocity;
@@ -348,6 +358,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Hop(int dir)
         {
+            if (IsDead)
+            {
+                return;
+            }
+
             HopStartY = transform.position.y;
 
             var v = new Vector2(dir, 1);

@@ -65,6 +65,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected bool CanHop()
         {
+            if (IsDead)
+            {
+                return false;
+            }
+
             if (IsHopping)
             {
                 return false;
@@ -89,6 +94,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Hop()
         {
+            if (IsDead)
+            {
+                return;
+            }
+
             if (Direction == 1 && transform.position.x > HopStartX)
             {
                 NoMoveCounter = 0;
