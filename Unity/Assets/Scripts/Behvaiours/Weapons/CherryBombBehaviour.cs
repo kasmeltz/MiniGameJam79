@@ -40,6 +40,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Exploded()
         {
+            SoundEffects.Instance.Bomb();
+
             var enemies = FindObjectsOfType<EnemyBehaviour>();
 
             foreach(var enemy in enemies)

@@ -74,7 +74,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Awake()
         {
-            DontDestroyOnLoad(this);    
+            DontDestroyOnLoad(gameObject);
         }
 
         public void Update() {

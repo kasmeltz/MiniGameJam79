@@ -51,7 +51,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/spit" : "Sounds/spit-reverse");
         }
 
-        public void Bomb() { PlayFile("Sounds/bomb"); }
+        public void Bomb() { volume = 0.7f; PlayFile("Sounds/bomb"); }
 
         public void Damage() {
             volume = 0.5f;
@@ -97,7 +97,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Awake()
         {
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
 
         /////// --------- helpers ----------- ///////
@@ -115,6 +115,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             // DuckMusic();
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
+            DontDestroyOnLoad(clip);
             source.panStereo = computePan();
             source.pitch = pitch;
             source.volume = computeVolume();
