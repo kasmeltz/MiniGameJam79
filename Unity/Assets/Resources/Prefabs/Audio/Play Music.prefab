@@ -263,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7332650024144125487}
-  - component: {fileID: 7332650024144125485}
+  - component: {fileID: 7046608380637219395}
   m_Layer: 0
   m_Name: Play Music
   m_TagString: Untagged
@@ -287,7 +287,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7332650024144125485
+--- !u!114 &7046608380637219395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,9 +296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7332650024144125484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82443d59bf68848beafce217c0a43467, type: 3}
+  m_Script: {fileID: 11500000, guid: 757d882397d5d8f45967aa2c0070c5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPlaying: 0
   intro: {fileID: 7332650023951158307}
   loops:
   - {fileID: 5242304875359507545}

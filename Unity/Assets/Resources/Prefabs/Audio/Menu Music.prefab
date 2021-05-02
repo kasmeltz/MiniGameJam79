@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4657605311268576321}
-  - component: {fileID: 4657605311268576323}
   - component: {fileID: -4477847292859320282}
   m_Layer: 0
   m_Name: Menu Music
@@ -29,31 +28,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4657605312015170088}
   - {fileID: 4657605312255858317}
   - {fileID: 4657605311478246988}
+  - {fileID: 4657605312015170088}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4657605311268576323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657605311268576322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82443d59bf68848beafce217c0a43467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsPlaying: 0
-  intro: {fileID: 4657605311478246989}
-  loops:
-  - {fileID: 4657605312015170089}
-  - {fileID: 4657605312255858314}
-  maxVolume: 1
-  index: 0
 --- !u!114 &-4477847292859320282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPlaying: 0
-  intro: {fileID: 0}
-  loops: []
+  intro: {fileID: 4657605311478246989}
+  loops:
+  - {fileID: 4657605312015170089}
+  - {fileID: 4657605312255858314}
   maxVolume: 1
   index: 0
 --- !u!1 &4657605311478246991
@@ -100,7 +82,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4657605311268576321}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4657605311478246989
 AudioSource:
@@ -227,7 +209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4657605311268576321}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4657605312015170089
 AudioSource:
@@ -354,7 +336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4657605311268576321}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4657605312255858314
 AudioSource:
