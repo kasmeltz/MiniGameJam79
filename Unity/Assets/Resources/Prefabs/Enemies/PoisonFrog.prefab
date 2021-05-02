@@ -101,12 +101,13 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 7637627634373064547}
   Health: 100
   MaxHealth: 100
-  HopVelocity: {x: 2.5, y: 3.75}
+  HopVelocity: {x: 0, y: 3.75}
   RigidBody: {fileID: 1634368078401965447}
   DamageDelay: 1
+  DamageToTakeMultiplier: 1
+  AttackDamage: 20
   HopCooldown: 1
   SeedCooldown: 1
-  AttackDamage: 20
   SpawnCooldown: 10
   EnemyPatrolArea: {fileID: 0}
   Bounds:

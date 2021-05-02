@@ -8,8 +8,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
-        protected float Direction { get; set; }
+        public MusicLooper MenuMusic;
 
+        protected float Direction { get; set; }
+        
         #endregion
 
         #region Unity
@@ -20,6 +22,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .Awake();
 
             Direction = 1;
+
+            MenuMusic
+                .EnsurePlaying();
         }
 
         protected void Update()
