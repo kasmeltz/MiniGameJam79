@@ -21,9 +21,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected GameObjectPoolBehaviour PoisonSeedPool { get; set; }
 
+        protected float HopStartX { get; set; }
+
         protected float HopCounter { get; set; }
 
         protected float SeedCounter { get; set; }
+
+        protected float NoMoveCounter { get; set; }
 
         #endregion
 
@@ -60,8 +64,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return false;
             }
 
-            var minX = Bounds.min.x + 2f;
-            var maxX = Bounds.max.x - 2f;
+            var minX = Bounds.min.x + 1f;
+            var maxX = Bounds.max.x - 1f;
             var posX = transform.position.x;
 
             if (Direction == 1 && posX >= maxX)
@@ -79,7 +83,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void Hop()
         {
+            if (Direction == 1 && transform.position.x > HopStartX)
+            {
+                NoMoveCounter = 0;
+            }
+            else if (Direction == -1 && transform.position.x < HopStartX)
+            {
+                NoMoveCounter = 0;
+            }
+
             var v = new Vector2(Direction, 1);
+
+            HopStartX = transform.position.x;
 
             RigidBody
                 .velocity = v.normalized * HopVelocity;
@@ -113,7 +128,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             seed
                 .Fire(Direction);
 
-            SeedCounter = SeedCooldown;
+            float reduction = ((11f - Level) / 10f);
+            reduction = Mathf.Min(1f, reduction);
+            reduction = Mathf.Max(0.5f, reduction);
+
+            SeedCounter = SeedCooldown * reduction;
         }
 
         #endregion
@@ -161,17 +180,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 Bounds = EnemyPatrolArea.Bounds;
             }
 
-            var minX = Bounds.min.x + 2f;
-            var maxX = Bounds.max.x - 2f;
-            var posX = transform.position.x;
-
-            if (Direction == 1 && posX >= maxX)
+            NoMoveCounter += Time.deltaTime;
+            if (NoMoveCounter > 2)
             {
-                SetDirection(-1);
-            } 
-            else if (Direction == -1 && posX <= minX)
-            {
-                SetDirection(1);
+                SetDirection(-Direction);
+                NoMoveCounter = 0;
             }
 
             if (CanHop())

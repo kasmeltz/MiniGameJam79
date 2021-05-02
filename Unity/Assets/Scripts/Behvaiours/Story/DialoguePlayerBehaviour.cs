@@ -92,9 +92,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void ShowDialogue()
         {
+            DialogueText.text = "";
             DialogueLine = Dialogue.Lines[DialogueLineIndex];
 
             LineToType = DialogueLine.Text;
+            LetterCountdown = 0;
             LineTypeIndex = 0;
             LetterCountdown = LetterSpeed;
 
@@ -173,6 +175,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         #endregion
 
         #region Protected Methods
+
+        protected void TypeText()
+        {
+            if (LineTypeIndex > LineToType.Length)
+            {
+                return;
+            }
+
+            DialogueText.text = LineToType.Substring(0, LineTypeIndex);
+        }
 
         protected void CompleteDialogue()
         {
@@ -491,18 +503,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             CreateDialogues();            
         }
 
-        protected void TypeText()
+        protected void Update()
         {
-            if (LineTypeIndex > LineToType.Length)
+            if (ShopPanel
+                .gameObject
+                .activeInHierarchy)
             {
                 return;
             }
-
-            DialogueText.text = LineToType.Substring(0, LineTypeIndex);
-        }
-
-        protected void Update()
-        {
+                    
             if (LineTypeIndex <= LineToType.Length)
             {
                 if (LetterCountdown > 0)

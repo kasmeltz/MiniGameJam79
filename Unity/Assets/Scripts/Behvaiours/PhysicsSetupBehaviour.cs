@@ -40,8 +40,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Physics2D
                 .IgnoreLayerCollision(EnemyLayer, LemonSquirtLayer);
 
-            Physics2D
-                .IgnoreLayerCollision(EnemyLayer, EnemyLayer);
+            //Physics2D
+              //  .IgnoreLayerCollision(EnemyLayer, EnemyLayer);
 
             Physics2D
                 .IgnoreLayerCollision(EnemyWeaponLayer, EnemyLayer);

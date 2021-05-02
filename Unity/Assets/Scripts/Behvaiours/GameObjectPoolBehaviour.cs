@@ -54,6 +54,25 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .GetComponent<T>();
         }
 
+        public void Shutdown()
+        {
+            foreach(var obj in PooledObjects)
+            {
+                if (obj == null)
+                {
+                    continue;
+                }
+
+                Destroy(obj);
+            }
+
+            Destroy(gameObject);
+        }
+
+        #endregion
+
+        #region Protected Methods
+
         protected void CreatePool()
         {
             GameObject tmp;

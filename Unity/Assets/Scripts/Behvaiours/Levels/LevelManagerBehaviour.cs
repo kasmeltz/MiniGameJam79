@@ -56,23 +56,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Protected Methods
 
-        protected void TransitionTo(int toIndex)
+        protected void LoadNextLevel(int toIndex)
         {
-            if (CurrentLevel == null)
-            {
-                var prefab = Resources
-                    .Load<LevelBehaviour>($"Prefabs/Levels/Level{CurrentLevelIndex}");
-
-                CurrentLevel = Instantiate(prefab);
-
-                var collider = CurrentLevel
-                    .Tilemaps[2]
-                    .GetComponent<CompositeCollider2D>();
-
-                Platformer.OneWayCollider = collider;
-            }
-
-            /*
             var toPrefab = Resources
                 .Load<LevelBehaviour>($"Prefabs/Levels/Level{toIndex}");
 
@@ -127,8 +112,25 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .Add(0);
 
             CreateTransitionTimes(0, transitionCount);
-            */
+        }
 
+        protected void TransitionTo(int toIndex)
+        {
+            if (CurrentLevel == null)
+            {
+                var prefab = Resources
+                    .Load<LevelBehaviour>($"Prefabs/Levels/Level{CurrentLevelIndex}");
+
+                CurrentLevel = Instantiate(prefab);
+
+                var collider = CurrentLevel
+                    .Tilemaps[2]
+                    .GetComponent<CompositeCollider2D>();
+
+                Platformer.OneWayCollider = collider;
+            }
+
+            //LoadNextLevel(toIndex);
 
             CurrentLevelIndex = toIndex;
 
@@ -285,11 +287,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 from = CurrentLevel.FlySpawners[index];
 
                 from
-                    .gameObject
-                    .SetActive(false);
+                    .Shutdown();
             }
 
-            if (index < ToLevel.MovingPlatforms.Length)
+            if (index < ToLevel.FlySpawners.Length)
             {
                 to = ToLevel.FlySpawners[index];
 
@@ -310,18 +311,42 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             EnemyBehaviour from;
             EnemyBehaviour to;
 
+            float maxHealth = 0;
+            float health = 0;
+
             if (index < CurrentLevel.Enemies.Length)
             {
                 from = CurrentLevel.Enemies[index];
 
-                from
-                    .gameObject
-                    .SetActive(false);
+                maxHealth = from.MaxHealth;
+                health = from.Health;
+
+                Destroy(from);
             }
 
-            if (index < ToLevel.MovingPlatforms.Length)
+            if (index < ToLevel.Enemies.Length)
             {
                 to = ToLevel.Enemies[index];
+
+                float ratio = (CurrentLevelIndex / 10);
+
+                if (maxHealth == 0)
+                {
+                    maxHealth = to.MaxHealth;
+                }
+
+                if (health == 0)
+                {
+                    health = to.Health;
+                }
+
+                maxHealth += ratio * maxHealth;
+                health += ratio * health;
+
+                to.MaxHealth = maxHealth;
+                to.Health = health;
+
+                to.Level = CurrentLevelIndex + 1;
 
                 CurrentLevel.Enemies[index] = to;
 

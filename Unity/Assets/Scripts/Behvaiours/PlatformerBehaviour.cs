@@ -313,7 +313,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             RigidBody.velocity = new Vector2(0, 0);
 
-            FliesEaten = 0;
             FliesEatenHasChanged?.Invoke(FliesEaten);
             ImpactVelocity = 0;
             ActualJumpVelocity = JumpVelocity;
@@ -651,11 +650,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 MovingPlatformBehaviour movingPlatform = GroundCollider
                     .GetComponent<MovingPlatformBehaviour>();
+
                 if (movingPlatform != null)
                 {
-                    Debug
-                        .Log($"Landed on moving platform! '{movingPlatform}'");
-
                     RigidBody.velocity = movingPlatform.RigidBody.velocity;
                 }
 
@@ -750,7 +747,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 if (GroundCollider == OneWayCollider)
                 {
                     OneWayCollider.isTrigger = true;
-                    DoGroundTest();
                 }
             }
 

@@ -78,6 +78,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             var levelObject = Instantiate(LevelPrefab);
 
+            bool[] platforms = new bool[pixels.Length];
+
             float hlw = LevelWidth * 0.32f;
             float hlh = LevelHeight * 0.32f;
 
@@ -181,12 +183,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             levelObject
                                 .Tilemaps[FLOOR_MAP]
                                 .SetTile(v3i, PixelTypeToTileMap[pixelType]);
+
+                            platforms[pi] = true;
+
                             break;
 
                         case LevelPixelType.OneWayFloor:
                             levelObject
                                 .Tilemaps[ONE_WAY_MAP]
                                 .SetTile(v3i, PixelTypeToTileMap[pixelType]);
+
+                            platforms[pi] = true;
+
                             break;
 
                         case LevelPixelType.AnimatedWater:
@@ -211,8 +219,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                                 .transform
                                 .SetParent(levelObject.EnemyParent.transform);
                             frog.transform.position = pos;
-                            frog.Bounds = new Bounds(pos, new Vector3(5, 0, 0));
-                            
+                            frog.GridCoords = new Vector2Int(px, py);
+
                             enemies
                                 .Add(frog);
                                 break;
@@ -260,6 +268,65 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 sr.size = size;
 
                 platform.Collider.size = size;                
+            }
+
+            foreach(var enemy in enemies)
+            {
+                var frog = enemy as PoisonFrogBehaviour;
+                if (frog == null)
+                {
+                    continue;
+                }
+
+                var gx = enemy.GridCoords.x;
+                var gy = enemy.GridCoords.y;
+
+                if (gy == 0)
+                {
+                    continue;
+                }
+
+                int sx = gx;
+                int ex = gx;
+                for(int x = gx;x > 0;x--)
+                {
+                    int idx = (gy - 1) * LevelWidth + x;
+
+                    if (!platforms[idx])
+                    {
+                        break;
+                    }
+
+                    sx = x;
+                }
+
+                for (int x = gx; x < LevelWidth; x++)
+                {
+                    int idx = (gy - 1) * LevelWidth + x;
+
+                    if (!platforms[idx])
+                    {
+                        break;
+                    }
+
+                    ex = x;
+                }
+
+                int dx = ex - sx;
+
+                var size = new Vector3(dx * 0.64f, 0, 0);
+
+                float wsx = (sx * 0.64f) - hlw + 0.32f;
+                float wex = (ex * 0.64f) - hlw + 0.32f;
+
+                float middle = (wsx + wex) / 2;
+
+                Vector3 center = new Vector3(middle, frog.transform.position.y, 0);
+
+                frog.Bounds = new Bounds(center, size);
+
+                Debug
+                    .Log($"Platform bounds? '{frog.Bounds}'");                                
             }
 
             levelObject.MovingPlatforms = movingPlatforms
