@@ -56,7 +56,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             if (IsShooting)
             {
-                return;
+                CancelShot();
             }
 
             if (CapturedFly != null)
@@ -75,6 +75,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             SoundEffects.Instance.Tongue();
 
             UpdateSprite();
+        }
+
+        public void CancelShot() {
+            GobbleFly();
+            Length = 0;
         }
 
         public void SetDirection(int direction)
@@ -180,23 +185,27 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     Length -= RetractPixelsPerExpand;
                     if (Length <= 0)
                     {
+                        GobbleFly();
                         Length = 0;
                         IsShooting = false;
-                        if (CapturedFly != null)
-                        {
-                            OnFlyGobbled(CapturedFly);
-
-                            CapturedFly
-                                .gameObject
-                                .SetActive(false);
-
-                            CapturedFly = null;
-                        }
                     }
                 }
             }
 
             UpdateSprite();
+        }
+
+        private void GobbleFly() {
+            if (CapturedFly != null)
+            {
+                OnFlyGobbled(CapturedFly);
+
+                CapturedFly
+                    .gameObject
+                    .SetActive(false);
+
+                CapturedFly = null;
+            }
         }
 
         protected override void Awake()
