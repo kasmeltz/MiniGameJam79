@@ -24,7 +24,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             hero
-                .TakeDamage(Damage);
+                .TakeDamage(Damage, false);
         }
 
         #endregion

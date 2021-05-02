@@ -14,6 +14,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float DamagePerSecond;
 
+        public float DamageRange;
         protected float AliveCounter { get; set; }
 
         protected float DamageTimer { get; set; }
@@ -53,30 +54,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected void OnTriggerEnter2D(Collider2D collision)
-        {
-            var enemy = collision
-                .GetComponent<EnemyBehaviour>();
-
-            if (enemy != null)
-            {
-                Enemies
-                    .Add(enemy);
-            }
-        }
-
-        protected void OnTriggerExit2D(Collider2D collision)
-        {
-            var enemy = collision
-                .GetComponent<EnemyBehaviour>();
-
-            if (enemy != null)
-            {
-                Enemies
-                    .Remove(enemy);
-            }
-        }
-
         protected void Die()
         {
             gameObject
@@ -114,7 +91,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 DamageTimer = 0.25f;
 
-                foreach (var enemy in Enemies)
+                var enemies = FindObjectsOfType<EnemyBehaviour>();
+
+                foreach (var enemy in enemies)
                 {
                     if (enemy == null)
                     {
@@ -126,8 +105,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         continue;
                     }
 
-                    enemy
-                        .TakeDamage(DamagePerSecond * 0.25f);
+                    float d = (transform.position - enemy.transform.position).magnitude;
+
+                    if (d <= DamageRange)
+                    {
+                        enemy
+                            .TakeDamage(DamagePerSecond * 0.25f, true);
+                    }
                 }
             }
         }

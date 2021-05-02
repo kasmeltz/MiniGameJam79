@@ -34,6 +34,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .IgnoreLayerCollision(LemonSquirtLayer, LemonSquirtLayer);
 
             Physics2D
+                .IgnoreLayerCollision(EnemyLayer, LemonSquirtLayer);
+
+            Physics2D
                 .IgnoreLayerCollision(EnemyLayer, EnemyLayer);
         }
 

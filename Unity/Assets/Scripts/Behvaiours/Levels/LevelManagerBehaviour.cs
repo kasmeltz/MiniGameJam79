@@ -266,7 +266,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 toPlatform
                     .transform
-                    .SetParent(CurrentLevel.Objects.transform);
+                    .SetParent(CurrentLevel.ObjectParent.transform);
 
                 toPlatform
                     .gameObject
@@ -299,7 +299,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 to
                     .transform
-                    .SetParent(CurrentLevel.Objects.transform);
+                    .SetParent(CurrentLevel.FlySpawnerParent.transform);
 
                 to
                     .gameObject
@@ -329,7 +329,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 to
                     .transform
-                    .SetParent(CurrentLevel.Objects.transform);
+                    .SetParent(CurrentLevel.EnemyParent.transform);
 
                 to
                     .gameObject

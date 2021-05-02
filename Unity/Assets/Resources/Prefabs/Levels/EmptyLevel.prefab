@@ -396,9 +396,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8ff305055fd8f47892bb296362d618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Objects: {fileID: 3186279176551508931}
-  Enemies: {fileID: 1221490762206461006}
-  FlySpawners: {fileID: 6109430780777113931}
+  ObjectParent: {fileID: 3186279176551508931}
+  EnemyParent: {fileID: 1221490762206461006}
+  FlySpawnerParent: {fileID: 6109430780777113931}
+  Enemies:
+  - {fileID: 0}
+  FlySpawners:
+  - {fileID: 0}
   MovingPlatforms: []
   Tilemaps:
   - {fileID: 1684910701023543338}

@@ -57,7 +57,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (hero != null)
             {
                 hero
-                    .TakeDamage(AttackDamage);
+                    .TakeDamage(AttackDamage, false);
             }
             
             Die();

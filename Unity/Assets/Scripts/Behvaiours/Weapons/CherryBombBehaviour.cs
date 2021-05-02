@@ -59,7 +59,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 if (d <= ExplosionRange)
                 {
                     enemy
-                        .TakeDamage(ExplosionDamage);
+                        .TakeDamage(ExplosionDamage, false);
                 }
             }
 

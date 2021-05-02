@@ -8,7 +8,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
-        public GameObject Objects;
+        public GameObject ObjectParent;
+
+        public GameObject EnemyParent;
+
+        public GameObject FlySpawnerParent;
 
         public EnemyBehaviour[] Enemies;
 

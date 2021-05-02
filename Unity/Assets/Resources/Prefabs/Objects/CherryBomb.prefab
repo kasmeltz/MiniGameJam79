@@ -165,5 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThrowForce: {x: 3, y: 5}
-  ExplosionRange: 0.25
+  ExplosionRange: 2
   ExplosionDamage: 0

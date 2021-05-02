@@ -41,7 +41,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             [new Color32(128, 128, 255, 255)] = LevelPixelType.AnimatedWater,
             [new Color32(0, 0, 255, 255)] = LevelPixelType.PureWater,
             [new Color32(0, 128, 0, 255)] = LevelPixelType.BrambleBush,
-            [new Color32(255, 255, 0, 255)] = LevelPixelType.LiliPad,
+            [new Color32(255, 227, 0, 255)] = LevelPixelType.LiliPad,
             [new Color32(128, 0, 255, 255)] = LevelPixelType.LotusFlower,
             [new Color32(196, 196, 196, 255)] = LevelPixelType.Boat,
             [new Color32(128, 128, 0, 255)] = LevelPixelType.OneWayFloor,
@@ -50,7 +50,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             [new Color32(128, 0, 0, 255)] = LevelPixelType.CherryFlySpawner,
             [new Color32(255, 196, 32, 255)] = LevelPixelType.LemonFlySpawner,
             [new Color32(90, 50, 99, 255)] = LevelPixelType.PoisonFlySpawner,
-
         };
 
         #endregion
@@ -126,7 +125,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             platform = Instantiate(MovingPlatformPrefab);
                             platform
                                 .transform
-                                .SetParent(levelObject.Objects.transform);
+                                .SetParent(levelObject.ObjectParent.transform);
                             movingPlatforms[platformIndex] = platform;
                         }
 
@@ -165,7 +164,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     if (!ColorsToPixelTypeMap
                         .ContainsKey(p))
                     {
-                        throw new InvalidOperationException($"Pixel '{px},{py}' contains invalid Color '{p}'");
+                        //   throw new InvalidOperationException($"Pixel '{px},{py}' contains invalid Color '{p}'");
+                        Debug
+                            .Log($"Pixel '{px},{py}' contains invalid Color '{p}'");
+
+                        pi++;
+
+                        continue;
                     }
 
                     var pixelType = ColorsToPixelTypeMap[p];
@@ -204,7 +209,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             var frog = Instantiate(PoisonFrogPrefab);
                             frog
                                 .transform
-                                .SetParent(levelObject.Objects.transform);
+                                .SetParent(levelObject.EnemyParent.transform);
                             frog.transform.position = pos;
                             frog.Bounds = new Bounds(pos, new Vector3(5, 0, 0));
                             
@@ -219,7 +224,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             var flySpawner = Instantiate(FlySpawnerPrefab);
                             flySpawner
                                 .transform
-                                .SetParent(levelObject.Objects.transform);
+                                .SetParent(levelObject.FlySpawnerParent.transform);
                             flySpawner.transform.position = pos;
                             var flyBehaviour = PixelTypeToFlyTypeMap[pixelType];
                             flySpawner.ObjectToPool = flyBehaviour.gameObject;
@@ -227,7 +232,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             flySpawners
                                 .Add(flySpawner);
                             break;
-
                     }
 
                     pi++;

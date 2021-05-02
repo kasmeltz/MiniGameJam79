@@ -36,14 +36,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Public Methods
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool isDOT)
         {
             if (Health <= 0)
             {
                 return;
             }
 
-            if (DamageCounter > 0)
+            if (DamageCounter > 0 && !isDOT)
             {
                 return;
             }

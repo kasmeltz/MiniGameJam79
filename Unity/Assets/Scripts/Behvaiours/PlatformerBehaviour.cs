@@ -132,7 +132,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (e.Fly.FlyType == FlyType.Poison)
             {
-                TakeDamage(25);
+                TakeDamage(25, false);
             }
             else
             {
