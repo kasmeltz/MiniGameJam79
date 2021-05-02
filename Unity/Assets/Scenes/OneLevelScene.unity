@@ -498,6 +498,7 @@ MonoBehaviour:
   CherryBombLayer: 9
   LemonSquirtLayer: 11
   EnemyLayer: 12
+  EnemyWeaponLayer: 13
 --- !u!4 &580597583
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3718340153194636265}
   - component: {fileID: 3718340153194636264}
   - component: {fileID: 2948116702711938367}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: PoisonSeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -650,6 +650,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .GetComponent<MovingPlatformBehaviour>();
                 if (movingPlatform != null)
                 {
+                    Debug
+                        .Log($"Landed on moving platform! '{movingPlatform}'");
+
                     RigidBody.velocity = movingPlatform.RigidBody.velocity;
                 }
 
