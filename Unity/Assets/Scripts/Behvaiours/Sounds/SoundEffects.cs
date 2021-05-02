@@ -115,9 +115,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Debug.Log("PlayFile "+fname);
             var clip = Resources.Load<AudioClip>(fname);
             source.panStereo = computePan();
-            source.PlayOneShot(clip, computeVolume());
             source.pitch = pitch;
-            source.volume = volume;
+            source.PlayOneShot(clip, computeVolume());
             volume = 1.0f;
             distance = 0.0f;
             pitch = 1.0f;
@@ -134,7 +133,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (distance > 1.0f) return 0.0f;
             float dist = Mathf.Abs(distance) / 5.0f;
             if (dist < 0.1f) return 1.0f;
-            return Mathf.Lerp(0.5f, 1.0f, 1.0f - dist * dist * dist * dist);
+            return volume * Mathf.Lerp(0.5f, 1.0f, 1.0f - dist * dist * dist * dist);
         }
     }
 }
