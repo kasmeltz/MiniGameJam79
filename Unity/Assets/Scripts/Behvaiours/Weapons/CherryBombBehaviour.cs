@@ -15,14 +15,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
-        public void Throw(int Direction)
+        public void Throw(int Direction, float forceMultiplier)
         {
             var soundEffects = SoundEffects.Instance;
             Debug.Log("Throw: "+Direction);
             soundEffects.SetDistance(Direction * 0.5f);
             soundEffects.Throw();
 
-            var force = ThrowForce;
+            var force = ThrowForce * forceMultiplier;
 
             force.x *= Direction;
 

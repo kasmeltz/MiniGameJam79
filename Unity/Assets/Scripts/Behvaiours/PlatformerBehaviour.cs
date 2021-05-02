@@ -98,6 +98,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected float FlyPowerCooldown { get; set; }
         
+        protected float ThrowPower { get; set; }
+
         #endregion
 
         #region Event Handlers
@@ -294,6 +296,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Die()
         {
+            Health = 0;
+
             SoundEffects.Instance
                 .Death();
 
@@ -529,7 +533,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
-
             seed.AttackDamage = AttackDamage * StrawberryDamageMultiplier;
 
             seed.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
@@ -553,7 +556,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             bomb.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
 
             bomb
-                .Throw(Direction);
+                .Throw(Direction, ThrowPower);
         }
 
         protected void SquirtLemon()
@@ -571,7 +574,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             squirt.transform.position = transform.position + new Vector3(0.32f * Direction, 0.32f, 0);
 
             squirt
-                .Squirt(Direction);
+                .Squirt(Direction, ThrowPower);
         }
 
 
@@ -788,10 +791,24 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .Shoot(Direction);
             }
 
-            if (Input
-               .GetKeyDown(FlyPowerKey))
+            if (Input.GetKey(FlyPowerKey))
             {
-                DoFlyPower();
+                ThrowPower += Time.deltaTime;
+                if (ThrowPower >= 1)
+                {
+                    ThrowPower = 1;
+                }
+            }
+
+
+            if (Input.GetKeyUp(FlyPowerKey))
+            {
+                if (ThrowPower > 0)
+                {
+                    DoFlyPower();
+
+                    ThrowPower = 0;
+                }
             }
         }
 
@@ -831,6 +848,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             base
                 .Awake();
+
+            ThrowPower = 0;
 
             LevelManger.LevelStarted += LevelManger_LevelStarted;
 

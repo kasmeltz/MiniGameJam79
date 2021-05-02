@@ -31,6 +31,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Die()
         {
+            Health = 0;
+
             Animator
                 .SetTrigger("Dying");
 

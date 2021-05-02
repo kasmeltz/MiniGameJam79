@@ -25,18 +25,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Public Methods
 
-        public void Squirt(int Direction)
+        public void Squirt(int direction, float forceMultiplier)
         {
+            SoundEffects
+                .Instance
+                .AcidSplash();
+
             AliveCounter = TimeToLive;
 
             DamageTimer = 0.25f;
 
-            var force = FireForce;
+            var force = FireForce * forceMultiplier;
 
-            force.x *= Direction;
+            force.x *= direction;
 
             GetComponent<SpriteRenderer>()
-                .flipX = Direction != 1;
+                .flipX = direction != 1;
 
             var rigidBody = GetComponent<Rigidbody2D>();
 

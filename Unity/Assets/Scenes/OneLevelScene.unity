@@ -1712,7 +1712,7 @@ MonoBehaviour:
     m_LineSpacing: 0.75
   m_Text: 'YOU''VE CROAKED IT!
 
-    COME VISIT THE FROG WIZARD!'
+    THE AMULET BECKONS...'
 --- !u!222 &1150007404
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1831,11 +1831,11 @@ RectTransform:
   m_Father: {fileID: 1330823133}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 44, y: -95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 60, y: 160}
   m_SizeDelta: {x: 16, y: 16}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1270351276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2538,11 +2538,11 @@ RectTransform:
   m_Father: {fileID: 1330823133}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 30, y: 74}
   m_SizeDelta: {x: 32, y: 44}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1621718324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,11 +2728,11 @@ RectTransform:
   m_Father: {fileID: 1330823133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 45.001953, y: -154.82483}
-  m_SizeDelta: {x: 89.996, y: 60.3395}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 60, y: 100}
+  m_SizeDelta: {x: 89.996, y: 60.339478}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1761719469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3024,11 +3024,11 @@ RectTransform:
   m_Father: {fileID: 1330823133}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90, y: -10}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 110, y: 78}
   m_SizeDelta: {x: 32, y: 44}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1929534904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3194,8 +3194,12 @@ PrefabInstance:
       value: FrogButton
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3207,7 +3211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
@@ -3224,7 +3228,7 @@ PrefabInstance:
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2118830809}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
@@ -3255,7 +3259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: MoveToLoop
+      value: StartDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
@@ -3271,7 +3275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: KasJam.MiniJam79.Unity.Behaviours.MusicLooper, Assembly-CSharp
+      value: KasJam.MiniJam79.Unity.Behaviours.DialoguePlayerBehaviour, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
@@ -3279,7 +3283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1386549813154501474, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
@@ -3427,7 +3431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7055294585381108356, guid: 18ba2f9068c98ba4b8c4d63c2e0825bc, type: 3}
       propertyPath: m_text
-      value: 'Continue
+      value: 'Respawn
 
 '
       objectReference: {fileID: 0}

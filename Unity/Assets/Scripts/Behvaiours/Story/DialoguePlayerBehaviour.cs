@@ -114,6 +114,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 DialogueIndex--;
             }
 
+            MenuLooper
+                .EnsurePlaying(1f);
+
+            MenuLooper
+                .MoveToLoop(1);
+
             Dialogue = Dialogues[DialogueIndex];
 
             DialogueLineIndex = 0;
