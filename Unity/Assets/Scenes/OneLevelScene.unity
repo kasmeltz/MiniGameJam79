@@ -6811,6 +6811,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: ShortHopVelocity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519463419296807510, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
       propertyPath: HealthProgressBar
       value: 
       objectReference: {fileID: 1621718324}
