@@ -190,10 +190,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Dialogues = new List<Dialogue>();
 
             var dialogue = new Dialogue("Kiki", "Frog Wizard");
-            dialogue.AddLine(0, "Erm. What is going on here? This place looks bananas!");
+            dialogue.AddLine(0, "Dude- have you been outside lately?! Everything’s gone bananas!");
             dialogue.AddLine(1, "Indeed! A terrible Weirdness has consumed Lilytopia!");
             dialogue.AddLine(0, "A 'Weirdness' you say? I guess that's... a bad thing?");
-            dialogue.AddLine(1, "A VERY bad thing! Everyone has lost their minds!");
+            dialogue.AddLine(1, "A VERY bad thing! To use a technical term... everyone has totally flipped!");
             dialogue.AddLine(0, "Everyone... except us?");
             dialogue.AddLine(1, "Looks like it.");
             dialogue.AddLine(0, "So we're screwed.");
@@ -203,7 +203,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             dialogue.AddLine(0, "Aww, yes!");
             dialogue.AddLine(1, "But I need your help.");
             dialogue.AddLine(0, "Aww, no!");
-            dialogue.AddLine(1, "I must study the Weirdness to determine its mysterious properties. To do this, I'll need flies. LOTS of them. And I'll need you to get them for me.");
+            dialogue.AddLine(1, "First I must study the Weirdness to determine the exact nature of its mysterious properties. To do this, we'll need flies. LOTS of flies. And I'll need YOU to get them for me.");
             dialogue.AddLine(0, "But... I only just got here! Plus I'm only five minutes old!");
             dialogue.AddLine(1, "Yet it seems the Frogs of Fate have chosen you.");
             dialogue.AddLine(0, "Whoa! I love the Frogs of Fate!");
@@ -313,7 +313,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             dialogue.AddLine(1, "It is.");
 
             dialogue.AddLine(0, "I will take extra special care of your Amulet, Mr Frog Wizard.");
-            dialogue.AddLine(1, "If not, it will take care of you. ");
+            dialogue.AddLine(1, "If not, it will take care of you.");
 
             Dialogues
                 .Add(dialogue);
@@ -363,7 +363,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             dialogue.AddLine(0, "That is not what I was expecting.");
             dialogue.AddLine(1, "She was the most studious, hard-working, and highly-organised Frog I ever laid eyes upon.");
             dialogue.AddLine(0, "That's... err... a very sweet story. Kind of. What happened?");
-            dialogue.AddLine(1, "We fell in love is what happened! Indeed, our love was so great that I forged the Amulet of Respawning so that it would never end.");
+            dialogue.AddLine(1, "We fell in love is what happened! Indeed, our love was so great that I forged the Amulet of Respawning in the hopes that it might never end.");
             dialogue.AddLine(0, "Okay...");
             dialogue.AddLine(1, "As you know, forging the Amulet cost me my youth. My beloved Frog Librarian said I looked too much like her grandpa and ended things.");
             dialogue.AddLine(0, "Whoa. That's cruel. But I guess dating your grandpa is less than ideal.");
@@ -388,7 +388,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             dialogue = new Dialogue("Kiki", "Frog Wizard");
             dialogue.OpenShopLine = 3;
             dialogue.AddLine(0, "So... any other shocking revelations to share with me?");
-            dialogue.AddLine(1, "Nope. You're all caught up.");
+            dialogue.AddLine(1, "No. You have heard all that there is to hear. From now on, we shall focus on the task at hand.");
             dialogue.AddLine(0, "Okay. Well, I'll just keep collecting flies I guess!");
 
             dialogue.AddLine(1, "Good luck out there!");
