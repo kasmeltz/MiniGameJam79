@@ -55,7 +55,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
-        #region Unity
+        #region Protected Methods
 
         protected void Die()
         {
@@ -63,6 +63,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetActive(false);
 
             AliveCounter = 0;
+        }
+
+        #endregion
+
+        #region Unity
+
+        protected void OnCollisionEnter2D(Collision2D collision)
+        {
+            var d = (Camera.main.transform.position - transform.position).magnitude;
+            SoundEffects.Instance.SetDistance(d / 2);
+            SoundEffects.Instance.AcidSplash();
         }
 
         protected override void Awake()
