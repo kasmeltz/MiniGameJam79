@@ -138,7 +138,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #endregion
 
-
         #region Unity
 
         protected override void Awake()
