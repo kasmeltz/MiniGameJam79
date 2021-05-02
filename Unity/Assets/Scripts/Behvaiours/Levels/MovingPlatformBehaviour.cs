@@ -10,7 +10,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Rigidbody2D RigidBody;
 
-        public Collider2D Collider;
+        public BoxCollider2D Collider;
 
         public Vector2 Start;
 

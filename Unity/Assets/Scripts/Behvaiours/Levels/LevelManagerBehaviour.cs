@@ -77,7 +77,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 Platformer.OneWayCollider = collider;
             }
 
-            /*
             var toPrefab = Resources
                 .Load<LevelBehaviour>($"Prefabs/Levels/Level{toIndex}");
 
@@ -114,7 +113,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
             
             CurrentLevelIndex = toIndex;
-            */
 
             OnLevelStarted();
         }

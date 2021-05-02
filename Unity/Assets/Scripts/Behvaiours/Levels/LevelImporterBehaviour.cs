@@ -2,6 +2,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEditor;
     using UnityEngine;
     using UnityEngine.Tilemaps;
@@ -68,6 +69,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                         .GetPixels(fx, fy, LevelWidth, LevelHeight);
 
                     ImportAndSaveLevel(index, pixels);
+                    
+                    index++;
                 }
             }
         }
@@ -82,6 +85,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             int mlw = LevelWidth / 2;
             int mlh = LevelHeight / 2;
 
+            Dictionary<int, MovingPlatformBehaviour> movingPlatforms = new Dictionary<int, MovingPlatformBehaviour>();
+            Dictionary<int, int> movingPlatformSizes = new Dictionary<int, int>();
+
             int pi = 0;
             for (int py = 0; py < LevelHeight; py++)
             {
@@ -89,8 +95,67 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     Color32 p = pixels[pi];
 
-                    if (p.a == 0) 
+                    if (p.a == 0)
                     {
+                        pi++;
+                        continue;
+                    }
+
+                    float wx = (px * 0.64f) - hlw + 0.32f;
+                    float wy = (py * 0.64f) - hlh + 0.32f;
+                    var v3i = new Vector3Int(px - mlw, py - mlh, 0);
+                    Vector3 pos = new Vector3(wx, wy, 0);
+
+                    if ((p.b == 255) && 
+                        (p.r == 255 || p.g == 255))
+                    {
+                        int platformIndex;
+                        int byteValue = p.r;
+                        if (byteValue == 255)
+                        {
+                            byteValue = p.g;
+                        }
+                        platformIndex = byteValue / 16;
+
+                        MovingPlatformBehaviour platform;
+                        if (!movingPlatforms
+                            .ContainsKey(platformIndex))
+                        {
+                            platform = Instantiate(MovingPlatformPrefab);
+                            platform
+                                .transform
+                                .SetParent(levelObject.Objects.transform);
+                            movingPlatforms[platformIndex] = platform;
+                        }
+
+                        platform = movingPlatforms[platformIndex];
+
+                        if (p.r == 255)
+                        {
+                            if (!movingPlatformSizes
+                                .ContainsKey(platformIndex))
+                            {
+                                movingPlatformSizes[platformIndex] = 1;
+                            }
+                            else
+                            {
+                                movingPlatformSizes[platformIndex]++;
+                            }
+
+                            if (platform.Start == Vector2.zero)
+                            {
+                                platform.Start = new Vector2(wx, wy);
+                                platform.transform.position = new Vector3(wx, wy, 0);
+                            }
+                        }
+                        else if (p.g == 255)
+                        {
+                            if (platform.End == Vector2.zero)
+                            {
+                                platform.End = new Vector2(wx, wy);
+                            }
+                        }
+
                         pi++;
                         continue;
                     }
@@ -102,16 +167,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     }
 
                     var pixelType = ColorsToPixelTypeMap[p];
-                    float wx = (px * 0.64f) - hlw + 0.32f;
-                    float wy = (py * 0.64f) - hlh + 0.32f;
-                    var v3i = new Vector3Int(px - mlw, py - mlh, 0);
-                    Vector3 pos = new Vector3(wx, wy, 0);
-
-                    /*
-                     * 
-        MovingPlatformStart = 12,
-        MovingPlatformEnd = 13,
-                     * */
 
                     switch (pixelType)
                     {
@@ -170,6 +225,34 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     pi++;
                 }
             }
+
+            foreach(var kvp in movingPlatforms)
+            {
+                var platformIndex = kvp.Key;
+                var platform = kvp.Value;
+
+                if (platform.Start.x > platform.End.x)
+                {
+                    platform.Direction = 1;
+                }
+                else
+                {
+                    platform.Direction = -1;
+                }
+
+                var pixelCount = movingPlatformSizes[platformIndex];
+                var sr = platform
+                    .GetComponent<SpriteRenderer>();
+
+                var size = new Vector2(pixelCount * 0.32f, 0.16f);
+                sr.size = size;
+
+                platform.Collider.size = size;                
+            }
+
+            levelObject.MovingPlatforms = movingPlatforms
+                .Values
+                .ToArray();
 
             PrefabUtility.SaveAsPrefabAsset(levelObject.gameObject, $"Assets/Resources/Prefabs/Levels/Level{index}.prefab");
         }
