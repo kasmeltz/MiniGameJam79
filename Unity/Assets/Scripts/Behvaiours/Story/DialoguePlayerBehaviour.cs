@@ -417,15 +417,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         #region Unity
 
-        protected override void Awake()
+        protected void OnEnable()
         {
-            base
-                .Awake();
-
-            LineToType = string.Empty;
-
-            DialogueIndex = 0;
-
             PlayLooper
                 .EnsureNotPlaying();
 
@@ -437,9 +430,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             PauseGame(true);
 
-            CreateDialogues();
-
             StartDialogue();
+        }
+
+        protected override void Awake()
+        {
+            base
+                .Awake();
+
+            LineToType = string.Empty;
+
+            DialogueIndex = 0;
+                        
+            CreateDialogues();            
         }
 
         protected void TypeText()
