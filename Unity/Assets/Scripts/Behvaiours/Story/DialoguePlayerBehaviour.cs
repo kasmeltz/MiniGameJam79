@@ -71,7 +71,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 VoiceTimer = UnityEngine
                     .Random
-                    .Range(0.2f, 0.75f);
+                    .Range(0.2f, 0.45f);
 
                 if (DialogueLine != null)
                 {
