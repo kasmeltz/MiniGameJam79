@@ -146,6 +146,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            LineTypeIndex = 0;
+
             if (Dialogue == null)
             {
                 return;
