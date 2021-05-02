@@ -20,6 +20,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float DamageDelay;
 
+        protected Animator Animator { get; set; }
+
         protected bool IsHopping { get; set; }
 
         protected float DamageCounter { get; set; }
@@ -79,6 +81,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
+            Animator = GetComponent<Animator>();
+
             SetDirection(1);
         }        
 
@@ -86,7 +90,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             if (DamageCounter > 0) 
             {
-                DamageCounter--;
+                DamageCounter -= Time.deltaTime;
                 if (DamageCounter <= 0)
                 {
                     DamageCounter = 0;

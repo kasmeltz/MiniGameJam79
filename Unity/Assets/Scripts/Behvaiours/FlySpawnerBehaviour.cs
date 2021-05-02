@@ -61,11 +61,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             var fly = GetPooledObject();
 
+            var pos = transform.position;
+
             float x = Random
-                .Range(Bounds.min.x, Bounds.max.x);
+                .Range(Bounds.min.x + pos.x, Bounds.max.x + pos.x);
 
             float y = Random
-                .Range(Bounds.min.y, Bounds.max.y);
+                .Range(Bounds.min.y + pos.y, Bounds.max.y + pos.y);
 
             fly.transform.position = new Vector3(x, y, 0);
 

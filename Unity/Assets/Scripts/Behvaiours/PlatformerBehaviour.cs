@@ -94,8 +94,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected Collider2D GroundCollider { get; set; }
 
-        protected Animator Animator { get; set; }        
-
         protected float FlyPowerCooldown { get; set; }
         
         #endregion
@@ -314,6 +312,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             IsOnGround = false;
             IsHopping = true;
+
+            Animator
+                .SetTrigger("Hopping");
         }
 
         protected void HandleHorizontalInput(int dir)
@@ -535,7 +536,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             Collider2D collider;
             var o = new Vector2(transform.position.x, transform.position.y + 0.16f);
-            var s = new Vector2(0.32f, 0.32f);
+            var s = new Vector2(0.4f, 0.32f);
 
             var raycastHit = Physics2D
                 .BoxCast(o, s, 0, Vector2.down, 0.04f, GroundLayer);
@@ -688,10 +689,72 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             */
         }
 
+        protected void HandleInput()
+        {
+            if (DamageCounter >= (DamageDelay / 1.5f))
+            {
+                return;
+            }
+
+            if (Input
+                .GetKey(KeyCode.DownArrow))
+            {
+                if (GroundCollider == OneWayCollider)
+                {
+                    OneWayCollider.isTrigger = true;
+                    DoGroundTest();
+                }
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                HandleHorizontalInput(-1);
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                HandleHorizontalInput(1);
+            }
+
+            if (Input
+                .GetKeyDown(KeyCode
+                .UpArrow))
+            {
+                if (CanJump())
+                {
+                    Jump();
+                }
+                else
+                {
+                    IsJumpRequested = true;
+                }
+            }
+
+            if (IsJumpRequested && !Input
+                .GetKey(KeyCode.UpArrow))
+            {
+                IsJumpRequested = false;
+            }
+
+            if (Input
+                .GetKeyDown(TongueKey))
+            {
+                Tongue
+                    .Shoot(Direction);
+            }
+
+            if (Input
+               .GetKeyDown(FlyPowerKey))
+            {
+                DoFlyPower();
+            }
+        }
+
         #endregion
 
         #region Unity
-
+        
+        /*
         protected void OnCollisionEnter2D(Collision2D collision)
         {
             DoGroundTest();
@@ -706,6 +769,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             DoGroundTest();
         }
+        */
 
         protected void OnTriggerExit2D(Collider2D collider)
         {
@@ -715,7 +779,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .isTrigger = false;
             }
 
-            DoGroundTest();
+            //DoGroundTest();
         }
 
         protected override void Awake()
@@ -728,8 +792,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             soundEffects = FindObjectOfType<SoundEffects>(true);
             if (soundEffects == null) Debug.Log("soundEffects is null");
             else Debug.Log("soundEffects: " + soundEffects.ToString());
-
-            Animator = GetComponent<Animator>();
 
             Restart();
 
@@ -770,21 +832,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             base
                 .Update();
-
-            if (Input
-                .GetKey(KeyCode.DownArrow))
-            {
-                if (GroundCollider == OneWayCollider)
-                {
-                    OneWayCollider.isTrigger = true;
-                    DoGroundTest();
-                }
-            }
-
-            if (RigidBody.velocity.y < -1)
-            {
-                ImpactVelocity = RigidBody.velocity.y;
-            }
 
             if (FlyPowerCooldown > 0)
             {
@@ -828,6 +875,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .SetValue(FlyPowerTimer, FlyPowerDuration);
             }
 
+            if (RigidBody.velocity.y < -1)
+            {
+                ImpactVelocity = RigidBody.velocity.y;
+            }
+
             HealthProgressBar
                 .SetValue(Health, MaxHealth);
 
@@ -836,54 +888,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 IsHopping = false;
 
                 StartCoyoteTime();
-            }
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                HandleHorizontalInput(-1);
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                HandleHorizontalInput(1);
-            }
-
-            if (Input
-                .GetKeyDown(KeyCode
-                .UpArrow))
-            {
-                if (CanJump())
-                {
-                    Jump();
-                }
-                else
-                {
-                    IsJumpRequested = true;
-                }
-            }
-
-            if (IsJumpRequested && !Input
-                .GetKey(KeyCode.UpArrow))
-            {
-                IsJumpRequested = false;
-            }
-
-            if (transform.position.y <= -7)
-            {
-                Die();
-            }
-
-            if (Input
-                .GetKeyDown(TongueKey))
-            {
-                Tongue
-                    .Shoot(Direction);
-            }
-
-            if (Input
-               .GetKeyDown(FlyPowerKey))
-            {
-                DoFlyPower();
             }
 
             if (IsAgainstWall)
@@ -905,8 +909,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .SetDirection(Direction);
             }
 
-            DrawDebug();
-
+            HandleInput();
+           
             var pos = transform.position;
 
             if (pos.x < LevelBounds.min.x)
@@ -932,6 +936,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .Lerp(Camera.main.transform.position, pos, 0.5f);
 
             Camera.main.transform.position = newPos;
+
+            DoGroundTest();
+
+            DrawDebug();
         }
 
         #endregion

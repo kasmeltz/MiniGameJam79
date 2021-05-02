@@ -20,6 +20,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public bool IsForeground;
 
+        public Vector2 YRange;
+
         protected List<SpriteRenderer> Tiles { get; set; }
 
         #endregion
@@ -39,11 +41,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .transform
                     .SetParent(transform);
 
-                tile.sprite = PossibleSprites[0];
+                int tileIndex = Random
+                    .Range(0, PossibleSprites.Length);
+
+                tile.sprite = PossibleSprites[tileIndex];
 
                 var pos = tile.transform.localPosition;
 
-                pos.y = 0;
+                pos.y = Random
+                    .Range(YRange.x, YRange.y);
+
                 pos.x = x;
 
                 tile.transform.localPosition = pos;

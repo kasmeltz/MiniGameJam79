@@ -19,6 +19,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public EnemyPatrolAreaBehaviour EnemyPatrolArea;
 
+        public Bounds Bounds;
+
         protected GameObjectPoolBehaviour PoisonSeedPool { get; set; }
 
         protected float HopCounter { get; set; }
@@ -44,12 +46,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return false;
             }
 
-            if (transform.position.x >= EnemyPatrolArea.Bounds.max.x - 2f)
+            var minX = Bounds.min.x + 2f;
+            var maxX = Bounds.max.x - 2f;
+            var posX = transform.position.x;
+
+            if (Direction == 1 && posX >= maxX)
             {
                 return false;
             }
 
-            if (transform.position.x <= EnemyPatrolArea.Bounds.min.x + 2f)
+            if (Direction == -1 && posX <= minX)
             {
                 return false;
             }
@@ -66,6 +72,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             IsHopping = true;
             HopCounter = HopCooldown;
+
+            Animator
+                .SetTrigger("Hopping");
         }
 
         protected bool CanShoot()
@@ -133,12 +142,20 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
             }
 
-            if (transform.position.x >= EnemyPatrolArea.Bounds.max.x - 1f)
+            if (EnemyPatrolArea != null)
             {
-                SetDirection(-1);
+                Bounds = EnemyPatrolArea.Bounds;
             }
 
-            if (transform.position.x <= EnemyPatrolArea.Bounds.min.x + 1f)
+            var minX = Bounds.min.x + 2f;
+            var maxX = Bounds.max.x - 2f;
+            var posX = transform.position.x;
+
+            if (Direction == 1 && posX >= maxX)
+            {
+                SetDirection(-1);
+            } 
+            else if (Direction == -1 && posX <= minX)
             {
                 SetDirection(1);
             }

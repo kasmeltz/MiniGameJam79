@@ -138,15 +138,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             RigidBody.velocity *= MoveSpeed;
 
-            if (transform.position.x > End.x)
+            if (Direction == 1 && transform.position.x >= End.x)
             {
                 transform.position = End;
                 PauseTimer = PauseAtEnd;
                 RigidBody.velocity *= 0;
                 Direction = -1;
             }
-
-            if (transform.position.x < Start.x)
+            else if (Direction == -1 && transform.position.x < Start.x)
             {
                 transform.position = Start;
                 PauseTimer = PauseAtStart;
