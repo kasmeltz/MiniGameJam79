@@ -51,6 +51,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/spit" : "Sounds/spit-reverse");
         }
 
+        public void Bomb() { PlayFile("Sounds/bomb"); }
+
         public void Damage() {
             volume = 0.5f;
             PlayFile("Sounds/damage");
