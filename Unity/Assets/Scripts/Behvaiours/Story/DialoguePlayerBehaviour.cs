@@ -142,19 +142,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             LevelManager
                 .Reset();
 
-            gameObject
-                .SetActive(false);
-
-            PlayLooper
-                .EnsurePlaying();
-
-            PlayLooper
-                .MoveToLoop(1);
-
             MenuLooper
                 .EnsureNotPlaying();
 
-            PauseGame(false);
+            gameObject
+                .SetActive(false);
         }
 
         protected void CreateDialogues()
@@ -434,14 +426,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             DialogueIndex = 0;
 
+            PlayLooper
+                .EnsureNotPlaying();
+
             MenuLooper
                .EnsurePlaying();
 
             MenuLooper
                 .MoveToLoop(1);
-
-            PlayLooper
-                .EnsureNotPlaying();
 
             PauseGame(true);
 

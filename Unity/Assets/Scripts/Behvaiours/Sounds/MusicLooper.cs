@@ -18,15 +18,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private SoundEffects soundEffects;
 
+        public static MusicLooper Current = null;
+
         public int index = 0;
 
         ///// -------  Start / Stop -------- /////
-        public void EnsurePlaying() {
+        public void EnsurePlaying() { EnsurePlaying(0.5f); }
+        public void EnsurePlaying(float delayTime) {
             if (IsPlaying) return;
 
-            FindObjectOfType<SoundEffects>().music = this;
+            Current = this;
 
-            startPlaying();
+            startPlaying(delayTime);
         }
 
         public void EnsureNotPlaying() {
@@ -127,19 +130,23 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             return intro.clip.length;
         }
 
-        private void startPlaying() {
-            double now = Now();
-            double loopStart = now + introLength();
+        private void startPlaying(float delayTime) {
             IsPlaying = true;
 
-            if (intro != null) {
-                intro.PlayScheduled(now);
+            double now = Now();
+
+            double introStart = now + delayTime;
+            double loopStart = introStart;
+
+            if (intro) {
+                loopStart += intro.clip.samples / (double) AudioSettings.outputSampleRate;
+                intro.volume = maxVolume;
+                intro.PlayScheduled(introStart);
             }
 
             //Debug.Log("intro: " + introLength());
             //Debug.Log("loopStart: " + loopStart);
 
-            intro.volume = maxVolume;
             int i = 0;
             foreach (AudioSource source in loops) {
                 if (i == index) source.volume = maxVolume;
