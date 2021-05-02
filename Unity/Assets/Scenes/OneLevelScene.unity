@@ -6734,6 +6734,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3519463419060447101, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
+      propertyPath: PixelsPerExpand
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3519463419060447103, guid: b3b63c5085154ae40a15793d5eae5d28, type: 3}
       propertyPath: m_Layer
       value: 10
