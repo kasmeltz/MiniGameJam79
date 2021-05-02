@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Platformer: {fileID: 0}
-  TransitionStartTime: 5
-  TransitionTotalTime: 20
+  TransitionStartTime: 40
+  TransitionTotalTime: 400
