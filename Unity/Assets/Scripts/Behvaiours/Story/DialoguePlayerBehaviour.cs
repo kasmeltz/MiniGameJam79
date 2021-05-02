@@ -145,6 +145,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             MenuLooper
                 .EnsureNotPlaying();
 
+            PlayLooper
+                .EnsurePlaying(1.0f);
+
             gameObject
                 .SetActive(false);
         }
