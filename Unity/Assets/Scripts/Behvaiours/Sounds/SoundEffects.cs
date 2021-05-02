@@ -66,6 +66,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         // starting levels
         public void MenuGo() { volume = 1.0f; PlayFile("Sounds/menu-go"); }
+
+        // acid hits the ground
+        public void AcidSplash() { volume = 1.0f; PlayFile("Sounds/acid-splash"); }
 // END TODO
 
         // hitting "confirm" in any menu (except upgrade-buy and start-level)
