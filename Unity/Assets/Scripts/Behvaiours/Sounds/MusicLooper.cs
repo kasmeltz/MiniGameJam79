@@ -100,18 +100,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 source.volume = towards(source.volume, targetVolume, dt);
                 i += 1;
             }
-
-            if (Input.GetKeyDown(KeyCode.Q)) {
-                MoveToLoop((index + 1) % loops.Length);
-            }
-
-            if (Input.GetKeyDown(KeyCode.W)) {
-                EnsurePlaying();
-            }
-
-            if (Input.GetKeyDown(KeyCode.E)) {
-                EnsureNotPlaying();
-            }
         }
 
 
