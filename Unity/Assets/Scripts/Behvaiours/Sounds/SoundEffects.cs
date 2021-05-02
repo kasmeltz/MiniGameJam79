@@ -37,7 +37,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
         public void Land() { PlayFile("Sounds/land"); }
-        public void Splash() { }
         public void Tongue() {
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
         }
@@ -52,11 +51,25 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile(distance > 0.0f ? "Sounds/spit" : "Sounds/spit-reverse");
         }
 
+        public void Bomb() { PlayFile("Sounds/bomb"); }
+
         public void Damage() {
             volume = 0.5f;
             PlayFile("Sounds/damage");
         }
 
+// TODO [jneen] check volume
+        public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
+
+        // bouncing on bouncy things
+        public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
+
+        // starting levels
+        public void MenuGo() { volume = 1.0f; PlayFile("Sounds/menu-go"); }
+// END TODO
+
+        // hitting "confirm" in any menu (except upgrade-buy and start-level)
+        public void MenuSelect() { PlayFile("Sounds/menu-select"); }
         public void BuyUpgrade() {
             float pitchRange = 1.5f;
             pitch = Random.Range(1.0f/pitchRange, pitchRange);
@@ -64,10 +77,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile("Sounds/buy-upgrade");
         }
 
-        // TODO [jneen] check volume
-        public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
-
-        public void MenuSelect() { PlayFile("Sounds/menu-select"); }
 
 
         // DELETEME
