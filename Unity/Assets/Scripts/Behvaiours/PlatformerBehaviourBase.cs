@@ -38,6 +38,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void TakeDamage(float amount, bool isDOT)
         {
+            SoundEffects.Instance.Damage();
+
             if (Health <= 0)
             {
                 return;
