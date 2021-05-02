@@ -21,10 +21,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Image ShopPanel;
         
-        public MusicLooper PlayLooper;
-
-        public MusicLooper MenuLooper;
-
         public LevelManagerBehaviour LevelManager;
 
         public int DialogueIndex { get; set; } 
@@ -40,6 +36,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected int LineTypeIndex { get; set; }
 
         protected float LetterCountdown { get; set; }
+
+        protected PlayMusicLooper PlayLooper { get; set; }
+
+        protected MenuMusicLooper MenuLooper { get; set; }
+
 
         #endregion
 
@@ -444,6 +445,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             LineToType = string.Empty;
 
             DialogueIndex = 0;
+
+            PlayLooper = FindObjectOfType<PlayMusicLooper>();
+
+            MenuLooper = FindObjectOfType<MenuMusicLooper>();            
                         
             CreateDialogues();            
         }
@@ -479,10 +484,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 AdvanceDialogueText();
-            }
-
-            
-
+            }            
         }
 
         #endregion

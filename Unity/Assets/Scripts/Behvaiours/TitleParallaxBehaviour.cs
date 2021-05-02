@@ -8,7 +8,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
-        public MusicLooper MenuMusic;
+        protected MenuMusicLooper MenuMusic { get; set; }
 
         protected float Direction { get; set; }
         
@@ -22,6 +22,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .Awake();
 
             Direction = 1;
+
+            MenuMusic = FindObjectOfType<MenuMusicLooper>();
 
             MenuMusic
                 .EnsurePlaying();

@@ -32,8 +32,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected int CurrentLevelIndex { get; set; }
 
-        public MusicLooper music;
-
         #endregion
 
         #region Events

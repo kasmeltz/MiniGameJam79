@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4657605311268576321}
   - component: {fileID: 4657605311268576323}
+  - component: {fileID: -4477847292859320282}
   m_Layer: 0
   m_Name: Menu Music
   m_TagString: Untagged
@@ -46,10 +47,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82443d59bf68848beafce217c0a43467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPlaying: 0
   intro: {fileID: 4657605311478246989}
   loops:
   - {fileID: 4657605312015170089}
   - {fileID: 4657605312255858314}
+  maxVolume: 1
+  index: 0
+--- !u!114 &-4477847292859320282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657605311268576322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f910fa9bf8c7a8348bd90f35b5fa65ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlaying: 0
+  intro: {fileID: 0}
+  loops: []
   maxVolume: 1
   index: 0
 --- !u!1 &4657605311478246991
