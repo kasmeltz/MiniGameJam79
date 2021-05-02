@@ -33,6 +33,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             Animator
                 .SetTrigger("Dying");
+
+            SoundEffects.Instance.Death();
         }
 
         #endregion

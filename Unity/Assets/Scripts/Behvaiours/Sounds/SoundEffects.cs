@@ -37,7 +37,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void Jump() { PlayFile("Sounds/jump"); }
         public void Powerup() { PlayFile("Sounds/powerup-1"); }
         public void Land() { PlayFile("Sounds/land"); }
-        public void Death() { }
         public void Splash() { }
         public void Tongue() {
             PlayFile(distance > 0.0f ? "Sounds/tongue" : "Sounds/tongue-reverse");
@@ -66,7 +65,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         // TODO [jneen] check volume
-        public void Death() { volume = 1.0; PlayFile("Sounds/death"); }
+        public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
 
         public void MenuSelect() { PlayFile("Sounds/menu-select"); }
 
