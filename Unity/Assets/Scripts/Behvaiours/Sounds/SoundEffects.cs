@@ -69,6 +69,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         // acid hits the ground
         public void AcidSplash() { volume = 1.0f; PlayFile("Sounds/acid-splash"); }
+
+        public void DialogueKiki() { distance = -0.7f; volume = 1.0f; PlayFile("Sounds/dialogue-kiki"); }
+        public void DialogueWiz() { distance = 0.7f; volume = 1.0f; PlayFile("Sounds/dialogue-wiz"); }
 // END TODO
 
         // hitting "confirm" in any menu (except upgrade-buy and start-level)
