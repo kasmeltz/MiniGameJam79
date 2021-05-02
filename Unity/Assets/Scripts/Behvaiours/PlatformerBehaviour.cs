@@ -296,6 +296,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Die()
         {
+            if (IsDead)
+            {
+                return;
+            }
+
+            IsDead = true;
             Health = 0;
 
             SoundEffects.Instance

@@ -484,6 +484,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             PauseGame(true);
 
+            var fadePanel = FindObjectOfType<FadePanelBehaviour>();
+
+            fadePanel.FadeInComplete += FadePanel_FadeInComplete;
+
+            fadePanel
+                .FadeIn();            
+        }
+
+        private void FadePanel_FadeInComplete(object sender, EventArgs e)
+        {
             StartDialogue();
         }
 
@@ -500,7 +510,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             MenuLooper = FindObjectOfType<MenuMusicLooper>();            
                         
-            CreateDialogues();            
+            CreateDialogues();
+
         }
 
         protected void Update()

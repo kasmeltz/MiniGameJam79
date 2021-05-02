@@ -27,6 +27,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             MenuMusic
                 .EnsurePlaying();
+
+            var fadePanel = FindObjectOfType<FadePanelBehaviour>();
+            
+            fadePanel
+                .FadeIn();
         }
 
         protected void Update()

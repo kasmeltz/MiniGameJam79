@@ -32,6 +32,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected float DamageCounter { get; set; }
 
+        protected bool IsDead { get; set; }
+
         #endregion       
 
         #region Public Methods
