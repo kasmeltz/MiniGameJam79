@@ -87,6 +87,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             Dictionary<int, MovingPlatformBehaviour> movingPlatforms = new Dictionary<int, MovingPlatformBehaviour>();
             Dictionary<int, int> movingPlatformSizes = new Dictionary<int, int>();
+            List<FlySpawnerBehaviour> flySpawners = new List<FlySpawnerBehaviour>();
+            List<EnemyBehaviour> enemies = new List<EnemyBehaviour>();
 
             int pi = 0;
             for (int py = 0; py < LevelHeight; py++)
@@ -202,9 +204,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             var frog = Instantiate(PoisonFrogPrefab);
                             frog
                                 .transform
-                                .SetParent(levelObject.Enemies.transform);
+                                .SetParent(levelObject.Objects.transform);
                             frog.transform.position = pos;
                             frog.Bounds = new Bounds(pos, new Vector3(5, 0, 0));
+                            
+                            enemies
+                                .Add(frog);
                                 break;
 
                         case LevelPixelType.CherryFlySpawner:
@@ -214,10 +219,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             var flySpawner = Instantiate(FlySpawnerPrefab);
                             flySpawner
                                 .transform
-                                .SetParent(levelObject.FlySpawners.transform);
+                                .SetParent(levelObject.Objects.transform);
                             flySpawner.transform.position = pos;
                             var flyBehaviour = PixelTypeToFlyTypeMap[pixelType];
                             flySpawner.ObjectToPool = flyBehaviour.gameObject;
+
+                            flySpawners
+                                .Add(flySpawner);
                             break;
 
                     }
@@ -252,6 +260,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             levelObject.MovingPlatforms = movingPlatforms
                 .Values
+                .ToArray();
+
+            levelObject.Enemies = enemies
+                .ToArray();
+
+            levelObject.FlySpawners = flySpawners
                 .ToArray();
 
             PrefabUtility.SaveAsPrefabAsset(levelObject.gameObject, $"Assets/Resources/Prefabs/Levels/Level{index}.prefab");

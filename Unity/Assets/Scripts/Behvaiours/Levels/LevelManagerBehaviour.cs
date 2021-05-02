@@ -96,6 +96,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             CurrentTransitionIndex
                 .Clear();
 
+            // PREPARE PLATFORM TRANSITION TIMES
             int transitionCount = Mathf
                 .Max(CurrentLevel.MovingPlatforms.Length, ToLevel.MovingPlatforms.Length);
 
@@ -104,6 +105,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             CreateTransitionTimes(0, transitionCount);
 
+            // PREPARE TILE TRANSITION TIMES
             for (int i = 0; i < 3; i++)
             {
                 CurrentTransitionIndex
@@ -111,7 +113,26 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 CreateTransitionTimes(i + 1, CurrentLevel.Tilemaps[i], ToLevel.Tilemaps[i]);
             }
-            
+
+            // PREPARE FLY SPAWNER TRANSITION TMIMES
+            transitionCount = Mathf
+               .Max(CurrentLevel.FlySpawners.Length, ToLevel.FlySpawners.Length);
+
+            CurrentTransitionIndex
+                .Add(0);
+
+            CreateTransitionTimes(0, transitionCount);
+
+            // PREPARE ENEMY TRANSITION TIMES
+            transitionCount = Mathf
+               .Max(CurrentLevel.FlySpawners.Length, ToLevel.FlySpawners.Length);
+
+            CurrentTransitionIndex
+                .Add(0);
+
+            CreateTransitionTimes(0, transitionCount);
+
+
             CurrentLevelIndex = toIndex;
 
             OnLevelStarted();
@@ -198,6 +219,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 case 3:
                     DoTileTransition(transitionType - 1, index);
                     break;
+                case 4:
+                    DoFlySpawnerTransition(index);
+                    break;
+                case 5:
+                    DoEnemyTransitions(index);
+                    break;
             }
         }
 
@@ -249,6 +276,66 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 toPlatform
                     .StartTransition(false);
+            }
+        }
+
+        protected void DoFlySpawnerTransition(int index)
+        {
+            FlySpawnerBehaviour from;
+            FlySpawnerBehaviour to;
+
+            if (index < CurrentLevel.FlySpawners.Length)
+            {
+                from = CurrentLevel.FlySpawners[index];
+
+                from
+                    .gameObject
+                    .SetActive(false);
+            }
+
+            if (index < ToLevel.MovingPlatforms.Length)
+            {
+                to = ToLevel.FlySpawners[index];
+
+                CurrentLevel.FlySpawners[index] = to;
+
+                to
+                    .transform
+                    .SetParent(CurrentLevel.Objects.transform);
+
+                to
+                    .gameObject
+                    .SetActive(true);
+            }
+        }
+
+        protected void DoEnemyTransitions(int index)
+        {
+            EnemyBehaviour from;
+            EnemyBehaviour to;
+
+            if (index < CurrentLevel.Enemies.Length)
+            {
+                from = CurrentLevel.Enemies[index];
+
+                from
+                    .gameObject
+                    .SetActive(false);
+            }
+
+            if (index < ToLevel.MovingPlatforms.Length)
+            {
+                to = ToLevel.Enemies[index];
+
+                CurrentLevel.Enemies[index] = to;
+
+                to
+                    .transform
+                    .SetParent(CurrentLevel.Objects.transform);
+
+                to
+                    .gameObject
+                    .SetActive(true);
             }
         }
 

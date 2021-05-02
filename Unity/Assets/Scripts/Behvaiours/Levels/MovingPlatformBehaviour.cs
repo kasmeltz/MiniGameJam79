@@ -60,6 +60,20 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
+            if (Start.x > End.x)
+            {
+                float tmp = End.x;
+                End.x = Start.x;
+                Start.x = tmp;
+            }
+
+            if (Start.y > End.y)
+            {
+                float tmp = End.y;
+                End.y = Start.y;
+                Start.y = tmp;
+            }
+
             PauseTimer = 0;
             Direction = 1;
             IsTransitioningOut = false;
@@ -135,22 +149,44 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             moveDirection = moveDirection.normalized;
 
             RigidBody.velocity = new Vector2(moveDirection.x, moveDirection.y);
-
             RigidBody.velocity *= MoveSpeed;
 
-            if (Direction == 1 && transform.position.x >= End.x)
+            float xDifference = Mathf.Abs(Start.x - End.x);
+            float yDifference = Mathf.Abs(Start.y - End.y);
+
+            if (xDifference >= yDifference)
             {
-                transform.position = End;
-                PauseTimer = PauseAtEnd;
-                RigidBody.velocity *= 0;
-                Direction = -1;
+                if (Direction == 1 && transform.position.x >= End.x)
+                {
+                    transform.position = End;
+                    PauseTimer = PauseAtEnd;
+                    RigidBody.velocity *= 0;
+                    Direction = -1;
+                }
+                else if (Direction == -1 && transform.position.x < Start.x)
+                {
+                    transform.position = Start;
+                    PauseTimer = PauseAtStart;
+                    RigidBody.velocity *= 0;
+                    Direction = 1;
+                }
             }
-            else if (Direction == -1 && transform.position.x < Start.x)
+            else
             {
-                transform.position = Start;
-                PauseTimer = PauseAtStart;
-                RigidBody.velocity *= 0;
-                Direction = 1;
+                if (Direction == 1 && transform.position.y >= End.y)
+                {
+                    transform.position = End;
+                    PauseTimer = PauseAtEnd;
+                    RigidBody.velocity *= 0;
+                    Direction = -1;
+                }
+                else if (Direction == -1 && transform.position.y < Start.y)
+                {
+                    transform.position = Start;
+                    PauseTimer = PauseAtStart;
+                    RigidBody.velocity *= 0;
+                    Direction = 1;
+                }
             }
         }
 

@@ -10,9 +10,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public GameObject Objects;
 
-        public GameObject Enemies;
+        public EnemyBehaviour[] Enemies;
 
-        public GameObject FlySpawners;
+        public FlySpawnerBehaviour[] FlySpawners;
 
         public MovingPlatformBehaviour[] MovingPlatforms;
 
