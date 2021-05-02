@@ -60,9 +60,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void TransitionTo(int toIndex)
         {
-            music
-                .EnsurePlaying(1.0f);
-
             if (CurrentLevel == null)
             {
                 var prefab = Resources
