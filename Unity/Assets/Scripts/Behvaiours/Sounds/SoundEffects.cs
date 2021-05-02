@@ -58,6 +58,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile("Sounds/damage");
         }
 
+// TODO [jneen] check volume
+        public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
+
+        // bouncing on bouncy things
+        public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
+
+        // starting levels
+        public void MenuGo() { volume = 1.0f; PlayFile("Sounds/menu-go"); }
+// END TODO
+
+        // hitting "confirm" in any menu (except upgrade-buy and start-level)
+        public void MenuSelect() { PlayFile("Sounds/menu-select"); }
         public void BuyUpgrade() {
             float pitchRange = 1.5f;
             pitch = Random.Range(1.0f/pitchRange, pitchRange);
@@ -65,12 +77,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PlayFile("Sounds/buy-upgrade");
         }
 
-        // TODO [jneen] check volume
-        public void Death() { volume = 1.0f; PlayFile("Sounds/death"); }
-        public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
-        // END TODO
-
-        public void MenuSelect() { PlayFile("Sounds/menu-select"); }
 
 
         // DELETEME
