@@ -66,6 +66,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             CurrentLevelIndex = 0;
             LastUpgradeTime = Time.time;
 
+            var flies = FindObjectsOfType<FlyBehaviour>(true);
+            foreach (var fly in flies)
+            {
+                Destroy(fly);
+            }
+
             TransitionTo(1);
 
             PauseGame(false);
