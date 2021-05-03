@@ -6529,7 +6529,7 @@ MonoBehaviour:
   - 1.6
   - 1.8
   - 2
-  TongueLengthBase: 0
+  TongueLengthBase: 50
 --- !u!224 &1226105232501511939
 RectTransform:
   m_ObjectHideFlags: 0

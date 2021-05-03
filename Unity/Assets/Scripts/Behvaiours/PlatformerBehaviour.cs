@@ -320,14 +320,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             RigidBody.velocity = vel;
         }
 
-        public void DyingAnimationFinished()
-        {
-            PauseGame(true);
-
-            GameOverPanel
-                .Open();
-        }
-
         protected override void Die()
         {
             if (IsDead)
@@ -346,7 +338,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             SoundEffects.Instance.Death();
 
-            UpdateUI();            
+            UpdateUI();
+
+            DoAfter(1.5f, () =>
+            {
+                PauseGame(true);
+
+                GameOverPanel
+                    .Open();
+            });
         }
 
         protected void Restart()

@@ -29,7 +29,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 level--;
             }
 
-            var percentage = 1 - _tongueLengthMultiplier[level];
+            var percentage = _tongueLengthMultiplier[level] - 1;
 
             var text = _description.Replace("{0}", percentage.ToString("p"));
 
