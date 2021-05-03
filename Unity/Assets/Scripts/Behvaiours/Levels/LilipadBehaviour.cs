@@ -24,6 +24,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            SoundEffects.Instance.Bounce();
             var velocity = hero.RigidBody.velocity;
             velocity.y = Springiness;
             hero.RigidBody.velocity = velocity;

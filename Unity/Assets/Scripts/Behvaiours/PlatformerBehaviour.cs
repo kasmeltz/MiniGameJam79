@@ -541,6 +541,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             float rateRequired = 1f / FlyPowerRatesPerSecond[(int)FlyPower];
             if (AbilityRateAvailable < 1)
             {
+                SoundEffects.Instance.Nope();
                 return;
             }
 
