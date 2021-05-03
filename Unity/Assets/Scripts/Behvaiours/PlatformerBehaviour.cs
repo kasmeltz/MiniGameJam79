@@ -158,11 +158,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
                 MaximumAbilityRate = FlyPowerRatesPerSecond[(int)e.Fly.FlyType];
                 AbilityRateAvailable = MaximumAbilityRate;
-
-                if (FlyPower != e.Fly.FlyType)
-                {
-                    AbiltyChanged?.Invoke(MaximumAbilityRate);
-                }
+                AbiltyChanged?.Invoke(MaximumAbilityRate);
 
                 FlyPower = e.Fly.FlyType;
 

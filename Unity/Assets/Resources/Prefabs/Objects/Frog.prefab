@@ -246,6 +246,7 @@ MonoBehaviour:
   FlyPowerProgressBar: {fileID: 0}
   HealthProgressBar: {fileID: 0}
   JumpVelocity: {x: 2.75, y: 8}
+  ShortHopVelocity: 0
   MoveVelocity: 2
   RespawnPosition: {x: 2.84, y: 0.25, z: 0}
   GroundLayer:
@@ -255,7 +256,6 @@ MonoBehaviour:
   CoyoteTimeLimit: 0.2
   JumpMoveTimeLimit: 0.2
   Tongue: {fileID: 3519463419060447101}
-  FlyPowerDuration: 10
   DeathVelocity: -20
   TongueKey: 0
   FlyPowerKey: 0
@@ -263,12 +263,13 @@ MonoBehaviour:
   CherryBombPool: {fileID: 0}
   StrawberrySeedPool: {fileID: 0}
   LemonSquirtPool: {fileID: 0}
-  FlyPowerCooldownsAmount: []
-  FlyPowerTimer: 0
+  FlyPowerRatesPerSecond: []
   FlyPower: 0
   StrawberryDamageMultiplier: 1
   CherryDamageMultiplier: 2
   LemonDamageMultiplier: 2
+  StrongThrowPower: 0
+  WeakThrowPower: 0
 --- !u!68 &3519463419296807508
 EdgeCollider2D:
   m_ObjectHideFlags: 0

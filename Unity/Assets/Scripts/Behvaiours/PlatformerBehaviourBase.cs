@@ -34,6 +34,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected float DamageCounter { get; set; }
         
+        protected float DamageFlash { get; set; }
+
         #endregion       
 
         #region Public Methods
@@ -53,6 +55,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Health -= amount * DamageToTakeMultiplier;
 
             DamageCounter = DamageDelay;
+
+            DamageFlash = 0.1f;
 
             if (Health < 1)
             {
@@ -97,17 +101,35 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             Animator = GetComponent<Animator>();
 
             SetDirection(1);
-        }        
+        }
 
         protected virtual void Update()
         {
-            if (DamageCounter > 0) 
+            if (DamageCounter > 0)
             {
+                DamageFlash -= Time.deltaTime;
+                if (DamageFlash <= 0)
+                {
+                    DamageFlash = 0.1f;
+                    if (SpriteRenderer.color == Color.white)
+                    {
+                        SpriteRenderer.color = new Color32(0, 0, 255, 128);
+                    }
+                    else
+                    {
+                        SpriteRenderer.color = Color.white;
+                    }
+                }
+
                 DamageCounter -= Time.deltaTime;
                 if (DamageCounter <= 0)
                 {
                     DamageCounter = 0;
                 }
+            }
+            else
+            {
+                SpriteRenderer.color = Color.white;
             }
         }
 

@@ -11,11 +11,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float HealthPerLevel;
 
+        public float DamagePerLevel;
+
         public float HopCooldown;
 
         public float SeedCooldown;
 
         public Bounds Bounds;
+
+        public float AggressionDistanceCutoff;
 
         protected GameObjectPoolBehaviour PoisonSeedPool { get; set; }
 
@@ -26,6 +30,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected float SeedCounter { get; set; }
 
         protected float NoMoveCounter { get; set; }
+        
+        protected PlatformerBehaviour Hero { get; set; }
 
         #endregion
 
@@ -65,10 +71,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public override void SetLevel(int level)
         {
+            int difference = level - Level;
+
             Level = level;
 
-            MaxHealth += HealthPerLevel;
-            Health += HealthPerLevel;
+            MaxHealth += HealthPerLevel * difference;
+            Health += HealthPerLevel * difference;
+
+            AttackDamage += DamagePerLevel * difference;
         }
 
         #endregion
@@ -136,7 +146,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected bool CanShoot()
         {
-            return SeedCounter <= 0;
+            if (SeedCounter> 0)
+            {
+                return false;
+            }
+
+            float d = (Hero.transform.position - transform.position).magnitude;
+
+            return d <= AggressionDistanceCutoff;
         }
 
         protected void Shoot()
@@ -231,6 +248,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             PoisonSeedPool = pools.FirstOrDefault(o => o
                 .ObjectToPool
                 .GetComponent<PoisonSeedBehaviour>() != null);
+
+            Hero = FindObjectOfType<PlatformerBehaviour>(true);
         }
 
         #endregion

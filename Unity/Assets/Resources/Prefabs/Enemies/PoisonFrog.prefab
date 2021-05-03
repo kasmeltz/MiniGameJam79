@@ -108,13 +108,13 @@ MonoBehaviour:
   AttackDamage: 20
   Level: 1
   HealthPerLevel: 10
+  DamagePerLevel: 1
   HopCooldown: 1
   SeedCooldown: 1
-  SpawnCooldown: 10
-  EnemyPatrolArea: {fileID: 0}
   Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  AggressionDistanceCutoff: 10
 --- !u!95 &8853264267672399947
 Animator:
   serializedVersion: 3
