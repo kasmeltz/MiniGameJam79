@@ -108,7 +108,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             if (IsShooting)
             {
-                BoxCollider2d.size = new Vector2(0.08f, 0.08f);
+                BoxCollider2d.size = new Vector2(0.12f, 0.12f);
                 BoxCollider2d.offset = new Vector2(Length * 0.02f * Direction, 0);
             }
             else

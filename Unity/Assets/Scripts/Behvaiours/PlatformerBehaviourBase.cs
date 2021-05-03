@@ -20,7 +20,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float DamageDelay;
 
-        public float DamageToTakeMultiplier = 1; //1 - takes full damage, 0.5f - takes half of the damage...
+        public float DamageToTakeMultiplier;
 
         public float AttackDamage;
 
@@ -65,9 +65,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
         }
 
-        public void ReduceDamageTaken(int resistPercent)
+        public void ReduceDamageTaken(float resistPercent)
         {
-            DamageToTakeMultiplier *= (float)(100 - resistPercent) / 100;
+            DamageToTakeMultiplier = 1 - resistPercent;
         }
 
         #endregion

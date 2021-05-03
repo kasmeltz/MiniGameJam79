@@ -931,6 +931,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetValue(Health, MaxHealth);
 
             FliesEaten = 0;
+            
             FliesEatenHasChanged?.Invoke(FliesEaten);
 
             foreach (var upgrade in Upgrades)

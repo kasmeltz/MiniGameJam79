@@ -103,7 +103,7 @@ MonoBehaviour:
   MaxHealth: 100
   HopVelocity: {x: 2.25, y: 3.75}
   RigidBody: {fileID: 1634368078401965447}
-  DamageDelay: 1
+  DamageDelay: 0.5
   DamageToTakeMultiplier: 1
   AttackDamage: 20
   Level: 1

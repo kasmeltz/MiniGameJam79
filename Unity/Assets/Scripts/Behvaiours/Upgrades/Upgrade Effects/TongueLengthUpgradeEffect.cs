@@ -6,17 +6,39 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         [Space]
         [SerializeField] private FrogTongueBehaviour _tongue;
-        [SerializeField] private float _tongueLengthMultiplier = 1.5f;
+        [SerializeField] private float[] _tongueLengthMultiplier;
+
+        public int TongueLengthBase;
 
         public override void MakeUpgrade()
         {
-            _tongue.MaxLength = (int)(_tongue.MaxLength * _tongueLengthMultiplier);
+            _tongue.MaxLength = (int)(TongueLengthBase * _tongueLengthMultiplier[Level]);
         }
 
-        private void OnValidate()
+        protected override void Awake()
         {
-            if (_tongueLengthMultiplier < 1)
-                _tongueLengthMultiplier = 1;
+            base
+                .Awake();
+        }
+
+        protected override string DescriptionForLevel()
+        {
+            int level = Level;
+            if (level >= Levels)
+            {
+                level--;
+            }
+
+            var percentage = 1 - _tongueLengthMultiplier[level];
+
+            var text = _description.Replace("{0}", percentage.ToString("p"));
+
+            if (Level >= Levels)
+            {
+                text = "FULLY UPGRADED - " + text;
+            }
+
+            return text;
         }
     }
 }

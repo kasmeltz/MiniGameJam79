@@ -9,12 +9,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private UpgradeShop _upgradeShop;
 
-        public string Description => _upgradeEffect.Description;
-        public int Price => _upgradeEffect.Price;
+        public string Description => _upgradeEffect.DescriptionForCurrentLevel;
+
+        public int Price => _upgradeEffect.PriceForCurentLevel;
 
         private void Awake()
         {
-            _upgradeButton.InitializeButton(_upgradeEffect.Label);
+            _upgradeButton.InitializeButton(_upgradeEffect.Label, _upgradeEffect.Level);
 
             _upgradeShop = GetComponentInParent<UpgradeShop>();
         }
@@ -38,7 +39,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             if (_upgradeEffect.TryMakeUpgrade())
             {
-                _upgradeButton.DisableButton();
+                if (_upgradeEffect.Level > _upgradeEffect.Levels)
+                {
+                    _upgradeButton.DisableButton();
+                }
+                else
+                {
+                    _upgradeShop.SelectUpgrade(this);                    
+                }
+
+                _upgradeButton.InitializeButton(_upgradeEffect.Label, _upgradeEffect.Level);
+
                 return true;
             }
 
