@@ -328,20 +328,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764659982124359299, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_text
-      value: 'Left and Right Arrows - Hop
+      value: '[LEFT/RIGHT] - Hop
 
-        Up Arrow - Jump
+        [UP] - Jump
 
-        Down
-        Arrow - Drop down from one way platforms
+        [DOWN] - Drop down
+        from one-way platforms
 
-        A - To catch flies
+        [A] - Catch flies
 
-        D
-        - Press to fire bullet seed ability
-
-        D - Hold to power up and release
-        to throw the cherry bomb and lemon splash abilities'
+        [D] - Use fruit
+        abilities'
       objectReference: {fileID: 0}
     - target: {fileID: 6764659982124359299, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_fontSize
@@ -568,9 +565,10 @@ MonoBehaviour:
     - linktr.ee/thezoeag
 
 
-    ~ MUSIC, SOUND DESIGN ~
+    ~ MUSIC, SOUND DESIGN, AUDIO PROGRAMMING ~
 
-    jneen collective - jneen-collective.bandcamp.com'
+    jneen
+    collective - jneen-collective.bandcamp.com'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45479e64fca53e441b7266801e4cb4e7, type: 2}
   m_sharedMaterial: {fileID: 4824000523168898161, guid: 45479e64fca53e441b7266801e4cb4e7, type: 2}
