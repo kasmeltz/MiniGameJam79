@@ -20,9 +20,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void FadePanel_FadeInComplete(object sender, System.EventArgs e)
         {
-            ButtonPanel
+            /*ButtonPanel
                 .gameObject
                 .SetActive(true);
+            */
         }
 
         #endregion
@@ -41,12 +42,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             MenuMusic
                 .EnsurePlaying();
 
+            ButtonPanel
+               .gameObject
+               .SetActive(true);
+
+            /*
+
             var fadePanel = FindObjectOfType<FadePanelBehaviour>();
 
             fadePanel.FadeInComplete += FadePanel_FadeInComplete;
 
             fadePanel
                 .FadeIn();
+            */
         }
 
         protected void Update()
