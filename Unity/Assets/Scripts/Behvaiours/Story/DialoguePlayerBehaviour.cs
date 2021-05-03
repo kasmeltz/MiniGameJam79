@@ -218,7 +218,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var dialogue = new Dialogue("Kiki", "Frog Wizard");
             dialogue.AddLine(0, "Dude- have you been outside lately?! Everything's gone bananas!");
             dialogue.AddLine(1, "Indeed! A terrible Weirdness has consumed Lilytopia!");
-            dialogue.AddLine(0, "A 'Weirdness' you say? I guess that's... a bad thing?");
+            dialogue.AddLine(0, "A \"Weirdness\" you say? I guess that's... a bad thing?");
             dialogue.AddLine(1, "A VERY bad thing! To use a technical term... everyone has totally flipped!");
             dialogue.AddLine(0, "Everyone... except us?");
             dialogue.AddLine(1, "Looks like it.");
