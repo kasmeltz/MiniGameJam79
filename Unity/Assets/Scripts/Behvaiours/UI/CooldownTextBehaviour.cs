@@ -27,24 +27,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private void _frog_AbiltyChanged(float arg0)
         {
-            
+            UpdateUI();   
         }
 
         private void _frog_AbilityRemaining(float arg0)
         {
-            
+            UpdateUI();
         }
 
         protected void UpdateUI()
         {
-            /*
             _text.text = Mathf
-                .RoundToInt(RateAvailable)
+                .RoundToInt(_frog.AbilityRateAvailable)
                 .ToString();
 
             ProgressBar
-                .SetValue(RateAvailable, MaximumRate);
-            */
+                .SetValue(_frog.AbilityRateAvailable, _frog.MaximumAbilityRate);
         }
     }
 }

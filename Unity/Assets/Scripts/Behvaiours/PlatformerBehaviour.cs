@@ -156,12 +156,16 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 SoundEffects.Instance.Powerup();
 
-                FlyPower = e.Fly.FlyType;
-                MaximumAbilityRate = FlyPowerRatesPerSecond[(int)FlyPower];
+                MaximumAbilityRate = FlyPowerRatesPerSecond[(int)e.Fly.FlyType];
                 AbilityRateAvailable = MaximumAbilityRate;
 
-                AbiltyChanged?.Invoke(MaximumAbilityRate);
-                
+                if (FlyPower != e.Fly.FlyType)
+                {
+                    AbiltyChanged?.Invoke(MaximumAbilityRate);
+                }
+
+                FlyPower = e.Fly.FlyType;
+
                 FliesEaten++;
                 FliesEatenHasChanged?.Invoke(FliesEaten);               
             }
@@ -538,6 +542,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
+            float rateRequired = 1f / FlyPowerRatesPerSecond[(int)FlyPower];
+            if (AbilityRateAvailable < 1)
+            {
+                return;
+            }
+
             if (FlyPowerCooldown > 0)
             {
                 return;
@@ -557,8 +567,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     SquirtLemon();
                     break;
             }
+            
 
-            FlyPowerCooldown = 1 / FlyPowerRatesPerSecond[(int)FlyPower] * 2;
+            FlyPowerCooldown = rateRequired / 2;
+            AbilityRateAvailable -= 1;
             AbilityRemaining?.Invoke(AbilityRateAvailable);
         }
          
@@ -970,7 +982,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 AbiltyChanged?.Invoke(AbilityRateAvailable);
             }
             
-
             if (CoyoteTimer > 0)
             {
                 CoyoteTimer -= Time.deltaTime;
