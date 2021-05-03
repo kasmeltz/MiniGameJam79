@@ -62,6 +62,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     enemy
                         .TakeDamage(ExplosionDamage, false);
+                    SoundEffects.Instance.Damage();
                 }
             }
 

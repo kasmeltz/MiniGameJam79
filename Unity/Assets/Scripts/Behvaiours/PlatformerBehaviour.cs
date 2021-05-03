@@ -68,6 +68,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public int FliesEaten { get; set; }
 
+        public float StrongThrowPower;
+        public float WeakThrowPower;
+
+        //---- protected -----//
+
         protected float JumpMoveTimer { get; set; }
 
         protected bool IsOnGround { get; set; }
@@ -145,6 +150,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (e.Fly.FlyType == FlyType.Poison)
             {
                 TakeDamage(25, false);
+                SoundEffects.Instance.Damage();
             }
             else
             {
@@ -825,24 +831,17 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     .Shoot(Direction);
             }
 
-            if (Input.GetKey(FlyPowerKey))
-            {
-                ThrowPower += Time.deltaTime;
-                if (ThrowPower >= 1)
-                {
-                    ThrowPower = 1;
+            if (Input.GetKeyDown(FlyPowerKey)) {
+
+                if ((Direction == 1 && Input.GetKey(KeyCode.RightArrow)) ||
+                    (Direction == -1 && Input.GetKey(KeyCode.LeftArrow))) {
+                    ThrowPower = StrongThrowPower;
                 }
-            }
-
-
-            if (Input.GetKeyUp(FlyPowerKey))
-            {
-                if (ThrowPower > 0)
-                {
-                    DoFlyPower();
-
-                    ThrowPower = 0;
+                else {
+                    ThrowPower = WeakThrowPower;
                 }
+
+                DoFlyPower();
             }
         }
 
