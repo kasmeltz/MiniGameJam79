@@ -1,5 +1,6 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
+    using System.Collections.Generic;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/MusicLooper")]
@@ -14,6 +15,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public AudioSource intro;
         public AudioSource[] loops;
         public float maxVolume = 1.0f;
+
+        protected List<AudioSource[]> loopGroups;
+        protected int currentLoopGroup = 0;
         #endregion
 
         private SoundEffects soundEffects;
@@ -75,6 +79,19 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected override void Awake()
         {
             DontDestroyOnLoad(gameObject);
+
+            loopGroups = new List<AudioSource[]>();
+
+            var loopClones = new AudioSource[loops.Length];
+
+            for (int i = 0; i < loops.Length; i++)
+            {
+                var cloned = Instantiate(loops[i]);
+                loopClones[i] = cloned;
+            }
+
+            loopGroups.Add(loops);
+            loopGroups.Add(loopClones);
         }
 
         public void Update() {
@@ -157,9 +174,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void StartNextLoop() {
             double startAt = AudioSettings.dspTime + loops[0].clip.length - loops[0].time;
 
-            foreach (AudioSource source in loops) {
-                Instantiate(source).PlayScheduled(startAt);
+            int next = 1 - currentLoopGroup;
+            foreach (AudioSource source in loopGroups[next])
+            {
+                source.PlayScheduled(startAt);
             }
+
+            currentLoopGroup = next;
 
             if (IsPlaying) {
                 DoAfter(loops[0].clip.length, StartNextLoop);
