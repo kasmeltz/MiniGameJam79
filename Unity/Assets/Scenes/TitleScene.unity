@@ -328,20 +328,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6764659982124359299, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_text
-      value: 'Left and Right Arrows - Hop
+      value: '[LEFT/RIGHT] - Hop
 
-        Up Arrow - Jump
+        [UP] - Jump
 
-        Down
-        Arrow - Drop down from one way platforms
+        [DOWN] - Drop down
+        from one-way platforms
 
-        A - To catch flies
+        [A] - Catch flies
 
-        D
-        - Press to fire bullet seed ability
-
-        D - Hold to power up and release
-        to throw the cherry bomb and lemon splash abilities'
+        [D] - Use fruit
+        abilities'
       objectReference: {fileID: 0}
     - target: {fileID: 6764659982124359299, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_fontSize
@@ -531,8 +528,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -80, y: -200}
+  m_AnchoredPosition: {x: 0, y: -16.5}
+  m_SizeDelta: {x: -80, y: -233}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &571557010
 MonoBehaviour:
@@ -554,22 +551,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Kevin Smeltzer - https://kasmeltz.itch.io
+  m_text: '~ PROGRAMMING ~
 
-    ZoePerson 1 - Somethingh
+    [LEAD] Kevin Smeltzer - kasmeltz.itch.io
 
-    Person
-    2
+    rayvax
+    - rayvax.itch.io
 
-    Person 3
 
-    Person 4
+    ~ ART, ANIMATION, GAMEPLAY DESIGN ~
 
-    Person 5
+    Zoe Anslow-Gwilliam
+    - linktr.ee/thezoeag
 
-    Person 6
 
-    Person 7  '
+    ~ MUSIC, SOUND DESIGN, AUDIO PROGRAMMING ~
+
+    jneen
+    collective - jneen-collective.bandcamp.com'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45479e64fca53e441b7266801e4cb4e7, type: 2}
   m_sharedMaterial: {fileID: 4824000523168898161, guid: 45479e64fca53e441b7266801e4cb4e7, type: 2}
@@ -596,8 +595,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
