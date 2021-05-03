@@ -1,7 +1,7 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
-    using System.Collections.Generic;
     using UnityEngine;
+    using System;
 
     [AddComponentMenu("KasJam/MusicLooper")]
     public class MusicLooper : BehaviourBase
@@ -15,12 +15,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public AudioSource intro;
         public AudioSource[] loops;
         public float maxVolume = 1.0f;
-
-        protected List<AudioSource[]> loopGroups;
-        protected int currentLoopGroup = 0;
         #endregion
 
+        public AudioSource[] nextLoops;
+
         private SoundEffects soundEffects;
+
+        private AudioSource currentLoop;
+        private float loopSize;
 
         public static MusicLooper Current = null;
 
@@ -78,20 +80,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected override void Awake()
         {
+            loopSize = loops[0].clip.length;
             DontDestroyOnLoad(gameObject);
-
-            loopGroups = new List<AudioSource[]>();
-
-            var loopClones = new AudioSource[loops.Length];
-
-            for (int i = 0; i < loops.Length; i++)
-            {
-                var cloned = Instantiate(loops[i]);
-                loopClones[i] = cloned;
-            }
-
-            loopGroups.Add(loops);
-            loopGroups.Add(loopClones);
         }
 
         public void Update() {
@@ -107,14 +97,40 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             float musicVolume = IsPlaying ? maxVolume * duckVolume : 0.0f;
 
-            float dt = Time.deltaTime;
+            intro.volume = towards(intro.volume, musicVolume, Time.deltaTime);
 
-            intro.volume = towards(intro.volume, musicVolume, dt);
+            SetTargetVolumes(loops, musicVolume);
+            if (nextLoops != null) SetTargetVolumes(nextLoops, musicVolume);
 
+            if (!IsPlaying) return;
+
+            if (nextLoops != null && nextLoops[0].time > 0.01f) {
+                foreach (AudioSource loop in loops) {
+                    loop.Stop();
+                    Destroy(loop.gameObject);
+                }
+
+                loops = nextLoops;
+                nextLoops = null;
+            }
+
+            if (nextLoops == null && loops[0].time > 0.75f * loopSize) {
+                double startAt = AudioSettings.dspTime - loops[0].time + loopSize;
+                nextLoops = Array.ConvertAll(loops, Instantiate);
+
+                foreach (AudioSource loop in nextLoops) {
+                    DontDestroyOnLoad(loop);
+                    loop.PlayScheduled(startAt);
+                }
+            }
+        }
+
+        private void SetTargetVolumes(AudioSource[] sources, float musicVolume) {
             int i = 0;
-            foreach (AudioSource source in loops) {
+            foreach (AudioSource source in sources) {
                 float targetVolume = (i == index) ? musicVolume : 0.0f;
-                source.volume = towards(source.volume, targetVolume, dt);
+                source.volume = towards(source.volume, targetVolume, Time.deltaTime);
+                if (source.volume < 0.01f && !IsPlaying) source.Stop();
                 i += 1;
             }
         }
@@ -142,6 +158,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         private void startPlaying(float delayTime) {
             IsPlaying = true;
+            nextLoops = null;
 
             double now = Now();
 
@@ -168,23 +185,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 i += 1;
             }
 
-            DoAfter(loops[0].clip.length * 0.75f, StartNextLoop);
-        }
-
-        public void StartNextLoop() {
-            double startAt = AudioSettings.dspTime + loops[0].clip.length - loops[0].time;
-
-            int next = 1 - currentLoopGroup;
-            foreach (AudioSource source in loopGroups[next])
-            {
-                source.PlayScheduled(startAt);
-            }
-
-            currentLoopGroup = next;
-
-            if (IsPlaying) {
-                DoAfter(loops[0].clip.length, StartNextLoop);
-            }
+            currentLoop = loops[index];
         }
     }
 }
