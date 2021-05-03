@@ -92,7 +92,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void BuyUpgrade() {
             float pitchRange = 1.5f;
             pitch = Random.Range(1.0f/pitchRange, pitchRange);
-            volume = 0.5f;
+            volume = 1.0f;
             PlayFile("Sounds/buy-upgrade");
         }
 
