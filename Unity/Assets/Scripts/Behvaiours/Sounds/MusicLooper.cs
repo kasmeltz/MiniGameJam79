@@ -132,7 +132,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             double loopStart = introStart;
 
             if (intro) {
-                loopStart += intro.clip.samples / (double) AudioSettings.outputSampleRate;
+                loopStart += intro.clip.length;
                 intro.volume = maxVolume;
                 intro.PlayScheduled(introStart);
             }
@@ -145,9 +145,24 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 if (i == index) source.volume = maxVolume;
                 else source.volume = 0.0f;
 
-                source.loop = true;
+                // [jneen] busted on WebGL build
+                // source.loop = true;
                 source.PlayScheduled(loopStart);
                 i += 1;
+            }
+
+            DoAfter(loops[0].clip.length * 0.75f, StartNextLoop);
+        }
+
+        public void StartNextLoop() {
+            double startAt = AudioSettings.dspTime + loops[0].clip.length - loops[0].time;
+
+            foreach (AudioSource source in loops) {
+                Instantiate(source).PlayScheduled(startAt);
+            }
+
+            if (IsPlaying) {
+                DoAfter(loops[0].clip.length, StartNextLoop);
             }
         }
     }
