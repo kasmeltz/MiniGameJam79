@@ -4,6 +4,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     using KasJam.MiniJam79.Unity.Managers;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
     using UnityEngine.Tilemaps;
 
@@ -67,9 +68,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             LastUpgradeTime = Time.time;
 
             var flies = FindObjectsOfType<FlyBehaviour>(true);
+
             foreach (var fly in flies)
             {
-                Destroy(fly);
+                fly
+                    .gameObject
+                    .SetActive(false);
             }
 
             TransitionTo(1);
@@ -179,8 +183,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
             }
 
-            Debug
-                .Log($"{transitionCount} tile changes for layer {index}");
+            //Debug
+                //.Log($"{transitionCount} tile changes for layer {index}");
                 
             CreateTransitionTimes(index, transitionCount);
         }
@@ -221,8 +225,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             var tileTransition = tileTransitions[transitionIndex];
 
-            Debug
-                .Log($"Coords '{tileTransition.Coords}' From '{tileTransition.FromTile}' To '{tileTransition.ToTile}'");
+            //Debug
+                //.Log($"Coords '{tileTransition.Coords}' From '{tileTransition.FromTile}' To '{tileTransition.ToTile}'");
 
             var fromTilemap = CurrentLevel.Tilemaps[tilemapIndex];
 

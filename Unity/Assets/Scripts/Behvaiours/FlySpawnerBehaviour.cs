@@ -1,6 +1,7 @@
 namespace KasJam.MiniJam79.Unity.Behaviours
 {
     using System.Collections.Generic;
+    using System.Linq;
     using UnityEngine;
 
     [AddComponentMenu("KasJam/FlySpawner")]
@@ -48,7 +49,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
 
                 fly
+                    .gameObject
                     .SetActive(false);
+
+                fly
+                    .transform
+                    .SetParent(transform);
             }
 
             Flies
@@ -85,6 +91,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             foreach(var fly in Flies)
             {
+                if (fly == null)
+                {
+                    continue;
+                }
+
                 if (!fly.gameObject.activeInHierarchy)
                 {
                     ToDelete
@@ -107,6 +118,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 SpawnFly();
             }
+
         }
 
 
