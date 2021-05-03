@@ -218,7 +218,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             var dialogue = new Dialogue("Kiki", "Frog Wizard");
             dialogue.AddLine(0, "Dude- have you been outside lately?! Everything's gone bananas!");
             dialogue.AddLine(1, "Indeed! A terrible Weirdness has consumed Lilytopia!");
-            dialogue.AddLine(0, "A 'Weirdness' you say? I guess that's... a bad thing?");
+            dialogue.AddLine(0, "A \"Weirdness\" you say? I guess that's... a bad thing?");
             dialogue.AddLine(1, "A VERY bad thing! To use a technical term... everyone has totally flipped!");
             dialogue.AddLine(0, "Everyone... except us?");
             dialogue.AddLine(1, "Looks like it.");
@@ -262,10 +262,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .Add(dialogue);
 
             dialogue = new Dialogue("Kiki", "Frog Wizard");
-            dialogue.OpenShopLine = 3;
+            dialogue.OpenShopLine = 7;
             dialogue.AddLine(1, "So, what's it like out there?");
             dialogue.AddLine(0, "Like you'd expect. It's WEIRD.");
-            dialogue.AddLine(1, "I see. Well, let's see if I have anything that will help you...");
+            dialogue.AddLine(1, "I should warn you - my calculations suggest with 97.3% certainty that Weirdness may result in geological anomalies. Mutations, even...");
+            dialogue.AddLine(0, "I... what are you talking about?");
+            dialogue.AddLine(1, "Just watch where you hop! As the Weirdness takes root, you may find the world itself beginning to change...");
+            dialogue.AddLine(0, "Oh, brother.");
+            dialogue.AddLine(1, "Indeed! Perhaps one of my potions may lighten your load?");
 
             dialogue.AddLine(1, "Good luck, little froglet!");
             dialogue.AddLine(0, "MY NAME IS- oh, forget it...");

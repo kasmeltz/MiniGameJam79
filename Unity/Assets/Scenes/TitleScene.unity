@@ -338,15 +338,25 @@ PrefabInstance:
         [A] - Catch flies
 
         [D] - Use fruit
-        abilities'
+        abilities
+
+
+        Enemy FROGS have 4HP.
+
+        SEED 1 DAMAGE
+
+        BOMB
+        2 DAMAGE
+
+        ZEST ATTACK 1 DAMAGE PER SECOND'
       objectReference: {fileID: 0}
     - target: {fileID: 6764659982124359299, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_fontSize
-      value: 26
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6764659982124359299, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_fontSizeBase
-      value: 26
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7501009640219025001, guid: 36bfc6119e9237b43be9b9339223847a, type: 3}
       propertyPath: m_text
