@@ -13,5 +13,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float DeathTime { get; set; }
 
         #endregion
+
+        #region Public Methods
+
+        public abstract void SetLevel(int level);
+
+        #endregion
     }
 }

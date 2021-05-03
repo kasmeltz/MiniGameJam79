@@ -107,6 +107,7 @@ MonoBehaviour:
   DamageToTakeMultiplier: 1
   AttackDamage: 20
   Level: 1
+  HealthPerLevel: 10
   HopCooldown: 1
   SeedCooldown: 1
   SpawnCooldown: 10

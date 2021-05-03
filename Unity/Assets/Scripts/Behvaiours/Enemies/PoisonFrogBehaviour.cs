@@ -9,13 +9,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     {
         #region Members
 
+        public float HealthPerLevel;
+
         public float HopCooldown;
 
         public float SeedCooldown;
-
-        public float SpawnCooldown;
-
-        public EnemyPatrolAreaBehaviour EnemyPatrolArea;
 
         public Bounds Bounds;
 
@@ -59,6 +57,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             gameObject
                 .SetActive(false);
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public override void SetLevel(int level)
+        {
+            Level = level;
+
+            MaxHealth += HealthPerLevel;
+            Health += HealthPerLevel;
         }
 
         #endregion
@@ -191,11 +201,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     SeedCounter = 0;
                 }
-            }
-
-            if (EnemyPatrolArea != null)
-            {
-                Bounds = EnemyPatrolArea.Bounds;
             }
 
             NoMoveCounter += Time.deltaTime;

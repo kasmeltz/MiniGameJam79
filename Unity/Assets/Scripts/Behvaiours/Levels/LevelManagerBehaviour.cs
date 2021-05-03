@@ -34,6 +34,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected int CurrentLevelIndex { get; set; }
 
+
+        protected float LastUpgradeTime { get; set; }
+
         #endregion
 
         #region Events
@@ -60,7 +63,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Reset()
         {
+            if (CurrentLevel != null)
+            {
+                Destroy(CurrentLevel.gameObject);
+            }
+
             CurrentLevelIndex = 0;
+            LastUpgradeTime = Time.time;
+
             TransitionTo(1);
 
             PauseGame(false);
@@ -78,7 +88,10 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             ToLevel = null;
             if (toPrefab == null)
             {
-                return;
+                CurrentLevelIndex = 0;
+
+                toPrefab = Resources
+                    .Load<LevelBehaviour>($"Prefabs/Levels/Level0");
             }
 
             ToLevel = Instantiate(toPrefab);
@@ -221,6 +234,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected void CheckEnemies()
         {
+            bool doUpdgrade = false;
+
+            if (Time.time - LastUpgradeTime >= 60)
+            {
+                LastUpgradeTime = Time.time;
+                doUpdgrade = true;
+            }
+
             foreach (var enemy in CurrentLevel.Enemies)
             {
                 if (enemy.IsDead)
@@ -233,6 +254,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                             .gameObject
                             .SetActive(true);
                     }
+                }
+
+                if (doUpdgrade)
+                {
+                    enemy
+                        .SetLevel(enemy.Level + 1);
                 }
             }
         }
@@ -281,7 +308,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (ToLevel == null)
             {
                 return;
-            }
+            }                        
 
             TransitionTimer += Time.deltaTime;
 
