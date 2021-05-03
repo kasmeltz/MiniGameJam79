@@ -18,6 +18,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float TransitionTotalTime;
 
+        public float EnemyRespawnTime;
+
         protected LevelBehaviour CurrentLevel { get; set; }
 
         protected LevelBehaviour ToLevel { get; set; }
@@ -50,6 +52,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         {
             LevelTransitioned?
                 .Invoke(this, EventArgs.Empty);
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public void Reset()
+        {
+            CurrentLevelIndex = 0;
+            TransitionTo(1);
+
+            PauseGame(false);
         }
 
         #endregion
@@ -205,12 +219,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 .SetTile(tileTransition.Coords, tileTransition.ToTile);
         }
 
-        public void Reset()
+        protected void CheckEnemies()
         {
-            CurrentLevelIndex = 0;
-            TransitionTo(1);
-            
-            PauseGame(false);
+            foreach (var enemy in CurrentLevel.Enemies)
+            {
+                if (enemy.IsDead)
+                {
+                    if (Time.time - enemy.DeathTime >= EnemyRespawnTime)
+                    {
+                        enemy.Health = enemy.MaxHealth;
+                        enemy.IsDead = false;
+                        enemy
+                            .gameObject
+                            .SetActive(true);
+                    }
+                }
+            }
         }
 
         #endregion
@@ -239,7 +263,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             TransitionTo(1);
         }
-
+        
         protected void Update()
         {
             if (GameManager
@@ -295,6 +319,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     }
                 }
             }
+
+            CheckEnemies();
         }
 
         #endregion

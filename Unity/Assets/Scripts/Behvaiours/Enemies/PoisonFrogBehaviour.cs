@@ -42,11 +42,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             IsDead = true;
             Health = 0;
+            
+            DeathTime = Time.time;
 
             Animator
                 .SetTrigger("Dying");
 
-            SoundEffects.Instance.Death();
+            SoundEffects.Instance.Death();            
         }
 
         #endregion

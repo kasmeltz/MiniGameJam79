@@ -24,6 +24,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float AttackDamage;
 
+        public bool IsDead { get; set; }
+
         protected Animator Animator { get; set; }
 
         protected bool IsHopping { get; set; }
@@ -31,9 +33,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         protected bool IsJumping { get; set; }
 
         protected float DamageCounter { get; set; }
-
-        protected bool IsDead { get; set; }
-
+        
         #endregion       
 
         #region Public Methods

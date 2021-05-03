@@ -46,3 +46,4 @@ MonoBehaviour:
   Platformer: {fileID: 0}
   TransitionStartTime: 40
   TransitionTotalTime: 400
+  EnemyRespawnTime: 40

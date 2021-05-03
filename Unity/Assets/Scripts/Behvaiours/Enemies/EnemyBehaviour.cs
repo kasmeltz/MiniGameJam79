@@ -10,6 +10,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public Vector2Int GridCoords { get; set; }
 
+        public float DeathTime { get; set; }
+
         #endregion
     }
 }
