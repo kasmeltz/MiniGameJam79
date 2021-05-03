@@ -7,6 +7,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
     [RequireComponent(typeof(TMP_Text))]
     public class CooldownTextBehaviour : BehaviourBase
     {
+        public ProgressBarBehaviour ProgressBar;
+
         [SerializeField] private PlatformerBehaviour _frog;
 
         private TMP_Text _text;
@@ -16,20 +18,33 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             base
                 .Awake();
 
+            _frog.AbilityRemaining += _frog_AbilityRemaining;
+            _frog.AbiltyChanged += _frog_AbiltyChanged;
             _text = GetComponent<TMP_Text>();
+
+           UpdateUI();
         }
 
-        protected void Update()
+        private void _frog_AbiltyChanged(float arg0)
         {
-            if (_frog.FlyPower == FlyType.None)
-            {
-                _text.text = "";
-                return;
-            }
+            
+        }
 
+        private void _frog_AbilityRemaining(float arg0)
+        {
+            
+        }
+
+        protected void UpdateUI()
+        {
+            /*
             _text.text = Mathf
-                .RoundToInt(_frog.FlyPowerTimer)
+                .RoundToInt(RateAvailable)
                 .ToString();
+
+            ProgressBar
+                .SetValue(RateAvailable, MaximumRate);
+            */
         }
     }
 }

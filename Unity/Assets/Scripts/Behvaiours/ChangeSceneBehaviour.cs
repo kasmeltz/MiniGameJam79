@@ -10,12 +10,20 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected string SceneName { get; set; }
 
+        protected bool IsChanging { get; set; }
+
         #endregion
 
         #region Public Methods
 
         public void ChangeScene(string sceneName)
         {
+            if (IsChanging)
+            {
+                return;
+            }
+
+            IsChanging = true;
             SceneName = sceneName;
 
             var fadePanel = FindObjectOfType<FadePanelBehaviour>();

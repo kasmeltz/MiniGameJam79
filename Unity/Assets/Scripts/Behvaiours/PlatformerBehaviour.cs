@@ -41,9 +41,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public float JumpMoveTimeLimit;
 
         public FrogTongueBehaviour Tongue;
-
-        public float FlyPowerDuration;
-
+       
         public float DeathVelocity;
 
         public KeyCode TongueKey;
@@ -58,9 +56,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public GameObjectPoolBehaviour LemonSquirtPool;
 
-        public float[] FlyPowerCooldownsAmount;
-
-        public float FlyPowerTimer;
+        public float[] FlyPowerRatesPerSecond;
 
         public FlyType FlyPower;
 
@@ -98,15 +94,27 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         protected Collider2D GroundCollider { get; set; }
 
-        protected float FlyPowerCooldown { get; set; }
+        public float FlyPowerCooldown { get; set; }
         
         protected float ThrowPower { get; set; }
+        
+        public float AbilityRateAvailable { get; set; }
+
+        public float MaximumAbilityRate { get; set; }
+
+        #endregion
+
+        #region Events
+
+        public event UnityAction<int> FliesEatenHasChanged;
+
+        public event UnityAction<float> AbilityRemaining;
+
+        public event UnityAction<float> AbiltyChanged;
 
         #endregion
 
         #region Event Handlers
-
-        public event UnityAction<int> FliesEatenHasChanged;
 
         private void LevelManger_LevelStarted(object sender, System.EventArgs e)
         {
@@ -141,10 +149,15 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             else
             {
                 SoundEffects.Instance.Powerup();
-                FlyPowerTimer = FlyPowerDuration;
+
                 FlyPower = e.Fly.FlyType;
+                MaximumAbilityRate = FlyPowerRatesPerSecond[(int)FlyPower];
+                AbilityRateAvailable = MaximumAbilityRate;
+
+                AbiltyChanged?.Invoke(MaximumAbilityRate);
+                
                 FliesEaten++;
-                FliesEatenHasChanged?.Invoke(FliesEaten);
+                FliesEatenHasChanged?.Invoke(FliesEaten);               
             }
 
             UpdateUI();
@@ -171,9 +184,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             return false;
         }
 
-        public void ReduceFlyPowerCooldown(int reducedPercentage, FlyType flyType)
+        public void IncreaseFlyPowerRate(int increasedRate, FlyType flyType)
         {
-            FlyPowerCooldownsAmount[(int)flyType] *= (float)(100 - reducedPercentage) / 100;
+            FlyPowerRatesPerSecond[(int)flyType] += increasedRate;
         }
        
         #endregion
@@ -213,15 +226,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 FlyPowerProgressBar.BackgroundImage.sprite = sprites[spriteIndex];
                 FlyPowerProgressBar.ForegroundImage.sprite = sprites[spriteIndex + 3];
             }
-        }
-
-        protected void RemoveFlyPowers()
-        {
-            ActualJumpVelocity = JumpVelocity;
-
-            FlyPower = FlyType.None;
-
-            UpdateUI();
         }
 
         protected bool CanJump()
@@ -302,9 +306,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (!IsJumping) return;
             if (RigidBody.velocity.y <= ShortHopVelocity) return;
 
-            var vel = new Vector2(0, 0);
-            vel.x = RigidBody.velocity.x;
-            vel.y = ShortHopVelocity;
+            var vel = new Vector2(0, 0)
+            {
+                x = RigidBody.velocity.x,
+                y = ShortHopVelocity
+            };
             RigidBody.velocity = vel;
         }
 
@@ -345,7 +351,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             ImpactVelocity = 0;
             ActualJumpVelocity = JumpVelocity;
             FlyPower = FlyType.None;
-            FlyPowerTimer = 0;
             JumpMoveTimer = 0;
             IsJumping = false;
             JumpStartY = 0;
@@ -527,11 +532,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 return;
             }
 
-            if (FlyPowerTimer <= 0)
-            {
-                return;
-            }
-
             if (FlyPowerCooldown > 0)
             {
                 return;
@@ -551,8 +551,9 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     SquirtLemon();
                     break;
             }
-        
-            FlyPowerCooldown = FlyPowerCooldownsAmount[(int)FlyPower];
+
+            FlyPowerCooldown = 1 / FlyPowerRatesPerSecond[(int)FlyPower] * 2;
+            AbilityRemaining?.Invoke(AbilityRateAvailable);
         }
          
         protected void FireStrawberrySeed()
@@ -917,7 +918,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             ActualJumpVelocity = JumpVelocity;
 
             FlyPowerProgressBar
-                .SetValue(0, FlyPowerDuration);
+                .SetValue(0, 100);
 
             HealthProgressBar
                 .SetValue(Health, MaxHealth);
@@ -959,6 +960,18 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 }
             }
 
+            if (AbilityRateAvailable < MaximumAbilityRate)
+            {
+                AbilityRateAvailable += Time.deltaTime;
+                if (AbilityRateAvailable >= MaximumAbilityRate)
+                {
+                    AbilityRateAvailable = MaximumAbilityRate;
+                }
+
+                AbiltyChanged?.Invoke(AbilityRateAvailable);
+            }
+            
+
             if (CoyoteTimer > 0)
             {
                 CoyoteTimer -= Time.deltaTime;
@@ -976,21 +989,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                 {
                     JumpMoveTimer = 0;
                 }
-            }
-
-            if (FlyPowerTimer > 0)
-            {
-                FlyPowerTimer -= Time.deltaTime;
-                if (FlyPowerTimer <= 0)
-                {
-                    FlyPowerTimer = 0;
-
-                    RemoveFlyPowers();
-                }
-
-                FlyPowerProgressBar
-                    .SetValue(FlyPowerTimer, FlyPowerDuration);
-            }
+            }         
 
             if (RigidBody.velocity.y < -1)
             {
