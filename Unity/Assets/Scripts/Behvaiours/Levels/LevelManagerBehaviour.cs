@@ -63,11 +63,6 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void Reset()
         {
-            if (CurrentLevel != null)
-            {
-                Destroy(CurrentLevel.gameObject);
-            }
-
             CurrentLevelIndex = 0;
             LastUpgradeTime = Time.time;
 
@@ -88,10 +83,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             ToLevel = null;
             if (toPrefab == null)
             {
-                CurrentLevelIndex = 0;
-
-                toPrefab = Resources
-                    .Load<LevelBehaviour>($"Prefabs/Levels/Level0");
+                return;
             }
 
             ToLevel = Instantiate(toPrefab);
