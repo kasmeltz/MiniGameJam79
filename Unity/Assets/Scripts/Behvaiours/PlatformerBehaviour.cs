@@ -142,6 +142,7 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             if (e.Fly.FlyType == FlyType.Poison)
             {
                 TakeDamage(25, false);
+                SoundEffects.Instance.Damage();
             }
             else
             {

@@ -64,6 +64,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         // bouncing on bouncy things
         public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
 
+        public void AcidDamage() { volume = 1.0f; PlayFile("Sounds/acid-damage"); }
+
         // starting levels
         public void MenuGo() { volume = 1.0f; PlayFile("Sounds/menu-go"); }
 

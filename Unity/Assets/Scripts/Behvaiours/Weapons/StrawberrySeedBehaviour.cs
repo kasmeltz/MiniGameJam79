@@ -61,6 +61,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             {
                 enemy
                     .TakeDamage(AttackDamage, false);
+                SoundEffects.Instance.Damage();
+
             }
 
             Die();

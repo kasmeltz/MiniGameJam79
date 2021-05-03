@@ -135,6 +135,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
                     {
                         enemy
                             .TakeDamage(DamagePerSecond * 0.25f, true);
+                        SoundEffects.Instance.AcidDamage();
+
                     }
                 }
             }

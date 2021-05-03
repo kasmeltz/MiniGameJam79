@@ -25,6 +25,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
             hero
                 .TakeDamage(Damage, false);
+            SoundEffects.Instance.Damage();
+
         }
 
         #endregion
