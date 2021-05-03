@@ -164,6 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d56933ad3a97746bb70e0ef5b56c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrowForce: {x: 4, y: 6}
+  ThrowForce: {x: 6, y: 4}
   ExplosionRange: 2
   ExplosionDamage: 0

@@ -165,6 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToLive: 4
-  FireForce: {x: 4, y: 7.5}
+  FireForce: {x: 6, y: 4}
   DamagePerSecond: 0
   DamageRange: 2

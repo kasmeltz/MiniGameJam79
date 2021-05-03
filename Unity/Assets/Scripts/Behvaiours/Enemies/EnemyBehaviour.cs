@@ -12,6 +12,11 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public float DeathTime { get; set; }
 
+        protected override void Update() {
+            // [jneen] XXX HACK
+            DamageCounter = 0;
+        }
+
         #endregion
 
         #region Public Methods

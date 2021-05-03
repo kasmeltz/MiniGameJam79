@@ -48,21 +48,22 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         public void Spit() {
+            volume = 2.0f;
             PlayFile(distance > 0.0f ? "Sounds/spit" : "Sounds/spit-reverse");
         }
 
         public void Bomb() { volume = 0.7f; PlayFile("Sounds/bomb"); }
 
         public void Damage() {
-            volume = 0.5f;
+            volume = 1.0f;
             PlayFile("Sounds/damage");
         }
 
         public void TongueConnect() { volume = 1.0f; PlayFile("Sounds/tongue-connect"); }
-        public void Death() { volume = 0.55f; pitch = 0.9f; PlayFile("Sounds/death"); }
+        public void Death() { volume = 0.7f; pitch = 0.9f; PlayFile("Sounds/death"); }
 
         // bouncing on bouncy things
-        public void Bounce() { volume = 1.0f; PlayFile("Sounds/bounce"); }
+        public void Bounce() { volume = 1.5f; pitch = 1.1f; PlayFile("Sounds/bounce"); }
 
         public void AcidDamage() { volume = 0.7f; PlayFile("Sounds/acid-damage"); }
 
@@ -74,14 +75,14 @@ namespace KasJam.MiniJam79.Unity.Behaviours
 
         public void DialogueKiki() {
             distance = -0.4f;
-            volume = 0.2f;
+            volume = 1.0f;
             RandomDiatonic(new int[] { -3, -2, 0, 2, 4, 6, 7 });
             PlayFile("Sounds/dialogue-kiki");
         }
 
         public void DialogueWiz() {
             distance = 0.4f;
-            volume = 0.3f;
+            volume = 1.0f;
             RandomDiatonic(new int[] { -4, -2, 0, 1, 3, 5, 7 });
             PlayFile("Sounds/dialogue-wiz");
         }
@@ -91,8 +92,13 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         public void BuyUpgrade() {
             float pitchRange = 1.5f;
             pitch = Random.Range(1.0f/pitchRange, pitchRange);
-            volume = 0.3f;
+            volume = 0.5f;
             PlayFile("Sounds/buy-upgrade");
+        }
+
+        public void Nope() {
+            volume = 0.5f;
+            PlayFile("Sounds/nope");
         }
 
         protected override void Awake()
@@ -132,11 +138,12 @@ namespace KasJam.MiniJam79.Unity.Behaviours
         }
 
         private float computeVolume() {
-            if (distance < -1.0f) return 0.0f;
-            if (distance > 1.0f) return 0.0f;
-            float dist = Mathf.Abs(distance) / 5.0f;
-            if (dist < 0.1f) return 1.0f;
-            return volume * Mathf.Lerp(0.5f, 1.0f, 1.0f - dist * dist * dist * dist);
+            return volume;
+            // if (distance < -1.0f) return 0.0f;
+            // if (distance > 1.0f) return 0.0f;
+            // float dist = Mathf.Abs(distance) / 5.0f;
+            // if (dist < 0.1f) return 1.0f;
+            // return volume * Mathf.Lerp(0.5f, 1.0f, 1.0f - dist * dist * dist * dist);
         }
     }
 }
