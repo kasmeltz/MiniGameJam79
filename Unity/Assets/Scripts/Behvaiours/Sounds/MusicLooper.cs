@@ -115,7 +115,8 @@ namespace KasJam.MiniJam79.Unity.Behaviours
             }
 
             if (nextLoops == null && loops[0].time > 0.75f * loopSize) {
-                double startAt = AudioSettings.dspTime - loops[0].time + loopSize;
+                Debug.Log("starting next loop at "+loops[0].timeSamples+" (sampleRate: "+AudioSettings.outputSampleRate+")");
+                double startAt = AudioSettings.dspTime - loops[0].timeSamples / (float) AudioSettings.outputSampleRate + loopSize;
                 nextLoops = Array.ConvertAll(loops, Instantiate);
 
                 foreach (AudioSource loop in nextLoops) {
