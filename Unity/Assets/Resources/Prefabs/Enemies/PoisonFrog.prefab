@@ -114,7 +114,7 @@ MonoBehaviour:
   Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
-  AggressionDistanceCutoff: 10
+  AggressionDistanceCutoff: 6
 --- !u!95 &8853264267672399947
 Animator:
   serializedVersion: 3
